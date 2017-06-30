@@ -29,4 +29,3 @@ hs_err_pid*
 kpi.iws
 kpi.ipr
 kpi.iml
-src/main/resources/import.sql
