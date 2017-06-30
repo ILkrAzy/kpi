@@ -12,76 +12,76 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "project_kpi_value")
-public class ProjectKpiValue implements Serializable{
-	private static final long serialVersionUID = 1L;
-	@Id
-	@ManyToOne
-	@JoinColumn(name = "project_id", foreignKey = @ForeignKey(name = "PROJECT_ID_FK"))
-	private Project project;
-	
-	@Id
-	@ManyToOne
-	@JoinColumn(name = "kpi_id", foreignKey = @ForeignKey(name = "KPI_ID_FK"))
-	private Kpi kpi;
-	
-	@Id
-	private Integer month;
-	
-	@Id
-	private Integer year;
-	
-	private String value;
-	
-	@Column(length = 2000)
-	private String comment;
+public class ProjectKpiValue implements Serializable {
+    private static final long serialVersionUID = 1L;
+    @Id
+    @ManyToOne
+    @JoinColumn(name = "project_id", foreignKey = @ForeignKey(name = "PROJECT_ID_FK"))
+    private Project project;
 
-	public Project getProject() {
-		return project;
-	}
+    @Id
+    @ManyToOne
+    @JoinColumn(name = "kpi_id", foreignKey = @ForeignKey(name = "KPI_ID_FK"))
+    private Kpi kpi;
 
-	public void setProject(Project project) {
-		this.project = project;
-	}
+    @Id
+    private Integer month;
 
-	public Kpi getKpi() {
-		return kpi;
-	}
+    @Id
+    private Integer year;
 
-	public void setKpi(Kpi kpi) {
-		this.kpi = kpi;
-	}
+    private String value;
 
-	public Integer getMonth() {
-		return month;
-	}
+    @Column(length = 2000)
+    private String comment;
 
-	public void setMonth(Integer month) {
-		this.month = month;
-	}
+    public Project getProject() {
+        return project;
+    }
 
-	public Integer getYear() {
-		return year;
-	}
+    public void setProject(Project project) {
+        this.project = project;
+    }
 
-	public void setYear(Integer year) {
-		this.year = year;
-	}
+    public Kpi getKpi() {
+        return kpi;
+    }
 
-	public String getValue() {
-		return value;
-	}
+    public void setKpi(Kpi kpi) {
+        this.kpi = kpi;
+    }
 
-	public void setValue(String value) {
-		this.value = value;
-	}
+    public Integer getMonth() {
+        return month;
+    }
 
-	public String getComment() {
-		return comment;
-	}
+    public void setMonth(Integer month) {
+        this.month = month;
+    }
 
-	public void setComment(String comment) {
-		this.comment = comment;
-	}
-	
-	
+    public Integer getYear() {
+        return year;
+    }
+
+    public void setYear(Integer year) {
+        this.year = year;
+    }
+
+    public String getValue() {
+        return value;
+    }
+
+    public void setValue(String value) {
+        this.value = value;
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
+
+
 }

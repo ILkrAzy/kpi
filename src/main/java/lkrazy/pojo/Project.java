@@ -19,61 +19,61 @@ import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 @Table(name = "project")
-public class Project implements Serializable{
-	private static final long serialVersionUID = 1L;
-	@Id
-	@GeneratedValue(generator = "increment")
-	@GenericGenerator(name = "increment", strategy = "increment")
-	private int id;
+public class Project implements Serializable {
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(generator = "increment")
+    @GenericGenerator(name = "increment", strategy = "increment")
+    private int id;
 
-	private String name;
+    private String name;
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "project_type_id", foreignKey = @ForeignKey(name = "PROJECT_TYPE_ID_FK"))
-	private ProjectType type;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "project_type_id", foreignKey = @ForeignKey(name = "PROJECT_TYPE_ID_FK"))
+    private ProjectType type;
 
-	@OneToMany(mappedBy = "project", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
-	private List<UserProject> managers = new ArrayList<>();
-	
+    @OneToMany(mappedBy = "project", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    private List<UserProject> managers = new ArrayList<>();
 
-	public int getId() {
-		return id;
-	}
 
-	public void setId(int id) {
-		this.id = id;
-	}
+    public int getId() {
+        return id;
+    }
 
-	public String getName() {
-		return name;
-	}
+    public void setId(int id) {
+        this.id = id;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public ProjectType getType() {
-		return type;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public void setType(ProjectType type) {
-		this.type = type;
-	}
+    public ProjectType getType() {
+        return type;
+    }
 
-	public List<UserProject> getManagers() {
-		return managers;
-	}
+    public void setType(ProjectType type) {
+        this.type = type;
+    }
 
-	public void addManager(User manager) {
-		getManagers().add(new UserProject(manager, this));
-	}
-	
-	public void removeManager(User manager) {
-		UserProject userProject = new UserProject(manager, this);
-		manager.getProjects().remove(userProject);
-		getManagers().remove(userProject);
-		userProject.setUser(null);
-		userProject.setProject(null);
-	}
+    public List<UserProject> getManagers() {
+        return managers;
+    }
+
+    public void addManager(User manager) {
+        getManagers().add(new UserProject(manager, this));
+    }
+
+    public void removeManager(User manager) {
+        UserProject userProject = new UserProject(manager, this);
+        manager.getProjects().remove(userProject);
+        getManagers().remove(userProject);
+        userProject.setUser(null);
+        userProject.setProject(null);
+    }
 
 }

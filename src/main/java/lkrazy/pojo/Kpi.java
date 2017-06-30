@@ -17,48 +17,48 @@ import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 @Table(name = "kpi")
-public class Kpi implements Serializable{
-	private static final long serialVersionUID = 1L;
-	@Id
-	@GeneratedValue(generator = "increment")
-	@GenericGenerator(name = "increment", strategy = "increment")
-	private int id;
-	
-	@Column(length = 255)
-	private String name;
-	
-	private String measure;
-	
-	@OneToMany(mappedBy = "kpi", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
-	private List<ProjectTypeKpi> projectTypes = new ArrayList<>();
+public class Kpi implements Serializable {
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(generator = "increment")
+    @GenericGenerator(name = "increment", strategy = "increment")
+    private int id;
 
-	public int getId() {
-		return id;
-	}
+    @Column(length = 255)
+    private String name;
 
-	public void setId(int id) {
-		this.id = id;
-	}
+    private String measure;
 
-	public String getName() {
-		return name;
-	}
+    @OneToMany(mappedBy = "kpi", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    private List<ProjectTypeKpi> projectTypes = new ArrayList<>();
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public int getId() {
+        return id;
+    }
 
-	public String getMeasure() {
-		return measure;
-	}
+    public void setId(int id) {
+        this.id = id;
+    }
 
-	public void setMeasure(String measure) {
-		this.measure = measure;
-	}
-	
-	public List<ProjectTypeKpi> getProjectTypes() {
-		return projectTypes;
-	}
+    public String getName() {
+        return name;
+    }
 
-	
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getMeasure() {
+        return measure;
+    }
+
+    public void setMeasure(String measure) {
+        this.measure = measure;
+    }
+
+    public List<ProjectTypeKpi> getProjectTypes() {
+        return projectTypes;
+    }
+
+
 }

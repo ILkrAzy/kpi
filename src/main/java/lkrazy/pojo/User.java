@@ -17,114 +17,111 @@ import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 @Table(name = "user")
-public class User implements Serializable{
-	private static final long serialVersionUID = 1L;
+public class User implements Serializable {
+    private static final long serialVersionUID = 1L;
 
-	@Id
-	@GeneratedValue(generator = "increment")
-	@GenericGenerator(name = "increment", strategy = "increment")
-	private int id;
+    @Id
+    @GeneratedValue(generator = "increment")
+    @GenericGenerator(name = "increment", strategy = "increment")
+    private int id;
 
-	@Column(nullable = false)
-	private String username;
+    @Column(nullable = false)
+    private String username;
 
-	private String password;
+    private String password;
 
-	private String email;
+    private String email;
 
-	@Column(name = "firstname")
-	private String firstName;
+    @Column(name = "firstname")
+    private String firstName;
 
-	@Column(name = "lastname")
-	private String lastName;
-	
-	private Integer role;
-	
-	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	List<UserProject> projects = new ArrayList<>();
-	
+    @Column(name = "lastname")
+    private String lastName;
 
-	public User() {
-	}
-	
-	
+    private Integer role;
 
-	public User(String username, String password, String email, String firstName, String lastName, Integer role) {
-		super();
-		this.username = username;
-		this.password = password;
-		this.email = email;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.role = role;
-	}
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    List<UserProject> projects = new ArrayList<>();
 
 
+    public User() {
+    }
 
-	public int getId() {
-		return id;
-	}
 
-	public void setId(int id) {
-		this.id = id;
-	}
+    public User(String username, String password, String email, String firstName, String lastName, Integer role) {
+        super();
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.role = role;
+    }
 
-	public String getUsername() {
-		return username;
-	}
 
-	public void setUsername(String username) {
-		this.username = username;
-	}
+    public int getId() {
+        return id;
+    }
 
-	public String getPassword() {
-		return password;
-	}
+    public void setId(int id) {
+        this.id = id;
+    }
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
+    public String getUsername() {
+        return username;
+    }
 
-	public String getEmail() {
-		return email;
-	}
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+    public String getPassword() {
+        return password;
+    }
 
-	public String getFirstName() {
-		return firstName;
-	}
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
+    public String getEmail() {
+        return email;
+    }
 
-	public String getLastName() {
-		return lastName;
-	}
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-	
-	public Integer getRole() {
-		return role;
-	}
-	
-	public void setRole(Integer role) {
-		this.role = role;
-	}
-	
-	public List<UserProject> getProjects() {
-		return projects;
-	}
-	
-	
+    public String getFirstName() {
+        return firstName;
+    }
 
-	@Override
-	public String toString() {
-		return String.format("User {id: %d, username: %s}", getId(), getUsername());
-	}
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public Integer getRole() {
+        return role;
+    }
+
+    public void setRole(Integer role) {
+        this.role = role;
+    }
+
+    public List<UserProject> getProjects() {
+        return projects;
+    }
+
+
+    @Override
+    public String toString() {
+        return String.format("User {id: %d, username: %s}", getId(), getUsername());
+    }
 }
