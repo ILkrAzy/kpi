@@ -7,9 +7,14 @@
  */
 
 // Apply the java-library plugin to add support for Java Library
+
+
+plugins {
+	id 'org.springframework.boot' version '1.5.4.RELEASE'
+}
+
 apply plugin: 'java-library'
 apply plugin: 'eclipse'
-
 
 // In this section you declare where to find the dependencies of your project
 repositories {
@@ -31,9 +36,10 @@ dependencies {
 	compile 'org.hibernate:hibernate-entitymanager:5.1.0.Final'
 	
 	compile 'mysql:mysql-connector-java:6.0.6'	
-	compile 'org.slf4j:slf4j-log4j12:1.7.12'
-	compile 'org.javassist:javassist:3.20.0-GA'
-
+	//compile 'org.slf4j:slf4j-log4j12:1.7.12'
+	//compile 'org.javassist:javassist:3.20.0-GA'
+	compile 'org.springframework.boot:spring-boot-starter:1.5.1.RELEASE'
+	compile 'org.springframework.boot:spring-boot-starter-data-jpa:1.5.1.RELEASE'
 
     // Use JUnit test framework
     testImplementation 'junit:junit:4.12'
