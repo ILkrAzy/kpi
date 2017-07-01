@@ -7,8 +7,6 @@
  */
 
 // Apply the java-library plugin to add support for Java Library
-
-
 buildscript {
     repositories {
         mavenCentral()
@@ -17,10 +15,20 @@ buildscript {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:1.5.3.RELEASE")
     }
 }
+
+plugins {
+	id 'org.springframework.boot' version '1.5.4.RELEASE'
+	id 'net.saliman.cobertura' version '2.3.1'
+	id 'com.github.kt3k.coveralls' version '2.8.1'
+}
+
+cobertura.coverageFormats = ['html', 'xml'] // coveralls plugin depends on xml format report
+
 apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'idea'
 apply plugin: 'org.springframework.boot'
+
 
 // In this section you declare where to find the dependencies of your project
 repositories {
