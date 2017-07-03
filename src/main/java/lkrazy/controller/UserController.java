@@ -32,6 +32,6 @@ public class UserController {
 
     @RequestMapping(method = RequestMethod.POST)
     public void create(@RequestBody User user) {
-
+        userRepository.save(user);
     }
 }
