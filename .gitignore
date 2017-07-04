@@ -26,6 +26,7 @@ hs_err_pid*
 /.settings/
 /bin/
 /gradle.properties
+/out/
 kpi.iws
 kpi.ipr
 kpi.iml
