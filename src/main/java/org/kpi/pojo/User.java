@@ -4,14 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import org.hibernate.annotations.GenericGenerator;
 
@@ -38,7 +31,9 @@ public class User implements Serializable {
     @Column(name = "lastname")
     private String lastName;
 
-    private Integer role;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "role_id", foreignKey = @ForeignKey(name = "USER_ROLE_ID_FK"))
+    private Role role;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     List<UserProject> projects = new ArrayList<>();
@@ -48,7 +43,7 @@ public class User implements Serializable {
     }
 
 
-    public User(String username, String password, String email, String firstName, String lastName, Integer role) {
+    public User(String username, String password, String email, String firstName, String lastName, Role role) {
         super();
         this.username = username;
         this.password = password;
@@ -107,11 +102,11 @@ public class User implements Serializable {
         this.lastName = lastName;
     }
 
-    public Integer getRole() {
+    public Role getRole() {
         return role;
     }
 
-    public void setRole(Integer role) {
+    public void setRole(Role role) {
         this.role = role;
     }
 
