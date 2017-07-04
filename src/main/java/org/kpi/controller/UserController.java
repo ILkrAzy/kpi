@@ -1,7 +1,7 @@
-package lkrazy.controller;
+package org.kpi.controller;
 
-import lkrazy.pojo.User;
-import lkrazy.repository.UserRepository;
+import org.kpi.pojo.User;
+import org.kpi.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;

@@ -1,10 +1,10 @@
-package lkrazy.repository;
+package org.kpi.repository;
 
 import java.util.List;
 
 import org.springframework.data.repository.CrudRepository;
 
-import lkrazy.pojo.User;
+import org.kpi.pojo.User;
 
 public interface UserRepository extends CrudRepository<User, Long> {
     public List<User> findByUsername(String username);

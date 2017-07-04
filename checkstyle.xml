@@ -10,6 +10,7 @@
     <module name="FileTabCharacter">
         <property name="eachLine" value="false"/>
     </module>
+    
     <module name="TreeWalker">
         <module name="com.github.sevntu.checkstyle.checks.coding.ReturnNullInsteadOfBoolean"/>
         <module name="com.puppycrawl.tools.checkstyle.checks.imports.RedundantImport"/>

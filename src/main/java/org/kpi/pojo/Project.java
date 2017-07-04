@@ -1,4 +1,4 @@
-package lkrazy.pojo;
+package org.kpi.pojo;
 
 import java.io.Serializable;
 import java.util.ArrayList;
