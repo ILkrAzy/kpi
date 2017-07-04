@@ -15,12 +15,12 @@ public class UserProject implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @ManyToOne
-    @JoinColumn(name = "user_id", foreignKey = @ForeignKey(name = "USER_ID_FK"))
+    @JoinColumn(name = "user_id", foreignKey = @ForeignKey(name = "USERPROJECT_USER_ID_FK"))
     private User user;
 
     @Id
     @ManyToOne
-    @JoinColumn(name = "project_id", foreignKey = @ForeignKey(name = "PROJECT_ID_FK"))
+    @JoinColumn(name = "project_id", foreignKey = @ForeignKey(name = "USERPROJECT_PROJECT_ID_FK"))
     private Project project;
 
     public UserProject() {

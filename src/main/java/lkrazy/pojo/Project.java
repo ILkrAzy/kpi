@@ -29,7 +29,7 @@ public class Project implements Serializable {
     private String name;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "project_type_id", foreignKey = @ForeignKey(name = "PROJECT_TYPE_ID_FK"))
+    @JoinColumn(name = "project_type_id", foreignKey = @ForeignKey(name = "PROJECT_PROJECT_TYPE_ID_FK"))
     private ProjectType type;
 
     @OneToMany(mappedBy = "project", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)

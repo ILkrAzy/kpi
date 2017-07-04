@@ -16,12 +16,12 @@ public class ProjectTypeKpi implements Serializable {
 
     @Id
     @ManyToOne
-    @JoinColumn(name = "project_type_id", foreignKey = @ForeignKey(name = "PROJECT_TYPE_ID_FK"))
+    @JoinColumn(name = "project_type_id", foreignKey = @ForeignKey(name = "PROJECTTYPEKPI_PROJECT_TYPE_ID_FK"))
     private ProjectType projectType;
 
     @Id
     @ManyToOne
-    @JoinColumn(name = "kpi_id", foreignKey = @ForeignKey(name = "KPI_ID_FK"))
+    @JoinColumn(name = "kpi_id", foreignKey = @ForeignKey(name = "PROJECTTYPEKPI_KPI_ID_FK"))
     private Kpi kpi;
 
     public ProjectTypeKpi() {
