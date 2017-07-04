@@ -6,7 +6,20 @@
 
 <module name="Checker">
     <module name="NewlineAtEndOfFile"/>
+
+    <module name="FileTabCharacter">
+        <property name="eachLine" value="false"/>
+    </module>
     <module name="TreeWalker">
         <module name="com.github.sevntu.checkstyle.checks.coding.ReturnNullInsteadOfBoolean"/>
+        <module name="com.puppycrawl.tools.checkstyle.checks.imports.RedundantImport"/>
+        <module name="IllegalThrows"/>
+        <module name="PackageDeclaration"/>
+        <!--<module name="JavadocMethod">-->
+        <!--<property name="scope" value="public"/>-->
+        <!--<property name="allowUndeclaredRTE" value="true"/>-->
+        <!--<property name="allowMissingPropertyJavadoc" value="true"/>-->
+        <!--</module>-->
     </module>
+
 </module>
