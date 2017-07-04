@@ -28,6 +28,7 @@ apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'idea'
 apply plugin: 'org.springframework.boot'
+apply plugin: 'checkstyle'
 
 ext {
     hibernateCoreVersion = "5.2.10.Final"
@@ -35,30 +36,49 @@ ext {
     mysqlConnectorVersion = "6.0.6"
     springVersion = "1.5.3.RELEASE"
     junitVersion = "4.12"
+    checkstyleVersion = "8.0"
+    sevntuChecksVersion = '1.24.1'
 }
+
+checkstyle {
 
 // In this section you declare where to find the dependencies of your project
-repositories {
-    // Use jcenter for resolving your dependencies.
-    // You can declare any Maven/Ivy/file repository here.
-    mavenCentral()
+    repositories {
+        // Use jcenter for resolving your dependencies.
+        // You can declare any Maven/Ivy/file repository here.
+        mavenCentral()
+    }
+
+    configFile = file("${project.rootDir}/checkstyle.xml")
+
+    checkstyleMain {
+        source = sourceSets.main.allSource
+    }
+
+    configurations {
+        checkstyle
+    }
+
+    dependencies {
+        assert project.hasProperty("checkstyleVersion")
+        // This dependency is exported to consumers, that is to say found on their compile classpath.
+        //api 'org.apache.commons:commons-math3:3.6.1'
+
+        // This dependency is used internally, and not exposed to consumers on their own compile classpath.
+        //implementation 'com.google.guava:guava:21.0'
+
+        //compile "org.hibernate:hibernate-core:${hibernateCoreVersion}"
+        //compile "org.hibernate:hibernate-entitymanager:${hibernateEntityVersion}"
+
+        compile "mysql:mysql-connector-java:${mysqlConnectorVersion}"
+        compile "org.springframework.boot:spring-boot-starter-web:${springVersion}"
+        compile "org.springframework.boot:spring-boot-starter-data-jpa:${springVersion}"
+
+        //Check style
+        checkstyle "com.puppycrawl.tools:checkstyle:${checkstyleVersion}"
+        checkstyle "com.github.sevntu-checkstyle:sevntu-checks:${sevntuChecksVersion}"
+
+        // Use JUnit test framework
+        testImplementation "junit:junit:${junitVersion}"
+    }
 }
-
-dependencies {
-    // This dependency is exported to consumers, that is to say found on their compile classpath.
-    //api 'org.apache.commons:commons-math3:3.6.1'
-
-    // This dependency is used internally, and not exposed to consumers on their own compile classpath.
-    //implementation 'com.google.guava:guava:21.0'
-
-    //compile "org.hibernate:hibernate-core:${hibernateCoreVersion}"
-    //compile "org.hibernate:hibernate-entitymanager:${hibernateEntityVersion}"
-
-    compile "mysql:mysql-connector-java:${mysqlConnectorVersion}"
-    compile "org.springframework.boot:spring-boot-starter-web:${springVersion}"
-    compile "org.springframework.boot:spring-boot-starter-data-jpa:${springVersion}"
-
-    // Use JUnit test framework
-    testImplementation "junit:junit:${junitVersion}"
-}
-

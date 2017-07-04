@@ -17,7 +17,7 @@ import lkrazy.repository.UserRepository;
 public class UserController {
 
     @Autowired
-    UserRepository userRepository;
+    private UserRepository userRepository;
 
     @RequestMapping("/list")
     @ResponseBody
