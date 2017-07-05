@@ -14,19 +14,19 @@ import org.springframework.security.crypto.password.PasswordEncoder;
  */
 @Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-	@Bean
-	public PasswordEncoder passwordEncoder() {
-		PasswordEncoder encoder = new BCryptPasswordEncoder();
-		return encoder;
-	}
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        PasswordEncoder encoder = new BCryptPasswordEncoder();
+        return encoder;
+    }
 
-	@Override
-	protected void configure(HttpSecurity http) throws Exception {
-		http.csrf().disable().authorizeRequests().
-				antMatchers(HttpMethod.POST, "/api/**").authenticated()
-				.antMatchers(HttpMethod.PUT, "/api/**").authenticated()
-				.antMatchers(HttpMethod.DELETE, "/api/**")
-				.authenticated().anyRequest().permitAll().and().httpBasic().and().sessionManagement()
-				.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-	}
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http.csrf().disable().authorizeRequests()
+                .antMatchers(HttpMethod.POST, "/api/**").authenticated()
+                .antMatchers(HttpMethod.PUT, "/api/**")
+                .authenticated().antMatchers(HttpMethod.DELETE, "/api/**")
+                .authenticated().anyRequest().permitAll().and().httpBasic().and().sessionManagement()
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+    }
 }
