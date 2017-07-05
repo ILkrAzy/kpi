@@ -23,6 +23,7 @@ public class ProjectKpiValue implements Serializable {
     @Id
     private Integer year;
 
+    @Column(length = 255)
     private String value;
 
     @Column(length = 2000)

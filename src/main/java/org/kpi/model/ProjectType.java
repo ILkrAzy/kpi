@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "project_type")
+@Table(name = "project_type", indexes = { @Index(name = "PROJECT_TYPE_NAME_IDX", columnList = "name", unique = true)})
 public class ProjectType implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id

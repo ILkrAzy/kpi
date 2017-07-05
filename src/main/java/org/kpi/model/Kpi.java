@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "kpi")
+@Table(name = "kpi", indexes = { @Index(name = "KPI_NAME_IDX", columnList = "name", unique = true)})
 public class Kpi implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -19,6 +19,7 @@ public class Kpi implements Serializable {
     @Column(length = 255)
     private String name;
 
+    @Column(length = 50)
     private String measure;
 
     @OneToMany(mappedBy = "kpi", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)

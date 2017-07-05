@@ -8,7 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "user")
+@Table(name = "user", indexes = {@Index(name = "USER_USERNAME_IDX", columnList = "username", unique = true),
+        @Index(name = "USER_EMAIL_IDX", columnList = "email", unique = true)})
 public class User implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -17,17 +18,19 @@ public class User implements Serializable {
     @GenericGenerator(name = "increment", strategy = "increment")
     private int id;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 50)
     private String username;
 
+    @Column(length = 255)
     private String password;
 
+    @Column(length = 255)
     private String email;
 
-    @Column(name = "firstname")
+    @Column(name = "firstname", length = 50)
     private String firstName;
 
-    @Column(name = "lastname")
+    @Column(name = "lastname", length = 50)
     private String lastName;
 
     @ManyToOne(fetch = FetchType.LAZY)

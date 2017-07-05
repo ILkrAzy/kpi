@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "project")
+@Table(name = "project", indexes = { @Index(name = "PROJECT_NAME_IDX", columnList = "name", unique = true)})
 public class Project implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -16,6 +16,7 @@ public class Project implements Serializable {
     @GenericGenerator(name = "increment", strategy = "increment")
     private int id;
 
+    @Column(length = 100)
     private String name;
 
     @ManyToOne(fetch = FetchType.LAZY)
