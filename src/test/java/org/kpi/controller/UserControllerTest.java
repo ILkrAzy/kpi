@@ -1,10 +1,10 @@
 package org.kpi.controller;
 
-import org.kpi.pojo.User;
-import org.kpi.repository.UserRepository;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.kpi.pojo.User;
+import org.kpi.repository.UserRepository;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
@@ -44,14 +44,12 @@ public class UserControllerTest {
         ddlanh.setLastName("Dang");
         ddlanh.setEmail("test@gmail.com");
         ddlanh.setId(1);
-        ddlanh.setRole(1);
 
         User vqhuy = new User();
         vqhuy.setFirstName("Huy");
         vqhuy.setLastName("Vu");
         vqhuy.setEmail("test@gmail.com");
         vqhuy.setId(2);
-        vqhuy.setRole(1);
 
         users.add(ddlanh);
         users.add(vqhuy);
@@ -68,7 +66,6 @@ public class UserControllerTest {
         ddlanh.setLastName("Dang");
         ddlanh.setEmail("test@gmail.com");
         ddlanh.setId(1);
-        ddlanh.setRole(1);
 
         when(userRepository.findByUsername(ddlanh.getUsername())).thenReturn(Arrays.asList(ddlanh));
         assertThat(controller.getByUsername(ddlanh.getUsername()), equalTo(ddlanh));
@@ -83,7 +80,6 @@ public class UserControllerTest {
         ddlanh.setPassword("123456");
         ddlanh.setEmail("test@gmail.com");
         ddlanh.setId(1);
-        ddlanh.setRole(1);
         controller.create(ddlanh);
         verify(userRepository, Mockito.times(1)).save(ddlanh);
         assertThat(ddlanh.getPassword(), not(equalTo("123456")));
