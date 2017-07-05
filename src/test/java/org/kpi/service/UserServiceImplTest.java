@@ -1,38 +1,37 @@
-package org.kpi.controller;
+package org.kpi.service;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.kpi.model.User;
-import org.kpi.service.UserService;
+import org.kpi.repository.UserRepository;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.not;
 import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 /**
- * Created by lnphi on 7/4/2017.
+ * Created by lnphi on 7/5/2017.
  */
 @RunWith(MockitoJUnitRunner.class)
-public class UserControllerTest {
+public class UserServiceImplTest {
 
     @Mock
-    private UserService userService;
+    private UserRepository userRepository;
 
-    private UserController controller;
+    private UserService service;
 
     @Before
     public void setUp() throws Exception {
-        controller = new UserController(userService, new BCryptPasswordEncoder());
+        service = new UserServiceImpl(userRepository);
     }
 
     @Test
@@ -53,8 +52,8 @@ public class UserControllerTest {
         users.add(ddlanh);
         users.add(vqhuy);
 
-        when(userService.getAll()).thenReturn(users);
-        assertThat(controller.getAll(), equalTo(users));
+        when(userRepository.findAll()).thenReturn(users);
+        assertThat(service.getAll(), equalTo(users));
     }
 
     @Test
@@ -66,12 +65,12 @@ public class UserControllerTest {
         ddlanh.setEmail("test@gmail.com");
         ddlanh.setId(1);
 
-        when(userService.getByUsername(ddlanh.getUsername())).thenReturn(ddlanh);
-        assertThat(controller.getByUsername(ddlanh.getUsername()), equalTo(ddlanh));
+        when(userRepository.findByUsername(ddlanh.getUsername())).thenReturn(Arrays.asList(ddlanh));
+        assertThat(service.getByUsername(ddlanh.getUsername()), equalTo(ddlanh));
     }
 
     @Test
-    public void create() throws Exception {
+    public void save() throws Exception {
         User ddlanh = new User();
         ddlanh.setUsername("ddlanh");
         ddlanh.setFirstName("Lanh");
@@ -79,8 +78,8 @@ public class UserControllerTest {
         ddlanh.setPassword("123456");
         ddlanh.setEmail("test@gmail.com");
         ddlanh.setId(1);
-        controller.create(ddlanh);
-        verify(userService, Mockito.times(1)).save(ddlanh);
-        assertThat(ddlanh.getPassword(), not(equalTo("123456")));
+        service.save(ddlanh);
+        verify(userRepository, Mockito.times(1)).save(ddlanh);
+        assertThat(ddlanh.getPassword(), equalTo("123456"));
     }
 }

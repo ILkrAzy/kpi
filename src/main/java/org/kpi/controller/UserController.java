@@ -1,7 +1,7 @@
 package org.kpi.controller;
 
-import org.kpi.pojo.User;
-import org.kpi.repository.UserRepository;
+import org.kpi.model.User;
+import org.kpi.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
@@ -12,30 +12,30 @@ import java.util.List;
 @RequestMapping(value = "/api/user")
 public class UserController {
 
-    private UserRepository userRepository;
+    private UserService userService;
 
     private PasswordEncoder passwordEncoder;
 
     @Autowired
-    public UserController(UserRepository userRepository, PasswordEncoder passwordEncoder) {
-        this.userRepository = userRepository;
+    public UserController(UserService userService, PasswordEncoder passwordEncoder) {
+        this.userService = userService;
         this.passwordEncoder = passwordEncoder;
     }
 
     @RequestMapping("/list")
     @ResponseBody
     public List<User> getAll() {
-        return (List<User>) userRepository.findAll();
+        return userService.getAll();
     }
 
     @RequestMapping
     public User getByUsername(String username) {
-        return userRepository.findByUsername(username).get(0);
+        return userService.getByUsername(username);
     }
 
     @RequestMapping(method = RequestMethod.POST)
     public void create(@RequestBody User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        userRepository.save(user);
+        userService.save(user);
     }
 }

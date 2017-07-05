@@ -1,4 +1,4 @@
-package org.kpi.pojo;
+package org.kpi.model;
 
 import org.hibernate.annotations.GenericGenerator;
 
