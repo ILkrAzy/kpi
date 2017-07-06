@@ -9,9 +9,9 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 /**
@@ -37,6 +37,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Value("${spring.queries.roles-query}")
     private String rolesQuery;
 
+    private static String REALM="MY_TEST_REALM";
+    
     @Override
     protected void configure(AuthenticationManagerBuilder auth)
             throws Exception {
@@ -57,6 +59,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.GET, "/api/**").authenticated()
                 .anyRequest().permitAll()
                 .and().formLogin()
-                .defaultSuccessUrl("/admin/home");
+                .defaultSuccessUrl("/admin/home")
+                .and().httpBasic().realmName(REALM).authenticationEntryPoint(getBasicAuthEntryPoint());
+    }
+    
+    @Bean
+    public CustomBasicAuthenticationEntryPoint getBasicAuthEntryPoint(){
+        return new CustomBasicAuthenticationEntryPoint();
+    }
+     
+    /* To allow Pre-flight [OPTIONS] request from browser */
+    @Override
+    public void configure(WebSecurity web) throws Exception {
+        web.ignoring().antMatchers(HttpMethod.OPTIONS, "/**");
     }
 }
