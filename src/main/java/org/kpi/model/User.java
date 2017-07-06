@@ -1,5 +1,7 @@
 package org.kpi.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -13,6 +15,7 @@ import java.util.List;
 public class User implements Serializable {
     private static final long serialVersionUID = 1L;
 
+    @JsonIgnore
     @Id
     @GeneratedValue(generator = "increment")
     @GenericGenerator(name = "increment", strategy = "increment")
@@ -33,13 +36,18 @@ public class User implements Serializable {
     @Column(name = "lastname", length = 50)
     private String lastName;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "role_id", foreignKey = @ForeignKey(name = "USER_ROLE_ID_FK"))
     private Role role;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     List<UserProject> projects = new ArrayList<>();
 
+    @Transient
+    @JsonProperty(value = "role")
+    private String roleName;
 
     public User() {
     }
@@ -69,7 +77,7 @@ public class User implements Serializable {
     }
 
     public void setUsername(String username) {
-        this.username = username;
+        this.username = username.toLowerCase();
     }
 
     public String getPassword() {
@@ -116,6 +124,13 @@ public class User implements Serializable {
         return projects;
     }
 
+    public String getRoleName() {
+        return getRole().getName();
+    }
+
+    public void setRoleName(String roleName) {
+        this.roleName = roleName;
+    }
 
     @Override
     public String toString() {

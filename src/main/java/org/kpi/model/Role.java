@@ -1,6 +1,7 @@
 package org.kpi.model;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.springframework.util.StringUtils;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -34,7 +35,7 @@ public class Role implements Serializable {
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.name = StringUtils.isEmpty(name) ? null : name.toUpperCase();
     }
 
     public String getDescription() {
