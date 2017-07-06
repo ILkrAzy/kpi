@@ -23,7 +23,8 @@ public class User implements Serializable {
 
     @Column(nullable = false, length = 50)
     private String username;
-
+    
+    @JsonIgnore
     @Column(length = 255, nullable = false)
     private String password;
 
