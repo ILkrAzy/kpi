@@ -16,7 +16,7 @@ public class Kpi implements Serializable {
     @GenericGenerator(name = "increment", strategy = "increment")
     private int id;
 
-    @Column(length = 255)
+    @Column(length = 255, nullable = false)
     private String name;
 
     @Column(length = 50)

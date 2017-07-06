@@ -21,10 +21,10 @@ public class User implements Serializable {
     @Column(nullable = false, length = 50)
     private String username;
 
-    @Column(length = 255)
+    @Column(length = 255, nullable = false)
     private String password;
 
-    @Column(length = 255)
+    @Column(length = 255, nullable = false)
     private String email;
 
     @Column(name = "firstname", length = 50)

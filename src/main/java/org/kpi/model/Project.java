@@ -16,7 +16,7 @@ public class Project implements Serializable {
     @GenericGenerator(name = "increment", strategy = "increment")
     private int id;
 
-    @Column(length = 100)
+    @Column(length = 100, nullable = false)
     private String name;
 
     @ManyToOne(fetch = FetchType.LAZY)

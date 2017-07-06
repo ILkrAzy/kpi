@@ -15,7 +15,7 @@ public class Role implements Serializable {
     @GenericGenerator(name = "increment", strategy = "increment")
     private int id;
 
-    @Column(length = 50)
+    @Column(length = 50, nullable = false)
     private String name;
 
     @Column(length = 255)
