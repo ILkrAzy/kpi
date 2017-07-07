@@ -23,7 +23,8 @@ public class User implements Serializable {
 
     @Column(nullable = false, length = 50)
     private String username;
-
+    
+    @JsonIgnore
     @Column(length = 255, nullable = false)
     private String password;
 
@@ -135,5 +136,20 @@ public class User implements Serializable {
     @Override
     public String toString() {
         return String.format("User {id: %d, username: %s}", getId(), getUsername());
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof User)) return false;
+
+        User user = (User) o;
+
+        return getUsername().equals(user.getUsername());
+    }
+
+    @Override
+    public int hashCode() {
+        return getUsername().hashCode();
     }
 }
