@@ -4,11 +4,12 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.kpi.model.User;
+import org.kpi.model.dto.NewUser;
 import org.kpi.service.UserService;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,8 +17,7 @@ import java.util.List;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.not;
 import static org.junit.Assert.assertThat;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 /**
  * Created by lnphi on 7/4/2017.
@@ -72,15 +72,16 @@ public class UserControllerTest {
 
     @Test
     public void create() throws Exception {
-        User ddlanh = new User();
+        NewUser ddlanh = new NewUser();
+        PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         ddlanh.setUsername("ddlanh");
         ddlanh.setFirstName("Lanh");
         ddlanh.setLastName("Dang");
         ddlanh.setPassword("123456");
         ddlanh.setEmail("test@gmail.com");
-        ddlanh.setId(1);
         controller.create(ddlanh);
-        verify(userService, Mockito.times(1)).save(ddlanh);
-        assertThat(ddlanh.getPassword(), not(equalTo("123456")));
+        User dbModel = ddlanh.toModel(passwordEncoder);
+        verify(userService, times(1)).save(dbModel);
+        assertThat(dbModel.getPassword(), not(equalTo("123456")));
     }
 }

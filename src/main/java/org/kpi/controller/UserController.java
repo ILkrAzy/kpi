@@ -1,11 +1,16 @@
 package org.kpi.controller;
 
 import org.kpi.model.User;
+import org.kpi.model.dto.NewUser;
 import org.kpi.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -22,20 +27,18 @@ public class UserController {
         this.passwordEncoder = passwordEncoder;
     }
 
-    @RequestMapping("/list")
-    @ResponseBody
+    @GetMapping("/")
     public List<User> getAll() {
         return userService.getAll();
     }
 
-    @RequestMapping
+    @GetMapping
     public User getByUsername(String username) {
         return userService.getByUsername(username);
     }
 
-    @RequestMapping(method = RequestMethod.POST)
-    public void create(@RequestBody User user) {
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        userService.save(user);
+    @PostMapping
+    public void create(@Valid NewUser user) {
+        userService.save(user.toModel(passwordEncoder));
     }
 }
