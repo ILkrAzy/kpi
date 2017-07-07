@@ -12,6 +12,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.www.BasicAuthenticationEntryPoint;
 
@@ -32,10 +33,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private DataSource dataSource;
     
-    @Value("${spring.queries.users-query}")
+    //Spring Security / Queries for AuthenticationManagerBuilder
+    @Value("$select username, password, 1 from user where username=?")
     private String usersQuery;
     
-    @Value("${spring.queries.roles-query}")
+    @Value("$select u.username, r.name from user u inner join role r on(u.id=r.id) where u.username=?")
     private String rolesQuery;
 
     private static String REALM="KPI";
@@ -53,15 +55,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable().authorizeRequests()
-                .antMatchers(HttpMethod.POST, "/api/**").authenticated()
-                .antMatchers(HttpMethod.PUT, "/api/**").authenticated()
-                .antMatchers(HttpMethod.DELETE, "/api/**").authenticated()
-                .antMatchers(HttpMethod.GET, "/api/**").authenticated()
-                .anyRequest().permitAll()
+        http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
+                .and().csrf().disable().authorizeRequests()
+                .anyRequest().authenticated()
                 .and().formLogin()
                 .defaultSuccessUrl("/admin/home")
-                .and().httpBasic().realmName(REALM).authenticationEntryPoint(getBasicAuthenticationEntryPoint());
+                .and().httpBasic().realmName(REALM).authenticationEntryPoint(getBasicAuthenticationEntryPoint())
+                .and().headers().defaultsDisabled().cacheControl();
     }
     @Bean
     public BasicAuthenticationEntryPoint getBasicAuthenticationEntryPoint(){
