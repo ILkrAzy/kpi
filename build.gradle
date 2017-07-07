@@ -22,7 +22,7 @@ plugins {
 }
 
 cobertura.coverageFormats = ['html', 'xml'] // coveralls plugin depends on xml format report
-cobertura.coverageExcludes = ['.*org.kpi.model.*', '.*org.kpi.config.*', '.*org.kpi.Application.java']
+cobertura.coverageExcludes = ['.*org.kpi.model.*', '.*org.kpi.config.*', '.*org.kpi.Application.*']
 
 apply plugin: 'java'
 apply plugin: 'eclipse'

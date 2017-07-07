@@ -1,19 +1,14 @@
 package org.kpi.controller;
 
-import java.util.List;
-
-import javax.validation.Valid;
-
 import org.kpi.model.User;
 import org.kpi.model.dto.NewUser;
 import org.kpi.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequestMapping(value = "/api/user")
@@ -40,7 +35,7 @@ public class UserController {
     }
 
     @PostMapping
-    public void create(@Valid NewUser user) {
+    public void create(@Valid @RequestBody NewUser user) {
         userService.save(user.toModel(passwordEncoder));
     }
 }
