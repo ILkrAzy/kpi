@@ -34,10 +34,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private DataSource dataSource;
     
     //Spring Security / Queries for AuthenticationManagerBuilder
-    @Value("$select username, password, 1 from user where username=?")
+    @Value("select username, password, 1 from user where username=?")
     private String usersQuery;
     
-    @Value("$select u.username, r.name from user u inner join role r on(u.id=r.id) where u.username=?")
+    @Value("select u.username, r.name from user u inner join role r on(u.id=r.id) where u.username=?")
     private String rolesQuery;
 
     private static String REALM="KPI";
