@@ -76,6 +76,7 @@ checkstyle {
         compile "org.springframework.boot:spring-boot-starter-web:${springBootVersion}"
         compile "org.springframework.boot:spring-boot-starter-data-jpa:${springBootVersion}"
         compile "org.springframework.boot:spring-boot-starter-security:${springBootVersion}"
+        compileOnly 'org.projectlombok:lombok:1.16.18'
 
         //Check style
         checkstyle "com.puppycrawl.tools:checkstyle:${checkstyleVersion}"

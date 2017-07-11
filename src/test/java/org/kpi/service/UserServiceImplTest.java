@@ -10,7 +10,6 @@ import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import static org.hamcrest.Matchers.equalTo;
@@ -65,7 +64,7 @@ public class UserServiceImplTest {
         ddlanh.setEmail("test@gmail.com");
         ddlanh.setId(1);
 
-        when(userRepository.findByUsername(ddlanh.getUsername())).thenReturn(Arrays.asList(ddlanh));
+        when(userRepository.findByUsername(ddlanh.getUsername())).thenReturn(ddlanh);
         assertThat(service.getByUsername(ddlanh.getUsername()), equalTo(ddlanh));
     }
 
