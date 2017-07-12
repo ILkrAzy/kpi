@@ -18,9 +18,7 @@ import org.springframework.security.web.authentication.www.BasicAuthenticationEn
 
 import javax.sql.DataSource;
 
-/**
- * Created by lnphi on 7/4/2017.
- */
+
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
@@ -42,7 +40,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Value("select u.username, r.name from user u inner join role r on(u.id=r.id) where u.username=?")
     private String rolesQuery;
 
-    private static String REALM = "KPI";
+    private static final String REALM = "KPI";
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {

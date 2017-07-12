@@ -7,15 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
-/**
- * Created by lnphi on 7/11/2017.
- */
 public class EmailExistConstraintValidator implements ConstraintValidator<EmailExist, String> {
 
     private UserService userService;
 
     @Override
     public void initialize(EmailExist constraintAnnotation) {
+        // nothing to do
     }
 
     @Autowired
