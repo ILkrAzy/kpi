@@ -6,6 +6,7 @@
 /* Signing page */
 .signin-body {
     margin-top: 30px;
+    text-align: center;
 }
 
 .signin-blank {
@@ -55,7 +56,7 @@
 }
 
 .signin-fail {
-    background-color: #d03737;
+    background-color: #b34848;
     color: #ffffff;
     font-size: 18px;
     padding-top: 8px;
@@ -63,6 +64,8 @@
     border-color: transparent;
     display: block;
     vertical-align: center;
+    width: 400px;
+    margin: auto;
 }
 
 .signin-form > a:hover, .signin-form > a:focus, .signin-form > a:active {
