@@ -21,8 +21,10 @@ plugins {
     id 'com.github.kt3k.coveralls' version '2.8.1'
 }
 
-cobertura.coverageFormats = ['html', 'xml'] // coveralls plugin depends on xml format report
-cobertura.coverageExcludes = ['.*org.kpi.model.*', '.*org.kpi.config.*', '.*org.kpi.Application.*']
+cobertura {
+    coverageFormats = ['html', 'xml'] // coveralls plugin depends on xml format report
+    coverageExcludes = ['.*org.kpi.model.*', '.*org.kpi.config.*', '.*org.kpi.Application.*']
+}
 
 apply plugin: 'java'
 apply plugin: 'eclipse'
@@ -76,6 +78,8 @@ checkstyle {
         compile "org.springframework.boot:spring-boot-starter-web:${springBootVersion}"
         compile "org.springframework.boot:spring-boot-starter-data-jpa:${springBootVersion}"
         compile "org.springframework.boot:spring-boot-starter-security:${springBootVersion}"
+        compile 'io.jsonwebtoken:jjwt:0.7.0'
+        compileOnly 'org.projectlombok:lombok:1.16.18'
 
         //Check style
         checkstyle "com.puppycrawl.tools:checkstyle:${checkstyleVersion}"

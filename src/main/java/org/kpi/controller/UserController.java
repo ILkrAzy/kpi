@@ -24,12 +24,12 @@ public class UserController {
         this.passwordEncoder = passwordEncoder;
     }
 
-    @GetMapping("/")
+    @GetMapping
     public List<User> getAll() {
         return userService.getAll();
     }
 
-    @RequestMapping("/{username}")
+    @GetMapping("/{username}")
     public User getByUsername(@PathVariable String username) {
         return userService.getByUsername(username);
     }

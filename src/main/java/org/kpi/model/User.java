@@ -25,10 +25,10 @@ public class User implements Serializable {
     private String username;
     
     @JsonIgnore
-    @Column(length = 255, nullable = false)
+    @Column(nullable = false)
     private String password;
 
-    @Column(length = 255, nullable = false)
+    @Column(nullable = false)
     private String email;
 
     @Column(name = "firstname", length = 50)
@@ -44,7 +44,7 @@ public class User implements Serializable {
 
     @JsonIgnore
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    List<UserProject> projects = new ArrayList<>();
+    private List<UserProject> projects = new ArrayList<>();
 
     @Transient
     @JsonProperty(value = "role")

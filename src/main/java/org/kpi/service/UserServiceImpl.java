@@ -27,11 +27,25 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User getByUsername(String username) {
-        return userRepository.findByUsername(username).get(0);
+        User user = userRepository.findByUsername(username);
+        if (user == null) {
+            throw new IllegalArgumentException("User with username " + username + " does not exist");
+        }
+        return user;
     }
 
     @Override
     public void save(User user) {
         userRepository.save(user);
+    }
+
+    @Override
+    public boolean exist(String username) {
+        return userRepository.findByUsername(username) != null;
+    }
+
+    @Override
+    public boolean existEmail(String email) {
+        return userRepository.findByEmail(email) != null;
     }
 }
