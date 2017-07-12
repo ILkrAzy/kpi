@@ -12,12 +12,15 @@ import javax.validation.ConstraintValidatorContext;
  */
 public class EmailExistConstraintValidator implements ConstraintValidator<EmailExist, String> {
 
-    @Autowired
-    UserService userService;
+    private UserService userService;
 
     @Override
     public void initialize(EmailExist constraintAnnotation) {
+    }
 
+    @Autowired
+    public void setUserService(UserService userService) {
+        this.userService = userService;
     }
 
     @Override

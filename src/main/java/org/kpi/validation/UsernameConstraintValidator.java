@@ -12,18 +12,22 @@ import javax.validation.ConstraintValidatorContext;
  */
 public class UsernameConstraintValidator implements ConstraintValidator<Username, String> {
 
-    @Autowired
-    UserService service;
+    private UserService userService;
 
     @Override
     public void initialize(Username constraintAnnotation) {
     }
 
+    @Autowired
+    public void setUserService(UserService userService) {
+        this.userService = userService;
+    }
+
     @Override
-    public boolean isValid(String value, ConstraintValidatorContext context) {
-        if (service.exist(value)) {
+    public boolean isValid(String username, ConstraintValidatorContext context) {
+        if (userService.exist(username)) {
             context.disableDefaultConstraintViolation();
-            context.buildConstraintViolationWithTemplate("User " + value + " already exists!").addConstraintViolation();
+            context.buildConstraintViolationWithTemplate("User " + username + " already exists!").addConstraintViolation();
             return false;
         }
         return true;
