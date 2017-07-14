@@ -1,10 +1,10 @@
 package org.kpi.repository;
 
-import java.util.List;
-
 import org.kpi.model.Role;
 import org.springframework.data.repository.CrudRepository;
 
+import java.util.List;
+
 public interface RoleRepository extends CrudRepository<Role, Long> {
-    public List<Role> findByName(String name);
+    List<Role> findByName(String name);
 }

@@ -5,6 +5,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.kpi.model.User;
 import org.kpi.repository.UserRepository;
+import org.kpi.service.impl.UserServiceImpl;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;

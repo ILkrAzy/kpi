@@ -17,7 +17,7 @@ public class ProjectType implements Serializable {
     private int id;
 
     @Column(length = 50, nullable = false)
-    private int name;
+    private String name;
 
     @OneToMany(mappedBy = "projectType", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<ProjectTypeKpi> kpis = new ArrayList<>();
@@ -30,11 +30,11 @@ public class ProjectType implements Serializable {
         this.id = id;
     }
 
-    public int getName() {
+    public String getName() {
         return name;
     }
 
-    public void setName(int name) {
+    public void setName(String name) {
         this.name = name;
     }
 
@@ -49,5 +49,21 @@ public class ProjectType implements Serializable {
         projectTypeKpi.clear();
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof ProjectType)) return false;
 
+        ProjectType type = (ProjectType) o;
+
+        if (getId() != type.getId()) return false;
+        return getName() != null ? getName().equals(type.getName()) : type.getName() == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = getId();
+        result = 31 * result + (getName() != null ? getName().hashCode() : 0);
+        return result;
+    }
 }

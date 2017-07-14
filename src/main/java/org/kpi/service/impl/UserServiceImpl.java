@@ -1,7 +1,8 @@
-package org.kpi.service;
+package org.kpi.service.impl;
 
 import org.kpi.model.User;
 import org.kpi.repository.UserRepository;
+import org.kpi.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
