@@ -10,6 +10,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -37,7 +39,12 @@ public class ProjectController {
     }
     
     @GetMapping
-    public List<Project> getAll() {
-        return projectService.getProjects();
+    public List<ProjectDTO> getAll() {
+        List<ProjectDTO> projectDTOs = new ArrayList<>();
+        List<Project> projects = projectService.getProjects();
+        for(Project p : projects){
+            projectDTOs.add(ProjectDTO.fromProject(p));
+        }
+        return projectDTOs;
     }
 }

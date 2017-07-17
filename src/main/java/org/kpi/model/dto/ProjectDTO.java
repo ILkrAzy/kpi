@@ -4,8 +4,6 @@ import javax.validation.constraints.Pattern;
 
 import org.kpi.model.Project;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import lombok.Getter;
 import lombok.Setter;
 
@@ -23,5 +21,12 @@ public class ProjectDTO {
         Project project = new Project();
         project.setName(this.name);
         return project;
+    }
+    
+    public static ProjectDTO fromProject(Project project){
+        ProjectDTO projectDTO = new ProjectDTO();
+        projectDTO.setName(project.getName());
+        projectDTO.setProjectType(project.getType().getName());
+        return projectDTO;
     }
 }
