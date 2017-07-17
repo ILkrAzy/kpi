@@ -1,9 +1,16 @@
 package org.kpi.controller;
 
+import org.kpi.model.Project;
+import org.kpi.model.ProjectType;
+import org.kpi.model.dto.ProjectDTO;
 import org.kpi.service.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
+import java.util.List;
 
 /**
  * 
@@ -20,5 +27,17 @@ public class ProjectController {
         this.projectService = projectService;
     }
     
+    @PostMapping
+    public ResponseEntity<Void> create(@Valid @RequestBody ProjectDTO projectDTO) {
+        Project project = projectDTO.toModel();
+        ProjectType projectType = projectService.getProjectType(projectDTO.getProjectType());
+        project.setType(projectType);
+        projectService.addProject(project);
+        return new ResponseEntity<>(HttpStatus.CREATED);
+    }
     
+    @GetMapping
+    public List<Project> getAll() {
+        return projectService.getProjects();
+    }
 }
