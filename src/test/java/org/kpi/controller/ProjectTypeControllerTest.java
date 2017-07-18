@@ -5,7 +5,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.kpi.model.ProjectType;
 import org.kpi.model.dto.ProjectTypeDTO;
-import org.kpi.service.ProjectService;
+import org.kpi.service.ProjectTypeService;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
@@ -24,15 +24,14 @@ import static org.mockito.Mockito.when;
  */
 @RunWith(MockitoJUnitRunner.class)
 public class ProjectTypeControllerTest {
-
     @Mock
-    private ProjectService projectService;
+    private ProjectTypeService projectTypeService;
 
     private ProjectTypeController controller;
 
     @Before
     public void setUp() throws Exception {
-        controller = new ProjectTypeController(projectService);
+        controller = new ProjectTypeController(projectTypeService);
     }
 
     @Test
@@ -40,7 +39,7 @@ public class ProjectTypeControllerTest {
         ProjectTypeDTO typeDTO = new ProjectTypeDTO();
         typeDTO.setName("hellos");
         controller.create(typeDTO);
-        verify(projectService, Mockito.times(1)).addProjectType(typeDTO.toModel());
+        verify(projectTypeService, Mockito.times(1)).add(typeDTO.toModel());
     }
 
     @Test
@@ -48,7 +47,7 @@ public class ProjectTypeControllerTest {
         List<ProjectType> types = new ArrayList<>();
         types.add(new ProjectType());
         types.add(new ProjectType());
-        when(projectService.getProjectTypes()).thenReturn(types);
+        when(projectTypeService.getAll()).thenReturn(types);
         assertThat(controller.getAll(), equalTo(types));
     }
 
@@ -56,7 +55,7 @@ public class ProjectTypeControllerTest {
     public void get() throws Exception {
         ProjectType type = new ProjectType();
         type.setName("hello");
-        when(projectService.getProjectType(type.getName())).thenReturn(type);
+        when(projectTypeService.getByName(type.getName())).thenReturn(type);
         assertThat(controller.get(type.getName()), equalTo(type));
     }
 }
