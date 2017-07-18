@@ -61,7 +61,9 @@ checkstyle {
     configurations {
         checkstyle
     }
-
+ bootRun {
+       systemProperty 'spring.config.location', System.properties['spring.config.location']
+    }
     dependencies {
         assert project.hasProperty("checkstyleVersion")
         // This dependency is exported to consumers, that is to say found on their compile classpath.
