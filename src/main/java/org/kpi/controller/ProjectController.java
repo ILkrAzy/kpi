@@ -4,13 +4,13 @@ import org.kpi.model.Project;
 import org.kpi.model.ProjectType;
 import org.kpi.model.dto.ProjectDTO;
 import org.kpi.service.ProjectService;
+import org.kpi.service.ProjectTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,15 +24,18 @@ import java.util.List;
 public class ProjectController {
     private ProjectService projectService;
 
+    private ProjectTypeService projectTypeService;
+
     @Autowired
-    public ProjectController(ProjectService projectService) {
+    public ProjectController(ProjectService projectService, ProjectTypeService projectTypeService) {
+        this.projectTypeService = projectTypeService;
         this.projectService = projectService;
     }
     
     @PostMapping
     public ResponseEntity<Void> create(@Valid @RequestBody ProjectDTO projectDTO) {
         Project project = projectDTO.toModel();
-        ProjectType projectType = projectService.getProjectType(projectDTO.getProjectType());
+        ProjectType projectType = projectTypeService.getByName(projectDTO.getProjectType());
         project.setType(projectType);
         projectService.addProject(project);
         return new ResponseEntity<>(HttpStatus.CREATED);

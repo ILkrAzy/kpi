@@ -4,9 +4,8 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.kpi.model.ProjectType;
-import org.kpi.repository.ProjectRepository;
 import org.kpi.repository.ProjectTypeRepository;
-import org.kpi.service.ProjectService;
+import org.kpi.service.ProjectTypeService;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
@@ -24,26 +23,23 @@ import static org.mockito.Mockito.when;
  * @since 7/14/2017.
  */
 @RunWith(MockitoJUnitRunner.class)
-public class ProjectServiceImplTest {
+public class ProjectTypeServiceImplTest {
 
     @Mock
     private ProjectTypeRepository projectTypeRepository;
 
-    @Mock
-    private ProjectRepository projectRepository;
-
-    private ProjectService service;
+    private ProjectTypeService service;
 
     @Before
     public void setUp() throws Exception {
-        service = new ProjectServiceImpl(projectTypeRepository, projectRepository);
+        service = new ProjectTypeServiceImpl(projectTypeRepository);
     }
 
     @Test
     public void addProjectType() throws Exception {
         ProjectType type = new ProjectType();
         type.setName("helloworld");
-        service.addProjectType(type);
+        service.add(type);
         verify(projectTypeRepository, Mockito.times(1)).save(type);
     }
 
@@ -53,7 +49,7 @@ public class ProjectServiceImplTest {
         types.add(new ProjectType());
         types.add(new ProjectType());
         when(projectTypeRepository.findAll()).thenReturn(types);
-        assertThat(service.getProjectTypes(), equalTo(types));
+        assertThat(service.getAll(), equalTo(types));
     }
 
     @Test
@@ -61,6 +57,6 @@ public class ProjectServiceImplTest {
         ProjectType type = new ProjectType();
         type.setName("helloworld");
         when(projectTypeRepository.findByName(type.getName())).thenReturn(type);
-        assertThat(service.getProjectType(type.getName()), equalTo(type));
+        assertThat(service.getByName(type.getName()), equalTo(type));
     }
 }
