@@ -32,6 +32,8 @@ public class ProjectControllerTest {
     private ProjectTypeService projectTypeService;
     private ProjectController projectController;
 
+    private final static String NAME_PROJECT= "KPI PROJECT";
+
     @Before
     public void setUp() throws Exception {
         projectController = new ProjectController(projectService, projectTypeService);
@@ -40,7 +42,7 @@ public class ProjectControllerTest {
     @Test
     public void create() throws Exception {
         ProjectDTO projectDTO = new ProjectDTO();
-        projectDTO.setName("Vital QIP");
+        projectDTO.setName(NAME_PROJECT);
         projectController.create(projectDTO);
         verify(projectService, Mockito.times(1)).addProject(projectDTO.toModel());
     }

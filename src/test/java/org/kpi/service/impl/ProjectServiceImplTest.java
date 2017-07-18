@@ -27,6 +27,7 @@ public class ProjectServiceImplTest {
     @Mock
     private ProjectRepository projectRepository;
     private ProjectService projectService;
+    private final static String NAME_PROJECT= "KPI PROJECT";
 
     @Before
     public void setUp() throws Exception {
@@ -36,17 +37,25 @@ public class ProjectServiceImplTest {
     @Test
     public void create() throws Exception{
         Project project = new Project();
-        project.setName("Vital QIP");
+        project.setName(NAME_PROJECT);
         projectService.addProject(project);
         verify(projectRepository, Mockito.times(1)).save(project);
     }
 
     @Test
-    public  void getAll() throws Exception{
+    public void getAll() throws Exception{
         List<Project> projectList = new ArrayList<>();
         projectList.add(mock(Project.class));
         projectList.add(mock(Project.class));
         when(projectRepository.findAll()).thenReturn(projectList);
         assertThat(projectService.getProjects(), equalTo(projectList));
+    }
+
+    @Test
+    public void getProject() throws Exception{
+        Project project = mock(Project.class);
+        project.setName(NAME_PROJECT);
+        when(projectRepository.findByName(NAME_PROJECT)).thenReturn(project);
+        assertThat(projectService.getProject(NAME_PROJECT), equalTo(project));
     }
 }
