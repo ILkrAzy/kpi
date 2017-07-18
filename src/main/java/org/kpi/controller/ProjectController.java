@@ -1,5 +1,9 @@
 package org.kpi.controller;
 
+import java.util.List;
+
+import javax.validation.Valid;
+
 import org.kpi.model.Project;
 import org.kpi.model.ProjectType;
 import org.kpi.model.dto.ProjectDTO;
@@ -8,11 +12,12 @@ import org.kpi.service.ProjectTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
-import javax.validation.Valid;
-import java.util.ArrayList;
-import java.util.List;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * 
@@ -46,5 +51,10 @@ public class ProjectController {
         List<Project> projects = projectService.getProjects();
         List<ProjectDTO> projectDTOs = ProjectDTO.toList(projects);
         return projectDTOs;
+    }
+    
+    @GetMapping("/{name}")
+    public ProjectDTO get(@PathVariable String name){
+        return ProjectDTO.fromProject(projectService.getProject(name));
     }
 }

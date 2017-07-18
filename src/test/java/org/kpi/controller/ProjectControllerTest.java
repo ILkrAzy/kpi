@@ -57,5 +57,13 @@ public class ProjectControllerTest {
         projectDTOs = ProjectDTO.toList(projects);
         assertThat(projectController.getAll(), equalTo(projectDTOs));
     }
+    
+    @Test
+    public void get() throws Exception {
+        Project project = mock(Project.class);
+        when(projectService.getProject(NAME_PROJECT)).thenReturn(project);
+        ProjectDTO projectDTO = ProjectDTO.fromProject(project);
+        assertThat(projectController.get(NAME_PROJECT), equalTo(projectDTO));
+    }
 
 }
