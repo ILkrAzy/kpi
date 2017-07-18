@@ -43,11 +43,8 @@ public class ProjectController {
     
     @GetMapping
     public List<ProjectDTO> getAll() {
-        List<ProjectDTO> projectDTOs = new ArrayList<>();
         List<Project> projects = projectService.getProjects();
-        for(Project p : projects){
-            projectDTOs.add(ProjectDTO.fromProject(p));
-        }
+        List<ProjectDTO> projectDTOs = ProjectDTO.toList(projects);
         return projectDTOs;
     }
 }
