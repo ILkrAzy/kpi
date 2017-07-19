@@ -9,6 +9,7 @@ import org.kpi.service.ProjectTypeService;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
+import org.springframework.http.ResponseEntity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,6 +57,14 @@ public class ProjectTypeControllerTest {
         ProjectType type = new ProjectType();
         type.setName("hello");
         when(projectTypeService.getByName(type.getName())).thenReturn(type);
-        assertThat(controller.get(type.getName()), equalTo(type));
+        assertThat(controller.get(type.getName()), equalTo(ResponseEntity.ok(type)));
+    }
+
+    @Test
+    public void getShouldReturn404WhenProjectTypeDoesNotExist() throws Exception {
+        ProjectType type = new ProjectType();
+        type.setName("hello");
+        when(projectTypeService.getByName(type.getName())).thenReturn(null);
+        assertThat(controller.get(type.getName()), equalTo(ResponseEntity.notFound().build()));
     }
 }

@@ -4,6 +4,8 @@ import org.kpi.model.User;
 import org.kpi.model.dto.NewUser;
 import org.kpi.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,8 +32,12 @@ public class UserController {
     }
 
     @GetMapping("/{username}")
-    public User getByUsername(@PathVariable String username) {
-        return userService.getByUsername(username);
+    public ResponseEntity<User> getByUsername(@PathVariable String username) {
+        User user = userService.getByUsername(username);
+        if(user == null) {
+            return new ResponseEntity<User>(HttpStatus.NOT_FOUND);
+        }
+        return ResponseEntity.ok(user);
     }
 
     @PostMapping
