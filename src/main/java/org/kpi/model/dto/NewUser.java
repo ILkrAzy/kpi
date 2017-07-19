@@ -1,5 +1,7 @@
 package org.kpi.model.dto;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.sun.org.apache.bcel.internal.generic.NEW;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.validator.constraints.Email;
@@ -12,6 +14,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by lnphi on 7/6/2017.
@@ -30,6 +34,7 @@ public class NewUser {
     @Size(min = 6)
     @Getter
     @Setter
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
     private String password;
 
     @NotNull
@@ -51,5 +56,22 @@ public class NewUser {
 
     public User toModel(PasswordEncoder passwordEncoder) {
         return new User(username, passwordEncoder.encode(password), email, firstName, lastName, null);
+    }
+
+    public static NewUser fromModel(User user){
+        NewUser newUser = new NewUser();
+        newUser.setUsername(user.getUsername());
+        newUser.setFirstName(user.getFirstName());
+        newUser.setLastName(user.getLastName());
+        newUser.setEmail(user.getEmail());
+        return newUser;
+    }
+
+    public static List<NewUser> toList(List<User> users){
+        List<NewUser> userList = new ArrayList<>();
+        for (User user : users){
+            userList.add(NewUser.fromModel(user));
+        }
+        return userList;
     }
 }

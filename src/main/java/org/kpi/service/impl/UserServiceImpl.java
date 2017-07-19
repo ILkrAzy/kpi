@@ -5,6 +5,7 @@ import org.kpi.repository.UserRepository;
 import org.kpi.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 
 import java.util.List;
 
@@ -48,5 +49,13 @@ public class UserServiceImpl implements UserService {
     @Override
     public boolean existEmail(String email) {
         return userRepository.findByEmail(email) != null;
+    }
+
+    @Override
+    public List<User> search(String firstName, String lastName, String userName, String email) {
+        if(StringUtils.isEmpty(firstName)&&StringUtils.isEmpty(lastName)&&StringUtils.isEmpty(userName)&&StringUtils.isEmpty(email)){
+            return (List<User>) userRepository.findAll();
+        }
+        return userRepository.search(firstName,lastName, userName, email);
     }
 }
