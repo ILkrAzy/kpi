@@ -4,6 +4,7 @@ import org.kpi.model.ProjectType;
 import org.kpi.model.dto.ProjectTypeDTO;
 import org.kpi.service.ProjectTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -37,7 +38,11 @@ public class ProjectTypeController {
     }
 
     @GetMapping("/{name}")
-    public ProjectType get(@PathVariable String name) {
-        return projectTypeService.getByName(name);
+    public ResponseEntity<ProjectType> get(@PathVariable String name) {
+        ProjectType type = projectTypeService.getByName(name);
+        if (type == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return ResponseEntity.ok(type);
     }
 }
