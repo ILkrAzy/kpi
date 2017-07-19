@@ -93,4 +93,73 @@ public class UserControllerTest {
         verify(userService, times(1)).save(dbModel);
         assertThat(dbModel.getPassword(), not(equalTo("123456")));
     }
+    
+    @Test
+    public void searchByFirstName() throws Exception {
+        List<User> users = new ArrayList<>();
+        User ddlanh = new User();
+        ddlanh.setFirstName("Lanh");
+        ddlanh.setLastName("Dang");
+        ddlanh.setEmail("test@gmail.com");
+        ddlanh.setId(1);
+
+        User vqhuy = new User();
+        vqhuy.setFirstName("Huy");
+        vqhuy.setLastName("Vu");
+        vqhuy.setEmail("test@gmail.com");
+        vqhuy.setId(2);
+
+        users.add(ddlanh);
+        users.add(vqhuy);
+
+        when(userService.search("Lanh", null, null, null)).thenReturn(users);
+        List<NewUser> newUsers = NewUser.toList(users);
+        assertThat(controller.search("Lanh", null, null, null), equalTo(newUsers));
+    }
+    
+    @Test
+    public void searchByFirstNameAndLastName() throws Exception {
+        List<User> users = new ArrayList<>();
+        User ddlanh = new User();
+        ddlanh.setFirstName("Lanh");
+        ddlanh.setLastName("Dang");
+        ddlanh.setEmail("test@gmail.com");
+        ddlanh.setId(1);
+
+        User vqhuy = new User();
+        vqhuy.setFirstName("Huy");
+        vqhuy.setLastName("Vu");
+        vqhuy.setEmail("test@gmail.com");
+        vqhuy.setId(2);
+
+        users.add(ddlanh);
+        users.add(vqhuy);
+
+        when(userService.search("Lanh", "Dan", null, null)).thenReturn(users);
+        List<NewUser> newUsers = NewUser.toList(users);
+        assertThat(controller.search("Lanh", "Dan", null, null), equalTo(newUsers));
+    }
+    
+    @Test
+    public void searchByFirstNameAndLastNameAndEmail() throws Exception {
+        List<User> users = new ArrayList<>();
+        User ddlanh = new User();
+        ddlanh.setFirstName("Lanh");
+        ddlanh.setLastName("Dang");
+        ddlanh.setEmail("test@gmail.com");
+        ddlanh.setId(1);
+
+        User vqhuy = new User();
+        vqhuy.setFirstName("Huy");
+        vqhuy.setLastName("Vu");
+        vqhuy.setEmail("test@gmail.com");
+        vqhuy.setId(2);
+
+        users.add(ddlanh);
+        users.add(vqhuy);
+
+        when(userService.search("Lanh", "Dan", null, "test@")).thenReturn(users);
+        List<NewUser> newUsers = NewUser.toList(users);
+        assertThat(controller.search("Lanh", "Dan", null, "test@"), equalTo(newUsers));
+    }
 }
