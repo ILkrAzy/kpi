@@ -54,8 +54,9 @@ public class UserControllerTest {
         users.add(ddlanh);
         users.add(vqhuy);
 
-        when(userService.getAll()).thenReturn(users);
-        assertThat(controller.getAll(), equalTo(users));
+        when(userService.search(null, null, null, null)).thenReturn(users);
+        List<NewUser> newUsers = NewUser.toList(users);
+        assertThat(controller.search(null, null, null, null), equalTo(newUsers));
     }
 
     @Test
