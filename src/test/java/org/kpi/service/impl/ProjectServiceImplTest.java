@@ -3,9 +3,8 @@ package org.kpi.service.impl;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.kpi.model.ProjectType;
+import org.kpi.model.Project;
 import org.kpi.repository.ProjectRepository;
-import org.kpi.repository.ProjectTypeRepository;
 import org.kpi.service.ProjectService;
 import org.mockito.Mock;
 import org.mockito.Mockito;
@@ -16,51 +15,47 @@ import java.util.List;
 
 import static org.hamcrest.core.IsEqual.equalTo;
 import static org.junit.Assert.assertThat;
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 /**
- * @author lnphi
- * @since 7/14/2017.
+ * Created by vquochuy on 7/18/2017.
  */
 @RunWith(MockitoJUnitRunner.class)
 public class ProjectServiceImplTest {
-
-    @Mock
-    private ProjectTypeRepository projectTypeRepository;
-
     @Mock
     private ProjectRepository projectRepository;
-
-    private ProjectService service;
+    private ProjectService projectService;
+    private final static String NAME_PROJECT= "KPI PROJECT";
 
     @Before
     public void setUp() throws Exception {
-        service = new ProjectServiceImpl(projectTypeRepository, projectRepository);
+        projectService = new ProjectServiceImpl(projectRepository);
     }
 
     @Test
-    public void addProjectType() throws Exception {
-        ProjectType type = new ProjectType();
-        type.setName("helloworld");
-        service.addProjectType(type);
-        verify(projectTypeRepository, Mockito.times(1)).save(type);
+    public void create() throws Exception{
+        Project project = new Project();
+        project.setName(NAME_PROJECT);
+        projectService.addProject(project);
+        verify(projectRepository, Mockito.times(1)).save(project);
     }
 
     @Test
-    public void getProjectTypes() throws Exception {
-        List<ProjectType> types = new ArrayList<>();
-        types.add(new ProjectType());
-        types.add(new ProjectType());
-        when(projectTypeRepository.findAll()).thenReturn(types);
-        assertThat(service.getProjectTypes(), equalTo(types));
+    public void getAll() throws Exception{
+        List<Project> projectList = new ArrayList<>();
+        projectList.add(mock(Project.class));
+        projectList.add(mock(Project.class));
+        when(projectRepository.findAll()).thenReturn(projectList);
+        assertThat(projectService.getProjects(), equalTo(projectList));
     }
 
     @Test
-    public void getProjectType() throws Exception {
-        ProjectType type = new ProjectType();
-        type.setName("helloworld");
-        when(projectTypeRepository.findByName(type.getName())).thenReturn(type);
-        assertThat(service.getProjectType(type.getName()), equalTo(type));
+    public void getProject() throws Exception{
+        Project project = mock(Project.class);
+        project.setName(NAME_PROJECT);
+        when(projectRepository.findByName(NAME_PROJECT)).thenReturn(project);
+        assertThat(projectService.getProject(NAME_PROJECT), equalTo(project));
     }
 }

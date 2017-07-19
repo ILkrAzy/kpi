@@ -8,6 +8,7 @@ import org.kpi.model.dto.NewUser;
 import org.kpi.service.UserService;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -67,7 +68,14 @@ public class UserControllerTest {
         ddlanh.setId(1);
 
         when(userService.getByUsername(ddlanh.getUsername())).thenReturn(ddlanh);
-        assertThat(controller.getByUsername(ddlanh.getUsername()), equalTo(ddlanh));
+        assertThat(controller.getByUsername(ddlanh.getUsername()), equalTo(ResponseEntity.ok(ddlanh)));
+    }
+
+    @Test
+    public void getReturn404WhenUserDoesNotExist() throws Exception {
+        String username = "ddlanh";
+        when(userService.getByUsername(username)).thenReturn(null);
+        assertThat(controller.getByUsername(username), equalTo(ResponseEntity.notFound().build()));
     }
 
     @Test
