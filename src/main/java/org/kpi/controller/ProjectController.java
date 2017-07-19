@@ -54,7 +54,11 @@ public class ProjectController {
     }
     
     @GetMapping("/{name}")
-    public ProjectDTO get(@PathVariable String name){
-        return ProjectDTO.fromProject(projectService.getProject(name));
+    public ResponseEntity<ProjectDTO> get(@PathVariable String name){
+        Project project = projectService.getProject(name);
+        if(project == null) {
+            return new ResponseEntity<ProjectDTO>(HttpStatus.NOT_FOUND);
+        }
+        return ResponseEntity.ok(ProjectDTO.fromProject(project));
     }
 }

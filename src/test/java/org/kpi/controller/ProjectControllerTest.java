@@ -11,6 +11,7 @@ import org.kpi.service.ProjectTypeService;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
+import org.springframework.http.ResponseEntity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -63,7 +64,12 @@ public class ProjectControllerTest {
         Project project = mock(Project.class);
         when(projectService.getProject(NAME_PROJECT)).thenReturn(project);
         ProjectDTO projectDTO = ProjectDTO.fromProject(project);
-        assertThat(projectController.get(NAME_PROJECT), equalTo(projectDTO));
+        assertThat(projectController.get(NAME_PROJECT), equalTo(ResponseEntity.ok(projectDTO)));
     }
 
+    @Test
+    public void getReturn404WhenProjectNotFound() throws Exception {
+        when(projectService.getProject(NAME_PROJECT)).thenReturn(null);
+        assertThat(projectController.get(NAME_PROJECT), equalTo(ResponseEntity.notFound().build()));
+    }
 }
