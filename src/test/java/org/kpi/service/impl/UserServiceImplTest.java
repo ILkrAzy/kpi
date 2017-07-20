@@ -133,4 +133,21 @@ public class UserServiceImplTest {
         when(userRepository.search(null,null, null, "test@")).thenReturn(users);
         assertThat(service.search(null, null, null, "test@"), equalTo(users));
     }
+
+    @Test
+    public void searchAll() throws Exception {
+        when(userRepository.findAll()).thenReturn(users);
+        assertThat(service.search(null, null, null, null), equalTo(users));
+    }
+    @Test
+    public void searchByLastName() throws Exception {
+        when(userRepository.search(null, "Vu", null, null)).thenReturn(users);
+        assertThat(service.search(null, "Vu", null, null), equalTo(users));
+    }
+
+    @Test
+    public void searchByUsername() throws Exception {
+        when(userRepository.search(null, null, "vqhuy", null)).thenReturn(users);
+        assertThat(service.search(null, null, "vqhuy", null), equalTo(users));
+    }
 }
