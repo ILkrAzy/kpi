@@ -30,44 +30,42 @@ public class UserControllerTest {
     private UserService userService;
 
     private UserController controller;
+    private User ddlanh;
+    private User vqhuy;
+    private List<User> users = new ArrayList<>();
 
     @Before
     public void setUp() throws Exception {
         controller = new UserController(userService, new BCryptPasswordEncoder());
-    }
-
-    @Test
-    public void getAll() throws Exception {
-        List<User> users = new ArrayList<>();
-        User ddlanh = new User();
-        ddlanh.setFirstName("Lanh");
-        ddlanh.setLastName("Dang");
-        ddlanh.setEmail("test@gmail.com");
-        ddlanh.setId(1);
-
-        User vqhuy = new User();
-        vqhuy.setFirstName("Huy");
-        vqhuy.setLastName("Vu");
-        vqhuy.setEmail("test@gmail.com");
-        vqhuy.setId(2);
-
-        users.add(ddlanh);
-        users.add(vqhuy);
-
-        when(userService.search(null, null, null, null)).thenReturn(users);
-        List<NewUser> newUsers = NewUser.toList(users);
-        assertThat(controller.search(null, null, null, null), equalTo(newUsers));
-    }
-
-    @Test
-    public void getByUsername() throws Exception {
-        User ddlanh = new User();
+        ddlanh = new User();
         ddlanh.setUsername("ddlanh");
         ddlanh.setFirstName("Lanh");
         ddlanh.setLastName("Dang");
         ddlanh.setEmail("test@gmail.com");
+        ddlanh.setPassword("123456");
         ddlanh.setId(1);
 
+        vqhuy = new User();
+        vqhuy.setUsername("vqhuy");
+        vqhuy.setFirstName("Huy");
+        vqhuy.setLastName("Vu");
+        vqhuy.setEmail("test@gmail.com");
+        vqhuy.setPassword("123456");
+        vqhuy.setId(2);
+
+        users.add(ddlanh);
+        users.add(vqhuy);
+    }
+
+    @Test
+    public void getAll() throws Exception {
+        when(userService.search(null, null, null, null)).thenReturn(users);
+        List<NewUser> newUsers = NewUser.toList(users);
+        assertThat(controller.search(null, null, null, null, null), equalTo(ResponseEntity.ok(newUsers)));
+    }
+
+    @Test
+    public void getByUsername() throws Exception {
         when(userService.getByUsername(ddlanh.getUsername())).thenReturn(ddlanh);
         assertThat(controller.getByUsername(ddlanh.getUsername()), equalTo(ResponseEntity.ok(ddlanh)));
     }
@@ -96,70 +94,29 @@ public class UserControllerTest {
     
     @Test
     public void searchByFirstName() throws Exception {
-        List<User> users = new ArrayList<>();
-        User ddlanh = new User();
-        ddlanh.setFirstName("Lanh");
-        ddlanh.setLastName("Dang");
-        ddlanh.setEmail("test@gmail.com");
-        ddlanh.setId(1);
-
-        User vqhuy = new User();
-        vqhuy.setFirstName("Huy");
-        vqhuy.setLastName("Vu");
-        vqhuy.setEmail("test@gmail.com");
-        vqhuy.setId(2);
-
-        users.add(ddlanh);
-        users.add(vqhuy);
-
         when(userService.search("Lanh", null, null, null)).thenReturn(users);
         List<NewUser> newUsers = NewUser.toList(users);
-        assertThat(controller.search("Lanh", null, null, null), equalTo(newUsers));
+        assertThat(controller.search("Lanh", null, null, null, null), equalTo(ResponseEntity.ok(newUsers)));
     }
     
     @Test
     public void searchByFirstNameAndLastName() throws Exception {
-        List<User> users = new ArrayList<>();
-        User ddlanh = new User();
-        ddlanh.setFirstName("Lanh");
-        ddlanh.setLastName("Dang");
-        ddlanh.setEmail("test@gmail.com");
-        ddlanh.setId(1);
-
-        User vqhuy = new User();
-        vqhuy.setFirstName("Huy");
-        vqhuy.setLastName("Vu");
-        vqhuy.setEmail("test@gmail.com");
-        vqhuy.setId(2);
-
-        users.add(ddlanh);
-        users.add(vqhuy);
-
-        when(userService.search("Lanh", "Dan", null, null)).thenReturn(users);
+        when(userService.search("Lanh", "Dan%", null, null)).thenReturn(users);
         List<NewUser> newUsers = NewUser.toList(users);
-        assertThat(controller.search("Lanh", "Dan", null, null), equalTo(newUsers));
+        assertThat(controller.search("Lanh", "Dan%", null, null, null), equalTo(ResponseEntity.ok(newUsers)));
     }
     
     @Test
     public void searchByFirstNameAndLastNameAndEmail() throws Exception {
-        List<User> users = new ArrayList<>();
-        User ddlanh = new User();
-        ddlanh.setFirstName("Lanh");
-        ddlanh.setLastName("Dang");
-        ddlanh.setEmail("test@gmail.com");
-        ddlanh.setId(1);
-
-        User vqhuy = new User();
-        vqhuy.setFirstName("Huy");
-        vqhuy.setLastName("Vu");
-        vqhuy.setEmail("test@gmail.com");
-        vqhuy.setId(2);
-
-        users.add(ddlanh);
-        users.add(vqhuy);
-
-        when(userService.search("Lanh", "Dan", null, "test@")).thenReturn(users);
+        when(userService.search("Lanh", "Dang", null, "test@%")).thenReturn(users);
         List<NewUser> newUsers = NewUser.toList(users);
-        assertThat(controller.search("Lanh", "Dan", null, "test@"), equalTo(newUsers));
+        assertThat(controller.search("Lanh", "Dang", null, "test@%", null), equalTo(ResponseEntity.ok(newUsers)));
+    }
+
+    @Test
+    public void searchReturn404WhenUserDoesNotExist() throws Exception {
+        String username = "notfound";
+        when(userService.searchEverything(username)).thenReturn(null);
+        assertThat(controller.search(null, null, null, null, username), equalTo(ResponseEntity.notFound().build()));
     }
 }
