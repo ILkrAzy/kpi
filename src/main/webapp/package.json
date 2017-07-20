@@ -1,5 +1,4 @@
 {
-<<<<<<< .merge_file_a05272
   "name": "webapp",
   "version": "1.0.0",
   "description": "KPI frontend",
@@ -7,14 +6,6 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "KPI team",
-  "license": "ISC",
-  "devDependencies": {
-    "gulp-babel": "^6.1.2",
-    "gulp-clean-css": "^3.7.0",
-    "gulp-htmlmin": "^3.0.0",
-    "gulp-uglify": "^3.0.0"
-=======
   "private": true,
   "engines": {
     "node": ">=4"
@@ -58,6 +49,5 @@
         "single"
       ]
     }
->>>>>>> .merge_file_a14332
   }
 }

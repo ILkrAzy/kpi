@@ -1,24 +1,4 @@
 {
-<<<<<<< .merge_file_a16088
-  "name": "KPI",
-  "description": "KPI frontend",
-  "main": "index.js",
-  "authors": [
-    "KPI team"
-  ],
-  "license": "ISC",
-  "homepage": "https://github.com/ILkrAzy/kpi",
-  "ignore": [
-    "**/.*",
-    "node_modules",
-    "bower_components",
-    "test",
-    "tests"
-  ],
-  "dependencies": {
-    "jquery": "^3.2.1",
-    "bootstrap": "^3.3.7"
-=======
   "name": "webapp",
   "private": true,
   "dependencies": {
@@ -37,6 +17,5 @@
   "devDependencies": {
     "chai": "^4.1.0",
     "mocha": "^3.4.2"
->>>>>>> .merge_file_a16132
   }
 }
