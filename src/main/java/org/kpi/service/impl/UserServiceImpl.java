@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -53,9 +54,18 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<User> search(String firstName, String lastName, String userName, String email) {
-        if(StringUtils.isEmpty(firstName)&&StringUtils.isEmpty(lastName)&&StringUtils.isEmpty(userName)&&StringUtils.isEmpty(email)){
-            return (List<User>) userRepository.findAll();
+        List<User> users;
+        if (StringUtils.isEmpty(firstName) && StringUtils.isEmpty(lastName) && StringUtils.isEmpty(userName) && StringUtils.isEmpty(email)) {
+            users = (List<User>) userRepository.findAll();
+        } else {
+            users = userRepository.search(firstName, lastName, userName, email);
         }
-        return userRepository.search(firstName,lastName, userName, email);
+        return users == null ? Collections.emptyList() : users;
+    }
+
+    @Override
+    public List<User> searchEverything(String name) {
+        List<User> users = userRepository.searchEverything(name);
+        return users == null ? Collections.emptyList() : users;
     }
 }

@@ -11,6 +11,7 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -42,8 +43,19 @@ public class UserController {
     }
 
     @GetMapping
-    public List<NewUser> search(@RequestParam(required = false) String firstName, @RequestParam(required = false) String lastName, @RequestParam(required = false) String userName, @RequestParam(required = false) String email) {
-        return NewUser.toList(userService.search(firstName, lastName, userName, email));
+    public ResponseEntity<List<NewUser>> search(@RequestParam(required = false) String firstName, @RequestParam(required = false) String lastName,
+                                @RequestParam(required = false) String userName, @RequestParam(required = false) String email,
+                                @RequestParam(required = false) String query) {
+        List<User> users = new ArrayList<>();
+        if(!StringUtils.isEmpty(query)){
+            users = userService.searchEverything(query);
+        }else{
+            users = userService.search(firstName, lastName, userName, email);
+        }
+        if(users == null || users.isEmpty()){
+            return new ResponseEntity<List<NewUser>>(HttpStatus.NOT_FOUND);
+        }
+        return ResponseEntity.ok(NewUser.toList(users));
     }
 
 }

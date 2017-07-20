@@ -19,4 +19,6 @@ public interface UserService {
     boolean existEmail(String email);
 
     List<User> search(String firstName, String lastName, String userName, String email);
+
+    List<User> searchEverything(String name);
 }
