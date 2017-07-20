@@ -1,96 +1,67 @@
-<!doctype html>
-<html class="no-js" lang="">
-  <head>
-    <meta charset="utf-8">
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Sign in</title>
-    <link rel="shortcut icon" href="images/kpi-icon-cyan.png" />
-    <!-- Place favicon.ico in the root directory -->
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home | KPI</title>
+    <link rel="shortcut icon" href="images/kpi-icon-cyan.png"/>
+    <!--<link rel="stylesheet" href="css/bootstrap-theme.min.css"/>-->
     <!-- build:css styles/vendor.css -->
     <!-- bower:css -->
     <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css" />
     <!-- endbower -->
     <!-- endbuild -->
 
-    <!-- build:css styles/main.css -->
-    <link rel="stylesheet" href="styles/kpi.css">
-    <!-- endbuild -->
+  <!-- build:css styles/main.css -->
+  <link rel="stylesheet" href="styles/kpi.css">
+  <!-- endbuild -->
+</head>
+<body>
+<!-- MENU -->
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand navbar-logo" href="home.html"> <img src="images/kpi-home-logo.png"/></a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li><a href="#">Users</a></li>
+            <li><a href="#">KPIs</a></li>
+            <li><a href="#">Projects</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <!--<li><a href="#">Lanh Dang</a></li>-->
+            <li>
+                <a href="#" class="dropdown-toggle user-info" data-toggle="dropdown">
+                    Lanh Dang
+                    <img class="avatar" src="images/avatar.png"/>
+                    <span class="caret" ;></span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="#">Profile</a></li>
+                    <li><a href="../signin.html">Sign out</a></li>
+                </ul>
+            </li>
 
-    <!-- build:js scripts/vendor/modernizr.js -->
-    <script src="/bower_components/modernizr/modernizr.js"></script>
-    <!-- endbuild -->
-  </head>
-  <body class="kpi-background-color kpi-signin-page-layout signin-body">
-    <!--[if IE]>
-      <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-    <![endif]-->
-    <img src="images/kpi-logo.png" style="width: 100px;">
-    <br/>
-    <h4 class="text-white">Welcome to KPI System</h4>
-    <div class="signin-blank"></div>
-    <div class="signin-blank"></div>
-    <br/>
+        </ul>
+    </div>
+</nav>
 
+<!-- End Menu -->
+<!-- build:js scripts/vendor.js -->
+<!-- bower:js -->
+<script src="/bower_components/modernizr/modernizr.js"></script>
+<script src="/bower_components/jquery/dist/jquery.js"></script>
+<script src="/bower_components/bootstrap/dist/js/bootstrap.js"></script>
+<!-- endbower -->
+<!-- endbuild -->
 
-    <br/>
-    <h3 class="text-white">Sign in</h3>
-    <br/>
+<!-- build:js scripts/plugins.js -->
+<!-- endbuild -->
 
-    <form class="signin-form">
-
-      <div class="alert alert-danger alert-dismissable fade in signin-fail">
-        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-        Invalid username/password!
-      </div>
-
-      <br/>
-
-      <div class="input-group input-group-lg signin-input-group">
-        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-        <!-- process focus for input so that there is a outer highlight of it later - relate to box-shadow -->
-        <input id="username" type="text" class="form-control" name="username" placeholder="username/email">
-      </div>
-
-      <br/>
-      <div class="input-group input-group-lg signin-input-group">
-        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-        <input id="password" type="password" class="form-control" name="password" placeholder="password">
-      </div>
-      <br/>
-
-      <div class="input-group input-group-lg signin-input-group">
-        <button type="button" class="btn btn-lg btn-success" style="border-color: #1f7697; background-color: #11a309">SIGN IN</button>
-      </div>
-      <br/>
-      <a href="#" class="btn-link">Lost your password?</a>
-
-    </form>
-
-    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
-    <script>
-      (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
-      function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
-      e=o.createElement(i);r=o.getElementsByTagName(i)[0];
-      e.src='https://www.google-analytics.com/analytics.js';
-      r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
-      ga('create','UA-XXXXX-X');ga('send','pageview');
-    </script>
-
-    <!-- build:js scripts/vendor.js -->
-    <!-- bower:js -->
-    <script src="/bower_components/modernizr/modernizr.js"></script>
-    <script src="/bower_components/jquery/dist/jquery.js"></script>
-    <script src="/bower_components/bootstrap/dist/js/bootstrap.js"></script>
-    <!-- endbower -->
-    <!-- endbuild -->
-
-    <!-- build:js scripts/plugins.js -->
-    <!-- endbuild -->
-
-    <!-- build:js scripts/main.js -->
-    <script src="scripts/main.js"></script>
-    <!-- endbuild -->
-  </body>
+<!-- build:js scripts/main.js -->
+<script src="scripts/main.js"></script>
+<!-- endbuild -->
+</body>
+<footer>
+    <p>© 2017<a href="#"> KPI Team</a>, All rights reserved 2017-2018.</p>
+</footer>
 </html>
