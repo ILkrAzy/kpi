@@ -74,5 +74,96 @@
     /*color: #0e15a1;*/
 }
 
-
 /* END Signin page */
+
+.navbar {
+    margin: auto;
+    background-color: #1f7697;
+    color: #c2f3f5;
+    border: none;
+    font-size: 18px;
+}
+
+.container-fluid {
+    width: 980px;
+}
+
+.navbar-logo {
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+
+.navbar-inverse .navbar-nav > li > a {
+    color: #ffffff;
+}
+
+.navbar-inverse .navbar-nav > li > a:hover {
+    color: #45ffff;
+}
+
+.navbar-inverse .navbar-nav .active > a,
+.navbar-inverse .navbar-nav .active > a:hover,
+.navbar-inverse .navbar-nav .active > a:focus {
+    background-color: #085c84;
+    color: #45ffff;
+}
+
+.navbar-inverse .navbar-nav .open > a,
+.navbar-inverse .navbar-nav .open > a:hover,
+.navbar-inverse .navbar-nav .open > a:active,
+.navbar-inverse .navbar-nav .open > a:focus {
+    color: #45ffff;
+    background-color: #085c84;
+}
+
+.navbar-nav .avatar {
+    width: 32px;
+    height: 32px;
+    margin-top: 9px;
+    margin-bottom: 9px;
+    border-radius: 4px;
+}
+
+.navbar-nav .user-info {
+    padding-top: 0px;
+    padding-bottom: 0px;
+    padding-left: 4px;
+    padding-right: 4px;
+}
+
+.dropdown-menu {
+    background-color: #1f7697;
+    color: #ffffff;
+}
+
+.dropdown-menu > li > a {
+    font-size: 16px;
+    color: #ffffff;
+}
+
+.dropdown-menu > li > a:hover {
+    color: #45ffff;
+    background-color: #085c84;
+}
+
+footer {
+    background-color: #1f7697;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 35px;
+    text-align: center;
+    color: #ffffff;
+}
+
+footer p {
+    padding: 10.5px;
+    margin: 0px;
+    line-height: 100%;
+}
+
+footer a {
+    color:#45ffff; text-decoration:none;
+}
+

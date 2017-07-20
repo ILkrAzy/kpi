@@ -1,7 +1,6 @@
 package org.kpi.model.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.sun.org.apache.bcel.internal.generic.NEW;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.validator.constraints.Email;
@@ -73,5 +72,29 @@ public class NewUser {
             userList.add(NewUser.fromModel(user));
         }
         return userList;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        NewUser newUser = (NewUser) o;
+
+        if (username != null ? !username.equals(newUser.username) : newUser.username != null) return false;
+        if (password != null ? !password.equals(newUser.password) : newUser.password != null) return false;
+        if (email != null ? !email.equals(newUser.email) : newUser.email != null) return false;
+        if (firstName != null ? !firstName.equals(newUser.firstName) : newUser.firstName != null) return false;
+        return lastName != null ? lastName.equals(newUser.lastName) : newUser.lastName == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = username != null ? username.hashCode() : 0;
+        result = 31 * result + (password != null ? password.hashCode() : 0);
+        result = 31 * result + (email != null ? email.hashCode() : 0);
+        result = 31 * result + (firstName != null ? firstName.hashCode() : 0);
+        result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
+        return result;
     }
 }
