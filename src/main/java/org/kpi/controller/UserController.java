@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -26,15 +27,10 @@ public class UserController {
         this.passwordEncoder = passwordEncoder;
     }
 
-    @GetMapping
-    public List<User> getAll() {
-        return userService.getAll();
-    }
-
     @GetMapping("/{username}")
     public ResponseEntity<User> getByUsername(@PathVariable String username) {
         User user = userService.getByUsername(username);
-        if(user == null) {
+        if (user == null) {
             return new ResponseEntity<User>(HttpStatus.NOT_FOUND);
         }
         return ResponseEntity.ok(user);
@@ -44,4 +40,10 @@ public class UserController {
     public void create(@Valid @RequestBody NewUser user) {
         userService.save(user.toModel(passwordEncoder));
     }
+
+    @GetMapping
+    public List<NewUser> search(@RequestParam(required = false) String firstName, @RequestParam(required = false) String lastName, @RequestParam(required = false) String userName, @RequestParam(required = false) String email) {
+        return NewUser.toList(userService.search(firstName, lastName, userName, email));
+    }
+
 }
