@@ -2,15 +2,24 @@ package org.kpi.model;
 
 import org.hibernate.annotations.GenericGenerator;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Entity
 @Table(name = "kpi", indexes = { @Index(name = "KPI_NAME_IDX", columnList = "name", unique = true)})
 public class Kpi implements Serializable {
     private static final long serialVersionUID = 1L;
+    
+    @Getter
+    @Setter 
+    String uuid = UUID.randomUUID().toString();
+    
     @Id
     @GeneratedValue(generator = "increment")
     @GenericGenerator(name = "increment", strategy = "increment")

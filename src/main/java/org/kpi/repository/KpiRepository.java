@@ -1,7 +1,12 @@
 package org.kpi.repository;
 
+import org.kpi.model.Kpi;
+import org.springframework.data.repository.CrudRepository;
+
 /**
  * Created by vquochuy on 7/21/2017.
  */
-public class KpiRepository {
+public interface KpiRepository extends CrudRepository<Kpi, Integer>{
+    Kpi findByName(String name);
+    Kpi findByUuid(String uuid);
 }
