@@ -7,40 +7,38 @@
     <!--<link rel="stylesheet" href="css/bootstrap-theme.min.css"/>-->
     <!-- build:css styles/vendor.css -->
     <!-- bower:css -->
-    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css"/>
     <!-- endbower -->
     <!-- endbuild -->
 
-  <!-- build:css styles/main.css -->
-  <link rel="stylesheet" href="styles/kpi.css">
-  <!-- endbuild -->
+    <!-- build:css styles/main.css -->
+    <link rel="stylesheet" href="styles/kpi.css">
+    <!-- endbuild -->
 </head>
 <body>
 <!-- MENU -->
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand navbar-logo" href="home.html"> <img src="images/kpi-home-logo.png"/></a>
+            <a class="navbar-brand navbar-logo" href="index.html"> <img src="images/kpi-home-logo.png"/></a>
         </div>
         <ul class="nav navbar-nav">
-            <li><a href="#">Users</a></li>
-            <li><a href="#">KPIs</a></li>
-            <li><a href="#">Projects</a></li>
+            <li><a href="#" id="navbar-users">Users</a></li>
+            <li><a href="#" id="navbar-kpis">KPIs</a></li>
+            <li><a href="#" id="navbar-projects">Projects</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
-            <!--<li><a href="#">Lanh Dang</a></li>-->
             <li>
-                <a href="#" class="dropdown-toggle user-info" data-toggle="dropdown">
+                <a href="#" class="dropdown-toggle user-info" data-toggle="dropdown" id="navbar-userprof-fullname">
                     Lanh Dang
                     <img class="avatar" src="images/avatar.png"/>
-                    <span class="caret" ;></span>
+                    <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu">
-                    <li><a href="#">Profile</a></li>
-                    <li><a href="../signin.html">Sign out</a></li>
+                    <li><a href="#" id="navbar-userprof-profile">Profile</a></li>
+                    <li><a href="../signin.html" id="navbar-userprof-signout">Sign out</a></li>
                 </ul>
             </li>
-
         </ul>
     </div>
 </nav>
