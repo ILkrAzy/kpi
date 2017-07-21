@@ -8,6 +8,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.junit.Before;
@@ -149,5 +150,26 @@ public class UserServiceImplTest {
     public void searchByUsername() throws Exception {
         when(userRepository.search(null, null, "vqhuy", null)).thenReturn(users);
         assertThat(service.search(null, null, "vqhuy", null), equalTo(users));
+    }
+    
+    @Test
+    public void searchShouldReturnEmptyList() throws Exception {
+        String username = "username";
+        when(userRepository.search(null, null, null, username)).thenReturn(null);
+        assertThat(service.search(null, null, null, username), equalTo(Collections.emptyList()));
+    }
+    
+    @Test
+    public void searchEverything() throws Exception {
+        String username = "vqhuy";
+        when(userRepository.searchEverything(username)).thenReturn(users);
+        assertThat(service.searchEverything( username), equalTo(users));
+    }
+    
+    @Test
+    public void searchEverythingShouldReturnEmptyList() throws Exception {
+        String username = "username";
+        when(userRepository.searchEverything(username)).thenReturn(null);
+        assertThat(service.searchEverything(username), equalTo(Collections.emptyList()));
     }
 }
