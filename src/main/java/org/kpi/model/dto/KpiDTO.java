@@ -4,6 +4,8 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+import org.kpi.model.Kpi;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -25,4 +27,56 @@ public class KpiDTO {
     @Getter
     @Setter
     private String measure;
+    
+    @Getter
+    @Setter
+    private String uuid;
+    
+    public KpiDTO fromModel(Kpi kpi){
+        //KpiDTO kpiDTO = new KpiDTO();
+        this.setName(kpi.getName());
+        this.setMeasure(kpi.getMeasure());
+        this.setUuid(kpi.getUuid());
+        return this;
+    }
+   
+   public Kpi toModel(){
+       Kpi kpi = new Kpi();
+       kpi.setMeasure(measure);
+       kpi.setName(name);
+       return kpi;
+   }
+
+@Override
+public int hashCode() {
+    final int prime = 31;
+    int result = 1;
+    result = prime * result + ((measure == null) ? 0 : measure.hashCode());
+    result = prime * result + ((name == null) ? 0 : name.hashCode());
+    return result;
+}
+
+@Override
+public boolean equals(Object obj) {
+    if (this == obj)
+        return true;
+    if (obj == null)
+        return false;
+    if (getClass() != obj.getClass())
+        return false;
+    KpiDTO other = (KpiDTO) obj;
+    if (measure == null) {
+        if (other.measure != null)
+            return false;
+    } else if (!measure.equals(other.measure))
+        return false;
+    if (name == null) {
+        if (other.name != null)
+            return false;
+    } else if (!name.equals(other.name))
+        return false;
+    return true;
+}
+   
+   
 }

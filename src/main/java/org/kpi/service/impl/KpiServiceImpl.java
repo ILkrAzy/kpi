@@ -1,5 +1,8 @@
 package org.kpi.service.impl;
 
+import java.util.Collections;
+import java.util.List;
+
 import org.kpi.model.Kpi;
 import org.kpi.repository.KpiRepository;
 import org.kpi.service.KpiService;
@@ -12,8 +15,12 @@ import org.springframework.stereotype.Service;
 @Service
 public class KpiServiceImpl implements KpiService {
     
-    @Autowired
     private KpiRepository kpiRepository;
+
+    @Autowired
+    public KpiServiceImpl(KpiRepository kpiRepository) {
+        this.kpiRepository = kpiRepository;
+    }
 
     @Override
     public void save(Kpi kpi) {
@@ -21,12 +28,17 @@ public class KpiServiceImpl implements KpiService {
     }
 
     @Override
-    public Kpi getKpiByName(String name) {
-        return kpiRepository.findByName(name);
+    public Kpi getKpiByUUID(String uuid) {
+        Kpi kpi = kpiRepository.findByUuid(uuid);
+        if(kpi == null){
+            throw new IllegalArgumentException("Kpi with name " + uuid + " does not exist");
+        }
+        return kpi;
     }
 
     @Override
-    public Kpi getKpiByUUID(String uuid) {
-        return kpiRepository.findByUuid(uuid);
+    public List<Kpi> getAll() {
+        List<Kpi> kpis = (List<Kpi>) kpiRepository.findAll();
+        return kpis == null ? Collections.emptyList() : kpis;
     }
 }

@@ -1,5 +1,7 @@
 package org.kpi.service;
 
+import java.util.List;
+
 import org.kpi.model.Kpi;
 
 /**
@@ -7,6 +9,8 @@ import org.kpi.model.Kpi;
  */
 public interface KpiService {
     void save(Kpi kpi);
-    Kpi getKpiByName(String name);
+
     Kpi getKpiByUUID(String uuid);
+
+    List<Kpi> getAll();
 }
