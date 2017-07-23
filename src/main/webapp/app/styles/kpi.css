@@ -98,9 +98,56 @@
     font-size: 18px;
 }
 
-.container-fluid {
-    width: 980px;
-}
+
+/*@media (min-width: 768px) {*/
+    /*.container-fluid {*/
+        /*width: 750px;*/
+    /*}*/
+    /*.container {*/
+        /*margin-top: 50px;*/
+    /*}*/
+
+    /*.panel-body {*/
+        /*width:750px;*/
+        /*margin: auto;*/
+        /*padding-left: 15px;*/
+        /*padding-right: 15px;*/
+    /*}*/
+    /*!*.navbar-nav, .navbar-nav>li {*!*/
+        /*!*width:100%;*!*/
+    /*!*}*!*/
+
+/*}*/
+/*@media (min-width: 992px) {*/
+    /*.container-fluid {*/
+        /*width: 970px;*/
+    /*}*/
+    /*.container {*/
+        /*margin-top: 50px;*/
+    /*}*/
+    /*.panel-body {*/
+        /*width:970px;*/
+        /*margin: auto;*/
+        /*padding-left: 15px;*/
+        /*padding-right: 15px;*/
+    /*}*/
+
+/*}*/
+/*@media (min-width: 1200px) {*/
+    /*.container-fluid {*/
+        /*width: 1170px;*/
+    /*}*/
+    /*.container {*/
+        /*margin-top: 50px;*/
+    /*}*/
+    /*.panel-body {*/
+        /*width:1170px;*/
+        /*margin: auto;*/
+        /*padding-left: 15px;*/
+        /*padding-right: 15px;*/
+    /*}*/
+
+/*}*/
 
 .navbar-logo {
     padding-top: 2px;
@@ -130,6 +177,11 @@
     background-color: #085c84;
 }
 
+.navbar-inverse .navbar-toggle,
+.navbar-inverse .navbar-collapse {
+    border: none;
+}
+
 .navbar-nav .avatar {
     width: 32px;
     height: 32px;
@@ -141,8 +193,8 @@
 .navbar-nav .user-info {
     padding-top: 0px;
     padding-bottom: 0px;
-    padding-left: 4px;
-    padding-right: 4px;
+    /*padding-left: 4px;*/
+    /*padding-right: 4px;*/
 }
 
 .dropdown-menu {
@@ -151,13 +203,13 @@
 }
 
 .dropdown-menu > li > a {
-    font-size: 16px;
-    color: #ffffff;
+    font-size: 16px !important;
+    color: #ffffff !important;
 }
 
 .dropdown-menu > li > a:hover {
-    color: #45ffff;
-    background-color: #085c84;
+    color: #45ffff !important;
+    background-color: #085c84 !important;
 }
 
 footer {
@@ -181,4 +233,13 @@ footer a {
     color: #45ffff;
     text-decoration: none;
 }
+
+.panel {
+    margin-top: 50px;
+}
+
+.page-header {
+    margin: 10px 0 20px;
+}
+
 
