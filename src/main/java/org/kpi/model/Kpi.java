@@ -2,15 +2,24 @@ package org.kpi.model;
 
 import org.hibernate.annotations.GenericGenerator;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Entity
 @Table(name = "kpi", indexes = { @Index(name = "KPI_NAME_IDX", columnList = "name", unique = true)})
 public class Kpi implements Serializable {
     private static final long serialVersionUID = 1L;
+    
+    @Getter
+    @Setter 
+    String uuid = UUID.randomUUID().toString();
+    
     @Id
     @GeneratedValue(generator = "increment")
     @GenericGenerator(name = "increment", strategy = "increment")
@@ -53,5 +62,37 @@ public class Kpi implements Serializable {
         return projectTypes;
     }
 
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((measure == null) ? 0 : measure.hashCode());
+        result = prime * result + ((name == null) ? 0 : name.hashCode());
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Kpi other = (Kpi) obj;
+        if (measure == null) {
+            if (other.measure != null)
+                return false;
+        } else if (!measure.equals(other.measure))
+            return false;
+        if (name == null) {
+            if (other.name != null)
+                return false;
+        } else if (!name.equals(other.name))
+            return false;
+        return true;
+    }
+
+    
 
 }
