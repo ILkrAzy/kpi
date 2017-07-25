@@ -175,6 +175,11 @@ gulp.task('build', ['lint', 'html', 'images', 'fonts', 'extras'], () => {
 gulp.task('default', () => {
   return new Promise(resolve => {
     dev = false;
-    runSequence(['clean', 'wiredep'], 'build', resolve);
+    runSequence(['clean', 'wiredep'], 'build', 'copy', resolve);
   });
 });
+
+gulp.task('copy', () => gulp
+    .src('dist/**')
+    .pipe(gulp.dest('../resources/static'))
+);
