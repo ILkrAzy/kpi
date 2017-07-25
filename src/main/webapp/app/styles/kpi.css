@@ -197,19 +197,23 @@
     /*padding-right: 4px;*/
 }
 
-.dropdown-menu {
+.kpi-menu-dropdown {
     background-color: #1f7697;
     color: #ffffff;
 }
 
-.dropdown-menu > li > a {
+.kpi-menu-dropdown > li > a {
     font-size: 16px !important;
     color: #ffffff !important;
 }
 
-.dropdown-menu > li > a:hover {
+.kpi-menu-dropdown > li > a:hover {
     color: #45ffff !important;
     background-color: #085c84 !important;
+}
+
+.order-option::before {
+    content: 'Order by';
 }
 
 footer {
