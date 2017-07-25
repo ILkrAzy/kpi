@@ -21,6 +21,7 @@ plugins {
     id 'com.github.kt3k.coveralls' version '2.8.1'
     id "com.moowork.gulp" version "0.12"
     id "com.moowork.node" version "0.12"
+    id 'com.craigburke.bower-installer' version '2.5.1'
 }
 
 cobertura {
@@ -49,19 +50,18 @@ gulp_default.dependsOn 'npmInstall'
 // run gulp install
 gulp_default.dependsOn 'installGulp'
 
+gulp_default.dependsOn 'bowerInstall'
+
 // processResources is a Java task. Run the gulpfile.js before this task using the 'default' task in the gulpfile.js
 processResources.dependsOn gulp_default
 
-// if the /node_modules directory already exists somewhere other than at the base of where your build.gradle is
+
 node {
     version = '6.9.1'
-    // Enabled the automatic download. False is the default (for now).
     download = true
     nodeModulesDir = file("src/main/webapp/")
 }
 
-// if the /node_modules directory already exists somewhere other than at the base of where your build.gradle is
-//  plugin looks for gulp in the node_modules directory
 gulp {
     workDir = file("src/main/webapp/")
 }
