@@ -54,6 +54,9 @@ processResources.dependsOn gulp_default
 
 // if the /node_modules directory already exists somewhere other than at the base of where your build.gradle is
 node {
+    version = '6.9.1'
+    // Enabled the automatic download. False is the default (for now).
+    download = true
     nodeModulesDir = file("src/main/webapp/")
 }
 
