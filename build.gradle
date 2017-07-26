@@ -79,7 +79,7 @@ checkstyle {
         source = sourceSets.main.allSource
     }
 
-    checkstyleMain.exclude '/static/**'
+    checkstyleMain.exclude '**/static/**'
 
     configurations {
         checkstyle
