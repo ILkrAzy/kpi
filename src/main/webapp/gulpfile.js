@@ -5,6 +5,7 @@ const browserSync = require('browser-sync').create();
 const del = require('del');
 const wiredep = require('wiredep').stream;
 const runSequence = require('run-sequence');
+const bower = require('gulp-bower');
 
 const $ = gulpLoadPlugins();
 const reload = browserSync.reload;
@@ -175,6 +176,15 @@ gulp.task('build', ['lint', 'html', 'images', 'fonts', 'extras'], () => {
 gulp.task('default', () => {
   return new Promise(resolve => {
     dev = false;
-    runSequence(['clean', 'wiredep'], 'build', resolve);
+    runSequence('bower', ['clean', 'wiredep'], 'build', 'copy', resolve);
   });
+});
+
+gulp.task('copy', () => gulp
+    .src('dist/**')
+    .pipe(gulp.dest('../resources/static'))
+);
+
+gulp.task('bower', function() {
+    return bower();
 });

@@ -54,8 +54,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable().authorizeRequests()
-                .antMatchers(HttpMethod.POST, "/login").permitAll()
                 .anyRequest().authenticated()
+                .and().formLogin().loginPage("/signin").permitAll()
                 .and().httpBasic().realmName(REALM).authenticationEntryPoint(getBasicAuthenticationEntryPoint())
                 .and().addFilterBefore(new JWTLoginFilter("/login", authenticationManager()), UsernamePasswordAuthenticationFilter.class)
                 .addFilterBefore(new JWTAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
@@ -71,6 +71,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     /* To allow Pre-flight [OPTIONS] request from browser */
     @Override
     public void configure(WebSecurity web) throws Exception {
-        web.ignoring().antMatchers(HttpMethod.OPTIONS, "/**");
+        web.ignoring().antMatchers(HttpMethod.OPTIONS, "/**")
+        .antMatchers(HttpMethod.GET, "/styles/**")
+        .antMatchers(HttpMethod.GET, "/scripts/**")
+        .antMatchers(HttpMethod.GET, "/fonts/**")
+        .antMatchers(HttpMethod.GET, "/images/**");
     }
 }

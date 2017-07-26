@@ -19,6 +19,8 @@ buildscript {
 plugins {
     id 'net.saliman.cobertura' version '2.3.1'
     id 'com.github.kt3k.coveralls' version '2.8.1'
+    id "com.moowork.gulp" version "0.12"
+    id "com.moowork.node" version "0.12"
 }
 
 cobertura {
@@ -42,6 +44,25 @@ ext {
     sevntuChecksVersion = '1.24.1'
 }
 
+// run npm install
+gulp_default.dependsOn 'npmInstall'
+// run gulp install
+gulp_default.dependsOn 'installGulp'
+
+// processResources is a Java task. Run the gulpfile.js before this task using the 'default' task in the gulpfile.js
+processResources.dependsOn gulp_default
+
+
+node {
+    version = '6.9.1'
+    download = true
+    nodeModulesDir = file("src/main/webapp/")
+}
+
+gulp {
+    workDir = file("src/main/webapp/")
+}
+
 checkstyle {
 
 // In this section you declare where to find the dependencies of your project
@@ -58,9 +79,12 @@ checkstyle {
         source = sourceSets.main.allSource
     }
 
+    checkstyleMain.exclude '/static/**'
+
     configurations {
         checkstyle
     }
+
  bootRun {
        systemProperty 'spring.config.location', System.properties['spring.config.location']
     }
@@ -80,6 +104,10 @@ checkstyle {
         compile "org.springframework.boot:spring-boot-starter-web:${springBootVersion}"
         compile "org.springframework.boot:spring-boot-starter-data-jpa:${springBootVersion}"
         compile "org.springframework.boot:spring-boot-starter-security:${springBootVersion}"
+        compile "org.springframework.boot:spring-boot-starter-thymeleaf:${springBootVersion}"
+        compile group: 'net.sourceforge.nekohtml', name: 'nekohtml', version: '1.9.22'
+
+
         compile 'io.jsonwebtoken:jjwt:0.7.0'
         compileOnly 'org.projectlombok:lombok:1.16.18'
 

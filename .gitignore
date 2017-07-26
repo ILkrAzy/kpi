@@ -31,3 +31,4 @@ kpi.iws
 kpi.ipr
 kpi.iml
 /**/.idea/
+/src/main/resources/static/
