@@ -216,27 +216,42 @@
     content: 'Order by';
 }
 
-footer {
-    background-color: #1f7697;
-    /*position: fixed;*/
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 35px;
-    text-align: center;
-    color: #ffffff;
-}
 
-footer p {
+.footer p {
     padding: 10.5px;
     margin: 0px;
     line-height: 100%;
 }
 
-footer a {
+.footer a {
     color: #45ffff;
     text-decoration: none;
 }
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    /* Margin bottom by footer height */
+    margin-bottom: 60px;
+}
+
+.footer {
+    background-color: #1f7697;
+    text-align: center;
+    color: #ffffff;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    /* Set the fixed height of the footer here */
+    height: 60px;
+    line-height: 60px; /* Vertically center the text there */
+}
+
+
+
 
 .panel {
     margin-top: 50px;
@@ -249,32 +264,80 @@ footer a {
 .user-row {
     min-width: 52px;
 }
+/* bak color: 0e15a1*/
+
+
+.background-color-indigo,
+.btn-indigo,
+.user-action-btn:hover,
+.user-action-btn:active {
+    background-color: #096b9a;
+    color: #ffffff;
+}
+
+.color-indigo {
+    color: #096b9a;
+}
+
+/*.color-indigo-bordered:hover,*/
+/*.color-indigo-bordered:focus,*/
+/*.color-indigo-bordered:active {*/
+    /*background-color: #096b9a;*/
+    /*color: #ffffff;*/
+/*}*/
+
+.btn-indigo:hover,
+.btn-indigo:focus,
+.btn-indigo:active {
+    background-color: #096591;
+    color: #ffffff;
+}
+
+.color-indigo-bordered,
+.user-action-btn,
+.user-action-btn:focus,
+.user-table,
+.user-table th,
+.user-table td,
+.user-table a,
+.user-table th a,
+.user-table td a {
+    background-color: #ffffff;
+    border-color: #096b9a !important;
+    color: #096b9a;
+}
+
+.user-table .popover {
+    background-color: #075d85;
+    color: #ffffff;
+}
+
+.user-table .popover .arrow:after {
+    border-left-color: #075d85;
+}
+
+.btn-green {
+    color: #ffffff;
+    background-color: #11a309;
+}
+
+.btn-green:hover,
+.btn-green:active,
+.btn-green:focus {
+    color: #ffffff;
+    background-color: #109708;
+}
 
 .user-action-btn,
 .user-action-btn:focus {
     margin: 2px;
-    background-color: #fbfbfb;
-    border-color: #0e15a1;
-    color: #0e15a1;
 }
 
 .user-action-btn:hover,
 .user-action-btn:active {
-    color: #ffffff;
     text-decoration: none;
-    background-color: #0e15a1;
 }
 
-.user-table,
-.user-table th,
-.user-table td {
-    border-color: #0e15a1 !important;
-}
-.user-table a,
-.user-table th a,
-.user-table td a {
-    color: #0e15a1;
-}
 
 .text-middle {
     vertical-align: middle !important;
