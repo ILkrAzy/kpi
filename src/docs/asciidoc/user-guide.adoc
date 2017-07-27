@@ -1,0 +1,49 @@
+= User REST Service API Guide
+:doctype: book
+:icons: font
+:source-highlighter: highlightjs
+:toc: left
+:toclevels: 4
+:sectlinks:
+ 
+= Resources
+ 
+== User REST Service
+ 
+The User provides the entry point into the service.
+ 
+=== Accessing the user GET with provided content
+ 
+==== Request structure
+ 
+include::{snippets}/users/http-request.adoc[]
+ 
+==== Response fields
+ 
+include::{snippets}/users/response-fields.adoc[]
+ 
+==== Example response
+ 
+include::{snippets}/users/http-response.adoc[]
+ 
+==== CURL request
+ 
+include::{snippets}/users/curl-request.adoc[]
+ 
+=== Accessing the user GET with default content
+ 
+==== Request structure
+ 
+include::{snippets}/users/http-request.adoc[]
+ 
+==== Response fields
+ 
+include::{snippets}/users/response-fields.adoc[]
+ 
+==== Example response
+ 
+include::{snippets}/users/http-response.adoc[]
+ 
+==== CURL request
+ 
+include::{snippets}/users/curl-request.adoc[]
