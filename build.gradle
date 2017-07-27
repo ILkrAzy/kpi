@@ -125,6 +125,7 @@ checkstyle {
         asciidoctor 'org.springframework.restdocs:spring-restdocs-asciidoctor:1.2.1.RELEASE' 
         testCompile 'org.springframework.restdocs:spring-restdocs-mockmvc:1.2.1.RELEASE' 
         testCompile group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: '1.5.4.RELEASE'
+        compile group: 'org.springframework.restdocs', name: 'spring-restdocs-core', version: '1.2.1.RELEASE'
     }
 
     test{

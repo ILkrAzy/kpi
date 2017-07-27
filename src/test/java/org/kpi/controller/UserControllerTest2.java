@@ -1,5 +1,5 @@
 package org.kpi.controller;
-import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.documentationConfiguration;
+import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.*;
 import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -37,7 +37,8 @@ public class UserControllerTest2 {
     @Test
     public void getAll() throws Exception{
         this.mockMvc.perform(get("/api/users").accept(MediaType.APPLICATION_JSON)) 
-        .andExpect(status().isOk());
+        .andExpect(status().isOk())
+        .andDo(document("index"));
     }
     
 }
