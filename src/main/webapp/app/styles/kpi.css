@@ -375,14 +375,35 @@ body {
     color: #ffffff;
 }
 
+#addUserDialog .modal-content {
+    background-color: #ffffff;
+    color: #075d85;
+    border-color: #075d85;
+}
+
+#addUserDialog .modal-header {
+    background-color: #075d85;
+    color: #ffffff;
+
+}
+
+#addUserDialog .modal-header .close {
+    color: #ffffff;
+
+}
+
 .tooltip-inner {
     background-color: #075d85;
     color: #ffffff;
 }
 
 .tooltip-arrow {
-    color: #0c7db4;;
     border-bottom-color: #075d85 !important;
+}
+
+.modal-body{
+    max-height: calc(100vh - 150px);
+    overflow-y: auto;
 }
 
 

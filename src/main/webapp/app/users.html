@@ -52,6 +52,7 @@
         </div>
     </div>
 </nav>
+<!-- End MENU -->
 
 <!-- Content -->
 <div class="container " style="min-height: 100%;">
@@ -70,7 +71,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 
@@ -98,7 +98,7 @@
             </div>
             <div class="row">
                 <div class="col-xs-12 col-sm-6 col-md-4">
-                    <button type="button" class="btn btn-md btn-indigo panel-heading-control"><span
+                    <button id="addUserBtn" type="button" class="btn btn-md btn-indigo panel-heading-control"><span
                         class="glyphicon glyphicon-plus"></span>&nbsp; Add User
                     </button>
                     <button type="button" class="btn btn-md btn-indigo panel-heading-control"><span
@@ -126,7 +126,7 @@
                 <tr>
                     <th class="col-lg-1 col-md-1 col-sm-1"></th>
                     <th class="col-lg-2 col-md-2 col-sm-2">
-                        <a href="#" >
+                        <a href="#">
                             Username
                             <span class="glyphicon glyphicon-triangle-bottom"></span>
                         </a>
@@ -161,16 +161,16 @@
                     <td class="text-middle">KPI22</td>
                     <td class="text-middle">
 
-                        <button class="btn btn-sm  user-action-btn user-action-btn-resetpassword" >
+                        <button class="btn btn-sm  user-action-btn user-action-btn-resetpassword">
                             <span class="glyphicon glyphicon-repeat"></span>
                         </button>
-                        <button class="btn btn-sm  user-action-btn user-action-btn-lock" >
+                        <button class="btn btn-sm  user-action-btn user-action-btn-lock">
                             <span class="glyphicon glyphicon-ban-circle"></span>
                         </button>
-                        <button class="btn btn-sm  user-action-btn user-action-btn-edit" >
+                        <button class="btn btn-sm  user-action-btn user-action-btn-edit">
                             <span class="glyphicon glyphicon-edit"></span>
                         </button>
-                        <button class="btn btn-sm  user-action-btn user-action-btn-delete" >
+                        <button class="btn btn-sm  user-action-btn user-action-btn-delete">
                             <span class="glyphicon glyphicon-trash"></span>
                         </button>
                     </td>
@@ -306,32 +306,120 @@
 
         </div>
     </div>
-
-
 </div>
+
+<!-- Add new User dialog -->
+<div id="addUserDialog" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Add new User</h4>
+            </div>
+
+            <div class="modal-body ">
+
+                <div class="row">
+                    <div class="col-md-10 ">
+                        <form class="form-horizontal">
+                            <fieldset>
+
+                                <!-- Form Name -->
+                                <!--<legend>User profile form requirement</legend>-->
+
+                                <!-- Text input-->
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label" for="userDialog_usernameTxt">Username</label>
+                                    <div class="col-md-6">
+                                        <input id="userDialog_usernameTxt" name="Username" type="text"
+                                               placeholder="Username" class="form-control input-md color-indigo-bordered" required>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label" for="userDialog_firstNameTxt">First Name</label>
+                                    <div class="col-md-6">
+                                        <input id="userDialog_firstNameTxt" name="First Name" type="text"
+                                               placeholder="First Name" class="form-control input-md color-indigo-bordered" required>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label" for="userDialog_lastNameTxt">Last Name</label>
+                                    <div class="col-md-6">
+                                        <input id="userDialog_lastNameTxt" name="Last Name" type="text" placeholder="Last Name"
+                                               class="form-control input-md color-indigo-bordered" required>
+                                    </div>
+                                </div>
+
+                                <div class="form-group ">
+                                    <label class="col-md-4 control-label" for="userDialog_emailTxt">Email</label>
+                                    <div class="col-md-6">
+                                        <input id="userDialog_emailTxt" name="Date Of Birth" type="text" placeholder="Email"
+                                               class="form-control input-md color-indigo-bordered" required>
+                                    </div>
+                                </div>
+
+                                <div class="form-group ">
+                                    <label class="col-md-4 control-label" for="userDialog_roleBox">Role</label>
+                                    <div class="col-md-6">
+                                        <select id="userDialog_roleBox" class="select form-control color-indigo-bordered" required >
+                                            <option>Manager</option>
+                                            <option>Director</option>
+                                            <option>Admin</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group ">
+                                    <label class="col-md-4 control-label" for="userDialog_projectBox">Project</label>
+                                    <div class="col-md-6">
+                                        <select id="userDialog_projectBox" class="select form-control color-indigo-bordered" >
+                                            <option>KPI</option>
+                                            <option>VitalQIP CE</option>
+                                            <option>VitalQIP Dev</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label"></label>
+                                    <div class="col-md-4">
+                                        <button id="userDialog_createBtn" type="submit" class="btn btn-success"><span
+                                            class="glyphicon glyphicon-thumbs-up"></span>&nbsp;&nbsp;Create</button>
+                                        &nbsp;
+                                        <button id="userDialog_clearBtn" type="button" class="btn btn-danger"><span
+                                            class="glyphicon glyphicon-remove-sign"></span>&nbsp;&nbsp;Clear</button>
+                                    </div>
+                                </div>
+
+                            </fieldset>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 <footer class="footer">
     <div class="container">
         <p>© 2017<a href="#"> KPI Team</a>, All rights reserved 2017-2018.</p>
     </div>
 </footer>
-<!--<div class="panel-footer">-->
-<!--<div class="row">-->
-<!--<div class="col-lg-12">-->
-<!--<div class="col-md-8">-->
-<!--</div>-->
-<!--<div class="col-md-4">-->
-<!--<p class="muted pull-right"><strong> © 2017 All rights reserved </strong></p>-->
-<!--</div>-->
-<!--</div>-->
-<!--</div>-->
-<!--</div>-->
 
-<!-- End Menu -->
 <!-- build:js scripts/vendor.js -->
 <!-- bower:js -->
 <script src="/bower_components/modernizr/modernizr.js"></script>
 <script src="/bower_components/jquery/dist/jquery.js"></script>
 <script src="/bower_components/bootstrap/dist/js/bootstrap.js"></script>
+<script src="/bower_components/vue/dist/vue.js"></script>
+<script src="/bower_components/axios/dist/axios.js"></script>
+<script src="/bower_components/vue-router/dist/vue-router.js"></script>
 <!-- endbower -->
 <!-- endbuild -->
 
@@ -344,6 +432,28 @@
 
 <script>
 
+
+    $('#addUserBtn').click(function () {
+        $('#addUserDialog').modal({
+            backdrop: 'static',
+            keyboard: false
+        });
+        $("#userDialog_roleBox").prop("selectedIndex", -1);
+        $("#userDialog_projectBox").prop("selectedIndex", -1);
+    });
+
+    $("#userDialog_createBtn").click( function () {
+
+    });
+
+    $("#userDialog_clearBtn").click( function () {
+        $("#userDialog_usernameTxt").val("");
+        $("#userDialog_firstNameTxt").val("");
+        $("#userDialog_lastNameTxt").val("");
+        $("#userDialog_emailTxt").val("");
+        $("#userDialog_roleBox").prop("selectedIndex", -1);
+        $("#userDialog_projectBox").prop("selectedIndex", -1);
+    });
 
     var deleteUserConfirmBox = 'Are you sure to delete this user?' +
         '<div class="row"> ' +
@@ -366,11 +476,13 @@
         trigger: 'focus'
     }).on('shown.bs.popover', function () {
         var popup = $(this);
-        $(this).parent().find("div.popover #user-delete-yes").click(function () {
-            $("#userDeletionNotify").modal('show');
+        $(this).parent().find('div.popover #user-delete-yes').click(function () {
+            $('#userDeletionNotify').modal({
+                keyboard: true
+            });
             popup.click();
         });
-        $(this).parent().find("div.popover #user-delete-no").click(function () {
+        $(this).parent().find('div.popover #user-delete-no').click(function () {
             popup.click();
         });
     });
@@ -391,11 +503,11 @@
         trigger: 'focus'
     }).on('shown.bs.popover', function () {
         var popup = $(this);
-        $(this).parent().find("div.popover #user-reset-yes").click(function () {
-            $("#resetpasswordNotify").modal('show');
+        $(this).parent().find('div.popover #user-reset-yes').click(function () {
+            $('#resetpasswordNotify').modal('show');
             popup.click();
         });
-        $(this).parent().find("div.popover #user-reset-no").click(function () {
+        $(this).parent().find('div.popover #user-reset-no').click(function () {
             popup.click();
         });
     });
