@@ -7,7 +7,7 @@
     <!--<link rel="stylesheet" href="css/bootstrap-theme.min.css"/>-->
     <!-- build:css styles/vendor.css -->
     <!-- bower:css -->
-    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css"/>
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -55,8 +55,43 @@
 
 <!-- Content -->
 <div class="container " style="min-height: 100%;">
+    <!-- User password reset notify -->
+    <div id="resetpasswordNotify" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-md">
 
-    <div class="panel " >
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="row text-center">
+                        <div class="col-sm-12"><p>Reset password for user "ddlanh" successfully.</p></div>
+                        <div class="col-sm-12">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div id="userDeletionNotify" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-md">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="row text-center">
+                        <div class="col-sm-12"><p>Deleted user "ddlanh" successfully.</p></div>
+                        <div class="col-sm-12">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel ">
+
         <div class="panel-heading">
             <div class="page-header">
                 <a href="../users.html" class="h3 color-indigo">Users</a>
@@ -91,7 +126,7 @@
                 <tr>
                     <th class="col-lg-1 col-md-1 col-sm-1"></th>
                     <th class="col-lg-2 col-md-2 col-sm-2">
-                        <a href="#">
+                        <a href="#" >
                             Username
                             <span class="glyphicon glyphicon-triangle-bottom"></span>
                         </a>
@@ -126,16 +161,16 @@
                     <td class="text-middle">KPI22</td>
                     <td class="text-middle">
 
-                        <button class="btn btn-sm  user-action-btn">
+                        <button class="btn btn-sm  user-action-btn user-action-btn-resetpassword" >
                             <span class="glyphicon glyphicon-repeat"></span>
                         </button>
-                        <button class="btn btn-sm  user-action-btn">
+                        <button class="btn btn-sm  user-action-btn user-action-btn-lock" >
                             <span class="glyphicon glyphicon-ban-circle"></span>
                         </button>
-                        <button class="btn btn-sm  user-action-btn ">
+                        <button class="btn btn-sm  user-action-btn user-action-btn-edit" >
                             <span class="glyphicon glyphicon-edit"></span>
                         </button>
-                        <button class="btn btn-sm  user-action-btn user-action-btn-delete" data-toggle="clickover" >
+                        <button class="btn btn-sm  user-action-btn user-action-btn-delete" >
                             <span class="glyphicon glyphicon-trash"></span>
                         </button>
                     </td>
@@ -179,7 +214,8 @@
                         <button class="btn btn-sm  user-action-btn">
                             <span class="glyphicon glyphicon-repeat"></span>
                         </button>
-                        <button class="btn btn-sm  user-action-btn">
+                        <button class="btn btn-sm  user-action-btn" data-toggle="modal"
+                                data-target="#resetpasswordNotify">
                             <span class="glyphicon glyphicon-ban-circle"></span>
                         </button>
                         <button class="btn btn-sm  user-action-btn">
@@ -307,22 +343,63 @@
 <!-- endbuild -->
 
 <script>
-var elem = 'Are you sure to delete this user?'+
-    '<div class="row"> '+
-    '<div class="col-sm-12 text-center"> '+
-    '<button id="user-delete-yes" data-toggle="clickover" class="btn btn-sm btn-success" >Yes</button> &nbsp;'+
-    '<button id="user-delete-no" data-toggle="clickover" class="btn btn-sm btn-danger" >No</button>'+
-    '</div></div>';
 
-$('.user-action-btn-delete').popover({animation:true, content:elem, html:true, placement:'auto left'}).on('shown.bs.popover', function() {
-    var popup = $(this);
-    $(this).parent().find("div.popover #user-delete-yes").click(function() {
-        popup.click();
+
+    var deleteUserConfirmBox = 'Are you sure to delete this user?' +
+        '<div class="row"> ' +
+        '<div class="col-sm-12 text-center"> ' +
+        '<button id="user-delete-yes" data-toggle="clickover" class="btn btn-sm btn-success" >Yes</button> &nbsp;' +
+        '<button id="user-delete-no" data-toggle="clickover" class="btn btn-sm btn-danger" >No</button>' +
+        '</div></div>';
+
+    $('.user-action-btn-delete').tooltip({placement: 'auto bottom', title: 'Delete User'});
+    $('.user-action-btn-lock').tooltip({placement: 'auto bottom', title: 'Lock User'});
+    $('.user-action-btn-edit').tooltip({placement: 'auto bottom', title: 'Edit User Profile'});
+    $('.user-action-btn-resetpassword').tooltip({placement: 'auto bottom', title: 'Reset User Password'});
+
+
+    $('.user-action-btn-delete').popover({
+        animation: true,
+        content: deleteUserConfirmBox,
+        html: true,
+        placement: 'auto left',
+        trigger: 'focus'
+    }).on('shown.bs.popover', function () {
+        var popup = $(this);
+        $(this).parent().find("div.popover #user-delete-yes").click(function () {
+            $("#userDeletionNotify").modal('show');
+            popup.click();
+        });
+        $(this).parent().find("div.popover #user-delete-no").click(function () {
+            popup.click();
+        });
     });
-    $(this).parent().find("div.popover #user-delete-no").click(function() {
-        popup.click();
+
+
+    var resetUserPassword = 'Are you sure to reset password for this user?' +
+        '<div class="row"> ' +
+        '<div class="col-sm-12 text-center"> ' +
+        '<button id="user-reset-yes" data-toggle="clickover" class="btn btn-sm btn-success" >Yes</button> &nbsp;' +
+        '<button id="user-reset-no" data-toggle="clickover" class="btn btn-sm btn-danger" >No</button>' +
+        '</div></div>';
+
+    $('.user-action-btn-resetpassword').popover({
+        animation: true,
+        content: resetUserPassword,
+        html: true,
+        placement: 'auto left',
+        trigger: 'focus'
+    }).on('shown.bs.popover', function () {
+        var popup = $(this);
+        $(this).parent().find("div.popover #user-reset-yes").click(function () {
+            $("#resetpasswordNotify").modal('show');
+            popup.click();
+        });
+        $(this).parent().find("div.popover #user-reset-no").click(function () {
+            popup.click();
+        });
     });
-});
+
 </script>
 
 </body>
