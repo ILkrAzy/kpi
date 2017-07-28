@@ -4,9 +4,9 @@ jdk:
 
 before_install:
  - chmod +x gradlew
-
-script:
-- ./gradlew build -x restdoc
+ - ./gradlew build -x restdoc
+before_script:
+ - ./gradlew build -x restdoc
 after_success:
  - ./gradlew cobertura coveralls
  
