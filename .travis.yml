@@ -5,7 +5,8 @@ jdk:
 before_install:
  - chmod +x gradlew
 
+script:
+- ./gradlew build -x restdoc
 after_success:
  - ./gradlew cobertura coveralls
  
-script: bundle exec rake build -x restdoc
