@@ -4,9 +4,11 @@ jdk:
 
 before_install:
  - chmod +x gradlew
- - ./gradlew build -x restdoc
-before_script:
- - ./gradlew build -x restdoc
+
+install: echo "skip 'gradle assemble' step"
+
+script: gradle build -x restdoc --continue
+
 after_success:
  - ./gradlew cobertura coveralls
  
