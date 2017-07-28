@@ -7,3 +7,5 @@ before_install:
 
 after_success:
  - ./gradlew cobertura coveralls
+ 
+script: bundle exec rake build -x restdoc

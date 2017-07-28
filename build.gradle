@@ -129,13 +129,19 @@ checkstyle {
     }
 
     test{
-        outputs.dir snippetsDir
+            exclude 'org/kpi/springmvctest/**'
     }
     
-    asciidoctor { 
-        inputs.dir snippetsDir 
-        dependsOn test 
+    
+    task restdoc( type: Test ) {
+         include 'org/kpi/springmvctest/**'
+         outputs.dir snippetsDir 
     }
+    asciidoctor {
+        inputs.dir snippetsDir 
+        dependsOn restdoc 
+    }
+    
     
     jar {
         dependsOn asciidoctor 
@@ -143,4 +149,5 @@ checkstyle {
                 into 'static/docs'
         }
     }
+    check.dependsOn.remove(restdoc)
 }
