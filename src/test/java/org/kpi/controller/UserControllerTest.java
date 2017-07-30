@@ -67,7 +67,8 @@ public class UserControllerTest {
     @Test
     public void getByUsername() throws Exception {
         when(userService.getByUsername(ddlanh.getUsername())).thenReturn(ddlanh);
-        assertThat(controller.getByUsername(ddlanh.getUsername()), equalTo(ResponseEntity.ok(ddlanh)));
+        NewUser newUser = NewUser.fromModel(ddlanh);
+        assertThat(controller.getByUsername(ddlanh.getUsername()), equalTo(ResponseEntity.ok(newUser)));
     }
 
     @Test

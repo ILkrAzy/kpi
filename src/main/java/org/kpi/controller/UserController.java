@@ -29,12 +29,13 @@ public class UserController {
     }
 
     @GetMapping("/{username}")
-    public ResponseEntity<User> getByUsername(@PathVariable String username) {
+    public ResponseEntity<NewUser> getByUsername(@PathVariable String username) {
         User user = userService.getByUsername(username);
         if (user == null) {
-            return new ResponseEntity<User>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<NewUser>(HttpStatus.NOT_FOUND);
         }
-        return ResponseEntity.ok(user);
+        NewUser newUser = NewUser.fromModel(user);
+        return ResponseEntity.ok(newUser);
     }
 
     @PostMapping

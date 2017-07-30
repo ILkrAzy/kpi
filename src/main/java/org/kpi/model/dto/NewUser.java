@@ -53,6 +53,12 @@ public class NewUser {
     @Setter
     private String lastName;
 
+    @NotEmpty
+    @Getter
+    @Setter
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
+    private String role;
+    
     public User toModel(PasswordEncoder passwordEncoder) {
         return new User(username, passwordEncoder.encode(password), email, firstName, lastName, null);
     }
@@ -63,6 +69,9 @@ public class NewUser {
         newUser.setFirstName(user.getFirstName());
         newUser.setLastName(user.getLastName());
         newUser.setEmail(user.getEmail());
+        if(user.getRole()!=null){
+            newUser.setRole(user.getRoleName());
+        }
         return newUser;
     }
 
