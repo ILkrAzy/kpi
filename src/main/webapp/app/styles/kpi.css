@@ -369,4 +369,41 @@ body {
     background-color: #ffffff;
 }
 
+#resetpasswordNotify .modal-content,
+#userDeletionNotify .modal-content {
+    background-color: #096b9a;
+    color: #ffffff;
+}
+
+#addUserDialog .modal-content {
+    background-color: #ffffff;
+    color: #075d85;
+    border-color: #075d85;
+}
+
+#addUserDialog .modal-header {
+    background-color: #075d85;
+    color: #ffffff;
+
+}
+
+#addUserDialog .modal-header .close {
+    color: #ffffff;
+
+}
+
+.tooltip-inner {
+    background-color: #075d85;
+    color: #ffffff;
+}
+
+.tooltip-arrow {
+    border-bottom-color: #075d85 !important;
+}
+
+.modal-body{
+    max-height: calc(100vh - 150px);
+    overflow-y: auto;
+}
+
 

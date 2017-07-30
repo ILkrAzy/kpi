@@ -5,8 +5,10 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.Arrays;
 import java.util.Date;
 
 import static java.util.Collections.emptyList;
@@ -16,6 +18,7 @@ class TokenAuthenticationService {
     private static final String SECRET = "ThisIsASecret";
     private static final String TOKEN_PREFIX = "Bearer";
     private static final String HEADER_STRING = "Authorization";
+    private static final String COOKIE_STRING = "JWT";
 
     private TokenAuthenticationService() {
         // just private constructor
@@ -27,12 +30,14 @@ class TokenAuthenticationService {
                 .setExpiration(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
                 .signWith(SignatureAlgorithm.HS512, SECRET)
                 .compact();
-        res.addHeader(HEADER_STRING, TOKEN_PREFIX + " " + jwt);
+        Cookie cookie = new Cookie(COOKIE_STRING, jwt);
+        cookie.setHttpOnly(true);
+        res.addCookie(cookie);
     }
 
     static Authentication getAuthentication(HttpServletRequest request) {
-        String token = request.getHeader(HEADER_STRING);
-        if (token != null && token.startsWith(TOKEN_PREFIX)) {
+        String token = getToken(request);
+        if (token != null) {
             // parse the token.
             String user = Jwts.parser().setSigningKey(SECRET).parseClaimsJws(token.replace(TOKEN_PREFIX, "")).getBody().getSubject();
             if (user != null) {
@@ -40,5 +45,16 @@ class TokenAuthenticationService {
             }
         }
         return null;
+    }
+
+    private static String getToken(HttpServletRequest request) {
+        return getTokenByCookie(request);
+    }
+
+    private static String getTokenByCookie(HttpServletRequest request) {
+        if (request.getCookies() == null) {
+            return null;
+        }
+        return Arrays.stream(request.getCookies()).filter(cookie -> COOKIE_STRING.equals(cookie.getName())).map(Cookie::getValue).findFirst().orElse(null);
     }
 }

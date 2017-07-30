@@ -7,7 +7,7 @@
     <!--<link rel="stylesheet" href="css/bootstrap-theme.min.css"/>-->
     <!-- build:css styles/vendor.css -->
     <!-- bower:css -->
-    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css"/>
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -52,18 +52,53 @@
         </div>
     </div>
 </nav>
+<!-- End MENU -->
 
 <!-- Content -->
 <div class="container " style="min-height: 100%;">
+    <!-- User password reset notify -->
+    <div id="resetpasswordNotify" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-md">
 
-    <div class="panel " >
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="row text-center">
+                        <div class="col-sm-12"><p>Reset password for user "ddlanh" successfully.</p></div>
+                        <div class="col-sm-12">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="userDeletionNotify" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-md">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="row text-center">
+                        <div class="col-sm-12"><p>Deleted user "ddlanh" successfully.</p></div>
+                        <div class="col-sm-12">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel ">
+
         <div class="panel-heading">
             <div class="page-header">
                 <a href="../users.html" class="h3 color-indigo">Users</a>
             </div>
             <div class="row">
                 <div class="col-xs-12 col-sm-6 col-md-4">
-                    <button type="button" class="btn btn-md btn-indigo panel-heading-control"><span
+                    <button id="addUserBtn" type="button" class="btn btn-md btn-indigo panel-heading-control"><span
                         class="glyphicon glyphicon-plus"></span>&nbsp; Add User
                     </button>
                     <button type="button" class="btn btn-md btn-indigo panel-heading-control"><span
@@ -126,16 +161,16 @@
                     <td class="text-middle">KPI22</td>
                     <td class="text-middle">
 
-                        <button class="btn btn-sm  user-action-btn">
+                        <button class="btn btn-sm  user-action-btn user-action-btn-resetpassword">
                             <span class="glyphicon glyphicon-repeat"></span>
                         </button>
-                        <button class="btn btn-sm  user-action-btn">
+                        <button class="btn btn-sm  user-action-btn user-action-btn-lock">
                             <span class="glyphicon glyphicon-ban-circle"></span>
                         </button>
-                        <button class="btn btn-sm  user-action-btn ">
+                        <button class="btn btn-sm  user-action-btn user-action-btn-edit">
                             <span class="glyphicon glyphicon-edit"></span>
                         </button>
-                        <button class="btn btn-sm  user-action-btn user-action-btn-delete" data-toggle="clickover" >
+                        <button class="btn btn-sm  user-action-btn user-action-btn-delete">
                             <span class="glyphicon glyphicon-trash"></span>
                         </button>
                     </td>
@@ -179,7 +214,8 @@
                         <button class="btn btn-sm  user-action-btn">
                             <span class="glyphicon glyphicon-repeat"></span>
                         </button>
-                        <button class="btn btn-sm  user-action-btn">
+                        <button class="btn btn-sm  user-action-btn" data-toggle="modal"
+                                data-target="#resetpasswordNotify">
                             <span class="glyphicon glyphicon-ban-circle"></span>
                         </button>
                         <button class="btn btn-sm  user-action-btn">
@@ -270,32 +306,120 @@
 
         </div>
     </div>
-
-
 </div>
+
+<!-- Add new User dialog -->
+<div id="addUserDialog" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Add new User</h4>
+            </div>
+
+            <div class="modal-body ">
+
+                <div class="row">
+                    <div class="col-md-10 ">
+                        <form class="form-horizontal">
+                            <fieldset>
+
+                                <!-- Form Name -->
+                                <!--<legend>User profile form requirement</legend>-->
+
+                                <!-- Text input-->
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label" for="userDialog_usernameTxt">Username</label>
+                                    <div class="col-md-6">
+                                        <input id="userDialog_usernameTxt" name="Username" type="text"
+                                               placeholder="Username" class="form-control input-md color-indigo-bordered" required>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label" for="userDialog_firstNameTxt">First Name</label>
+                                    <div class="col-md-6">
+                                        <input id="userDialog_firstNameTxt" name="First Name" type="text"
+                                               placeholder="First Name" class="form-control input-md color-indigo-bordered" required>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label" for="userDialog_lastNameTxt">Last Name</label>
+                                    <div class="col-md-6">
+                                        <input id="userDialog_lastNameTxt" name="Last Name" type="text" placeholder="Last Name"
+                                               class="form-control input-md color-indigo-bordered" required>
+                                    </div>
+                                </div>
+
+                                <div class="form-group ">
+                                    <label class="col-md-4 control-label" for="userDialog_emailTxt">Email</label>
+                                    <div class="col-md-6">
+                                        <input id="userDialog_emailTxt" name="Date Of Birth" type="text" placeholder="Email"
+                                               class="form-control input-md color-indigo-bordered" required>
+                                    </div>
+                                </div>
+
+                                <div class="form-group ">
+                                    <label class="col-md-4 control-label" for="userDialog_roleBox">Role</label>
+                                    <div class="col-md-6">
+                                        <select id="userDialog_roleBox" class="select form-control color-indigo-bordered" required >
+                                            <option>Manager</option>
+                                            <option>Director</option>
+                                            <option>Admin</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group ">
+                                    <label class="col-md-4 control-label" for="userDialog_projectBox">Project</label>
+                                    <div class="col-md-6">
+                                        <select id="userDialog_projectBox" class="select form-control color-indigo-bordered" >
+                                            <option>KPI</option>
+                                            <option>VitalQIP CE</option>
+                                            <option>VitalQIP Dev</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label"></label>
+                                    <div class="col-md-4">
+                                        <button id="userDialog_createBtn" type="submit" class="btn btn-success"><span
+                                            class="glyphicon glyphicon-thumbs-up"></span>&nbsp;&nbsp;Create</button>
+                                        &nbsp;
+                                        <button id="userDialog_clearBtn" type="button" class="btn btn-danger"><span
+                                            class="glyphicon glyphicon-remove-sign"></span>&nbsp;&nbsp;Clear</button>
+                                    </div>
+                                </div>
+
+                            </fieldset>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 <footer class="footer">
     <div class="container">
         <p>© 2017<a href="#"> KPI Team</a>, All rights reserved 2017-2018.</p>
     </div>
 </footer>
-<!--<div class="panel-footer">-->
-<!--<div class="row">-->
-<!--<div class="col-lg-12">-->
-<!--<div class="col-md-8">-->
-<!--</div>-->
-<!--<div class="col-md-4">-->
-<!--<p class="muted pull-right"><strong> © 2017 All rights reserved </strong></p>-->
-<!--</div>-->
-<!--</div>-->
-<!--</div>-->
-<!--</div>-->
 
-<!-- End Menu -->
 <!-- build:js scripts/vendor.js -->
 <!-- bower:js -->
 <script src="/bower_components/modernizr/modernizr.js"></script>
 <script src="/bower_components/jquery/dist/jquery.js"></script>
 <script src="/bower_components/bootstrap/dist/js/bootstrap.js"></script>
+<script src="/bower_components/vue/dist/vue.js"></script>
+<script src="/bower_components/axios/dist/axios.js"></script>
+<script src="/bower_components/vue-router/dist/vue-router.js"></script>
 <!-- endbower -->
 <!-- endbuild -->
 
@@ -307,22 +431,87 @@
 <!-- endbuild -->
 
 <script>
-var elem = 'Are you sure to delete this user?'+
-    '<div class="row"> '+
-    '<div class="col-sm-12 text-center"> '+
-    '<button id="user-delete-yes" data-toggle="clickover" class="btn btn-sm btn-success" >Yes</button> &nbsp;'+
-    '<button id="user-delete-no" data-toggle="clickover" class="btn btn-sm btn-danger" >No</button>'+
-    '</div></div>';
 
-$('.user-action-btn-delete').popover({animation:true, content:elem, html:true, placement:'auto left'}).on('shown.bs.popover', function() {
-    var popup = $(this);
-    $(this).parent().find("div.popover #user-delete-yes").click(function() {
-        popup.click();
+
+    $('#addUserBtn').click(function () {
+        $('#addUserDialog').modal({
+            backdrop: 'static',
+            keyboard: false
+        });
+        $("#userDialog_roleBox").prop("selectedIndex", -1);
+        $("#userDialog_projectBox").prop("selectedIndex", -1);
     });
-    $(this).parent().find("div.popover #user-delete-no").click(function() {
-        popup.click();
+
+    $("#userDialog_createBtn").click( function () {
+
     });
-});
+
+    $("#userDialog_clearBtn").click( function () {
+        $("#userDialog_usernameTxt").val("");
+        $("#userDialog_firstNameTxt").val("");
+        $("#userDialog_lastNameTxt").val("");
+        $("#userDialog_emailTxt").val("");
+        $("#userDialog_roleBox").prop("selectedIndex", -1);
+        $("#userDialog_projectBox").prop("selectedIndex", -1);
+    });
+
+    var deleteUserConfirmBox = 'Are you sure to delete this user?' +
+        '<div class="row"> ' +
+        '<div class="col-sm-12 text-center"> ' +
+        '<button id="user-delete-yes" data-toggle="clickover" class="btn btn-sm btn-success" >Yes</button> &nbsp;' +
+        '<button id="user-delete-no" data-toggle="clickover" class="btn btn-sm btn-danger" >No</button>' +
+        '</div></div>';
+
+    $('.user-action-btn-delete').tooltip({placement: 'auto bottom', title: 'Delete User'});
+    $('.user-action-btn-lock').tooltip({placement: 'auto bottom', title: 'Lock User'});
+    $('.user-action-btn-edit').tooltip({placement: 'auto bottom', title: 'Edit User Profile'});
+    $('.user-action-btn-resetpassword').tooltip({placement: 'auto bottom', title: 'Reset User Password'});
+
+
+    $('.user-action-btn-delete').popover({
+        animation: true,
+        content: deleteUserConfirmBox,
+        html: true,
+        placement: 'auto left',
+        trigger: 'focus'
+    }).on('shown.bs.popover', function () {
+        var popup = $(this);
+        $(this).parent().find('div.popover #user-delete-yes').click(function () {
+            $('#userDeletionNotify').modal({
+                keyboard: true
+            });
+            popup.click();
+        });
+        $(this).parent().find('div.popover #user-delete-no').click(function () {
+            popup.click();
+        });
+    });
+
+
+    var resetUserPassword = 'Are you sure to reset password for this user?' +
+        '<div class="row"> ' +
+        '<div class="col-sm-12 text-center"> ' +
+        '<button id="user-reset-yes" data-toggle="clickover" class="btn btn-sm btn-success" >Yes</button> &nbsp;' +
+        '<button id="user-reset-no" data-toggle="clickover" class="btn btn-sm btn-danger" >No</button>' +
+        '</div></div>';
+
+    $('.user-action-btn-resetpassword').popover({
+        animation: true,
+        content: resetUserPassword,
+        html: true,
+        placement: 'auto left',
+        trigger: 'focus'
+    }).on('shown.bs.popover', function () {
+        var popup = $(this);
+        $(this).parent().find('div.popover #user-reset-yes').click(function () {
+            $('#resetpasswordNotify').modal('show');
+            popup.click();
+        });
+        $(this).parent().find('div.popover #user-reset-no').click(function () {
+            popup.click();
+        });
+    });
+
 </script>
 
 </body>
