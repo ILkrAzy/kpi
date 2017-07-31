@@ -5,7 +5,7 @@
 
 /* Sign in page */
 .signin-body {
-    margin-top: 30px;
+    padding-top: 30px;
     text-align: center;
 }
 
@@ -249,9 +249,6 @@ body {
     height: 60px;
     line-height: 60px; /* Vertically center the text there */
 }
-
-
-
 
 .panel {
     margin-top: 50px;

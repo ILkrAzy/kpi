@@ -8,6 +8,7 @@ import org.springframework.security.core.Authentication;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.Date;
 
@@ -30,9 +31,12 @@ class TokenAuthenticationService {
                 .setExpiration(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
                 .signWith(SignatureAlgorithm.HS512, SECRET)
                 .compact();
-        Cookie cookie = new Cookie(COOKIE_STRING, jwt);
-        cookie.setHttpOnly(true);
-        res.addCookie(cookie);
+        res.addHeader(HEADER_STRING, TOKEN_PREFIX + " " + jwt);
+        try {
+            res.getWriter().write(jwt);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     static Authentication getAuthentication(HttpServletRequest request) {
