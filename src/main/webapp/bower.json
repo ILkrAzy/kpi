@@ -6,7 +6,8 @@
     "bootstrap": "^3.3.4",
     "vue": "^2.4.2",
     "axios": "^0.16.2",
-    "vue-router": "^2.7.0"
+    "vue-router": "^2.7.0",
+    "font-awesome": "fontawesome#^4.7.0"
   },
   "overrides": {
     "bootstrap": {
@@ -14,6 +15,11 @@
         "less/bootstrap.less",
         "dist/css/bootstrap.css",
         "dist/js/bootstrap.js"
+      ]
+    },
+    "font-awesome": {
+      "main": [
+        "css/font-awesome.css"
       ]
     },
     "vue": {

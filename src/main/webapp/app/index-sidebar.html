@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home | KPI</title>
+    <link rel="shortcut icon" href="images/kpi-icon-cyan.png"/>
+    <!--<link rel="stylesheet" href="css/bootstrap-theme.min.css"/>-->
+    <!-- build:css styles/vendor.css -->
+    <!-- bower:css -->
+    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css"/>
+    <link rel="stylesheet" href="/bower_components/font-awesome/css/font-awesome.css"/>
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <!-- build:css styles/main.css -->
+    <link rel="stylesheet" href="styles/kpi-side.css">
+    <!--<link rel="stylesheet" href="styles/font-awesome.min.css" />-->
+    <!-- endbuild -->
+</head>
+<body>
+<!-- MENU -->
+<div id="navbar-wrapper">
+    <header>
+        <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand kpi-logo" href="#" style="color: #3BAFEA;">KPI System</a>
+                    <a id="sidebar-toggle" class="sidebar-toggle" style="height: 50px" href="#">
+                        <i class="fa fa-chevron-left"></i>
+                        <i class="fa fa-chevron-right"></i>
+                    </a>
+                    <!--<div style="height: 46px; border-right: 1px solid; border-color: #074c6e; width: 3px; float: left; margin-top: 2px; margin-bottom: 2px;"></div>-->
+                </div>
+                <div id="navbar-collapse" class="collapse navbar-collapse">
+                    <div id="navbar-search-box" class="navbar-form navbar-left" role="search">
+                        <div class="input-group col-sm-12 col-md-12">
+                            <input type="text" class="form-control" placeholder="Search">
+                            <span class="input-group-btn">
+                                    <button class="btn" type="button">
+                                        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                                    </button>
+                                </span>
+                        </div>
+                    </div>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown">
+                            <a id="user-profile" href="#" class="dropdown-toggle" data-toggle="dropdown"><img
+                                src="images/avatar.png"
+                                class="img-responsive img-thumbnail img-circle">
+                                Username
+                                <b class="caret"></b>
+                            </a>
+                            <ul id="user-profile-dropdown" style="margin-top: 1px;" class="dropdown-menu dropdown-block"
+                                role="menu">
+                                <li><a href="#">Profil edition</a></li>
+                                <li><a href="#">Admin</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#">Logout</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+</div>
+<div id="wrapper">
+    <div id="sidebar-wrapper">
+        <aside id="sidebar">
+            <ul id="sidemenu" class="sidebar-nav">
+                <li>
+                    <a class="active" href="#">
+                        <i class="fa fa-users sidebar-icon"></i>
+                        <span class="sidebar-title">Users</span>
+                    </a>
+                </li>
+                <li class="sidemenu-item-dropdown">
+                    <a class="accordion-toggle collapsed toggle-switch" href="#submenu-2">
+                        <i class="fa fa-folder sidebar-icon"></i>
+                        <span class="sidebar-title">Projects</span>
+                        <b class="caret"></b>
+                    </a>
+                    <ul id="submenu-2" class="panel-collapse collapse panel-switch submenu" role="menu">
+                        <li>
+                            <a href="#">
+                                <i class="fa fa-caret-right sidebar-icon"></i>
+                                <span class="sidebar-title">Projects</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fa fa-caret-right sidebar-icon"></i>
+                                <span class="sidebar-title">Project Types</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li >
+                    <a class="accordion-toggle collapsed toggle-switch"  href="#submenu-3">
+                        <i class="fa fa-list sidebar-icon"></i>
+                        <span class="sidebar-title">KPIs</span>
+                        <!--<b class="caret"></b>-->
+                    </a>
+                </li>
+            </ul>
+        </aside>
+    </div>
+    <main id="page-content-wrapper" role="main">
+
+
+        <!-- User password reset notify -->
+        <div id="resetpasswordNotify" class="modal fade" role="dialog">
+            <div class="modal-dialog modal-md">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="row text-center">
+                            <div class="col-sm-12"><p>Reset password for user "ddlanh" successfully.</p></div>
+                            <div class="col-sm-12">
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="userDeletionNotify" class="modal fade" role="dialog">
+            <div class="modal-dialog modal-md">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="row text-center">
+                            <div class="col-sm-12"><p>Deleted user "ddlanh" successfully.</p></div>
+                            <div class="col-sm-12">
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel ">
+
+            <div class="panel-heading">
+                <div class="page-header">
+                    <a href="../users.html" class="h3 color-indigo">Users</a>
+                </div>
+
+                <div class="col-xs-12 col-sm-6 col-md-4 static-pos">
+                    <button id="addUserBtn" type="button" class="btn btn-md btn-indigo panel-heading-control"><span
+                        class="glyphicon glyphicon-plus static-pos"></span>&nbsp; Add User
+                    </button>
+                    <button type="button" class="btn btn-md btn-indigo panel-heading-control"><span
+                        class="glyphicon glyphicon-refresh static-pos"></span>&nbsp; Refresh
+                    </button>
+                </div>
+
+                <div class="col-xs-12 col-sm-6 col-md-8 static-pos">
+                    <div
+                        class="input-group input-group-md col-xs-12 col-sm-12 col-md-6 pull-right panel-heading-control static-pos">
+                        <input type="text" class="form-control color-indigo-bordered static-pos" name="username"
+                               placeholder="Search for users...">
+                        <div class="input-group-btn">
+                            <button type="button" class="btn btn-md background-color-indigo"><span
+                                class=" glyphicon glyphicon-search"></span></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+
+            <div class="panel-body table-responsive">
+                <table class="table table-hover user-table">
+                    <thead>
+                    <tr>
+                        <th class="col-lg-1 col-md-1 col-sm-1"></th>
+                        <th class="col-lg-2 col-md-2 col-sm-2">
+                            <a href="#">
+                                Username
+                                <span class="glyphicon glyphicon-triangle-bottom static-pos"></span>
+                            </a>
+                        </th>
+
+                        <th class="col-lg-2 col-md-2 col-sm-2">
+                            <a href="#">
+                                Full Name
+                                <span class="glyphicon glyphicon-triangle-bottom"></span>
+                            </a>
+                        </th>
+                        <th class="col-lg-2 col-md-2 col-sm-2"><a href="#">
+                            Email
+                            <span class="glyphicon glyphicon-triangle-bottom"></span>
+                        </a></th>
+                        <th class="col-lg-1 col-md-1 col-sm-1"><a href="#">Role
+                            <span class="glyphicon glyphicon-triangle-bottom"></span>
+                        </a></th>
+                        <th class="col-lg-2 col-md-2 col-sm-2">Project</th>
+                        <th class="col-lg-2 col-md-2 co2-sm-2">Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="user-row text-middle">
+                        <td class="text-middle">
+                            <img style="width: 50px; height: 50px; border-radius: 4px" src="images/avatar.png"/>
+                        </td>
+                        <td class="text-middle"><a href="#"> ddlanh</a></td>
+                        <td class="text-middle">Lanh Dang</td>
+                        <td class="text-middle">ddlanh@tma.com.vn</td>
+                        <td class="text-middle">Manager</td>
+                        <td class="text-middle">KPI22</td>
+                        <td class="text-middle">
+
+                            <button class="btn btn-sm  user-action-btn user-action-btn-resetpassword">
+                                <span class="glyphicon glyphicon-repeat"></span>
+                            </button>
+                            <button class="btn btn-sm  user-action-btn user-action-btn-lock">
+                                <span class="glyphicon glyphicon-ban-circle"></span>
+                            </button>
+                            <button class="btn btn-sm  user-action-btn user-action-btn-edit">
+                                <span class="glyphicon glyphicon-edit"></span>
+                            </button>
+                            <button class="btn btn-sm  user-action-btn user-action-btn-delete">
+                                <span class="glyphicon glyphicon-trash"></span>
+                            </button>
+                        </td>
+                    </tr>
+                    <tr class="user-row text-middle">
+                        <td class="text-middle">
+                            <img style="width: 50px; height: 50px; border-radius: 4px" src="images/avatar.png"/>
+                        </td>
+                        <td class="text-middle"><a href="#"> ddlanh</a></td>
+                        <td class="text-middle">Lanh Dang</td>
+                        <td class="text-middle">ddlanh@tma.com.vn</td>
+                        <td class="text-middle">Manager</td>
+                        <td class="text-middle">KPI22</td>
+                        <td class="text-middle">
+
+                            <button class="btn btn-sm  user-action-btn">
+                                <span class="glyphicon glyphicon-repeat"></span>
+                            </button>
+                            <button class="btn btn-sm  user-action-btn">
+                                <span class="glyphicon glyphicon-ban-circle"></span>
+                            </button>
+                            <button class="btn btn-sm  user-action-btn">
+                                <span class="glyphicon glyphicon-edit"></span>
+                            </button>
+                            <button class="btn btn-sm  user-action-btn user-action-btn-delete">
+                                <span class="glyphicon glyphicon-trash"></span>
+                            </button>
+                        </td>
+                    </tr>
+                    <tr class="user-row text-middle">
+                        <td class="text-middle">
+                            <img style="width: 50px; height: 50px; border-radius: 4px" src="images/avatar.png"/>
+                        </td>
+                        <td class="text-middle"><a href="#"> ddlanh</a></td>
+                        <td class="text-middle">Lanh Dang</td>
+                        <td class="text-middle">ddlanh@tma.com.vn</td>
+                        <td class="text-middle">Manager</td>
+                        <td class="text-middle">KPI22</td>
+                        <td class="text-middle">
+
+                            <button class="btn btn-sm  user-action-btn">
+                                <span class="glyphicon glyphicon-repeat"></span>
+                            </button>
+                            <button class="btn btn-sm  user-action-btn" data-toggle="modal"
+                                    data-target="#resetpasswordNotify">
+                                <span class="glyphicon glyphicon-ban-circle"></span>
+                            </button>
+                            <button class="btn btn-sm  user-action-btn">
+                                <span class="glyphicon glyphicon-edit"></span>
+                            </button>
+                            <button class="btn btn-sm  user-action-btn">
+                                <span class="glyphicon glyphicon-trash"></span>
+                            </button>
+                        </td>
+                    </tr>
+                    <tr class="user-row text-middle">
+                        <td class="text-middle">
+                            <img style="width: 50px; height: 50px; border-radius: 4px" src="images/avatar.png"/>
+                        </td>
+                        <td class="text-middle"><a href="#"> ddlanh</a></td>
+                        <td class="text-middle">Lanh Dang</td>
+                        <td class="text-middle">ddlanh@tma.com.vn</td>
+                        <td class="text-middle">Manager</td>
+                        <td class="text-middle">KPI22</td>
+                        <td class="text-middle">
+
+                            <button class="btn btn-sm  user-action-btn">
+                                <span class="glyphicon glyphicon-repeat"></span>
+                            </button>
+                            <button class="btn btn-sm  user-action-btn">
+                                <span class="glyphicon glyphicon-ban-circle"></span>
+                            </button>
+                            <button class="btn btn-sm  user-action-btn">
+                                <span class="glyphicon glyphicon-edit"></span>
+                            </button>
+                            <button class="btn btn-sm  user-action-btn">
+                                <span class="glyphicon glyphicon-trash"></span>
+                            </button>
+                        </td>
+                    </tr>
+                    <tr class="user-row text-middle">
+                        <td class="text-middle">
+                            <img style="width: 50px; height: 50px; border-radius: 4px" src="images/avatar.png"/>
+                        </td>
+                        <td class="text-middle"><a href="#"> ddlanh</a></td>
+                        <td class="text-middle">Lanh Dang</td>
+                        <td class="text-middle">ddlanh@tma.com.vn</td>
+                        <td class="text-middle">Manager</td>
+                        <td class="text-middle">KPI22</td>
+                        <td class="text-middle">
+
+                            <button class="btn btn-sm  user-action-btn">
+                                <span class="glyphicon glyphicon-repeat"></span>
+                            </button>
+                            <button class="btn btn-sm  user-action-btn">
+                                <span class="glyphicon glyphicon-ban-circle"></span>
+                            </button>
+                            <button class="btn btn-sm  user-action-btn">
+                                <span class="glyphicon glyphicon-edit"></span>
+                            </button>
+                            <button class="btn btn-sm  user-action-btn">
+                                <span class="glyphicon glyphicon-trash"></span>
+                            </button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="panel-footer" class="panel-footer">
+                <div class="pagination pull-left">
+                    <div class="pull-left color-indigo" style="padding-top: 5px;">
+                        Entities per page: &nbsp; &nbsp;
+                    </div>
+                    <div class="pull-left"><select class="select form-control">
+                        <option>10</option>
+                        <option>25</option>
+                        <option>50</option>
+                        <option>100</option>
+                    </select></div>
+                </div>
+                <ul class="pagination pull-right color-indigo-bordered">
+                    <li class="disabled"><a href="#"><span class="glyphicon glyphicon-chevron-left"></span></a></li>
+                    <li class="active"><a href="#">1</a></li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li><a href="#">4</a></li>
+                    <li><a href="#">5</a></li>
+                    <li><a href="#"><span class="glyphicon glyphicon-chevron-right"></span></a></li>
+                </ul>
+                <div class="clearfix"></div>
+
+            </div>
+        </div>
+    </main>
+</div>
+
+<!-- Add new User dialog -->
+<div id="addUserDialog" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Add new User</h4>
+            </div>
+
+            <div class="modal-body ">
+
+                <div class="row">
+                    <div class="col-md-10 ">
+                        <form class="form-horizontal">
+                            <fieldset>
+
+                                <!-- Form Name -->
+                                <!--<legend>User profile form requirement</legend>-->
+
+                                <!-- Text input-->
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label" for="userDialog_usernameTxt">Username</label>
+                                    <div class="col-md-6">
+                                        <input id="userDialog_usernameTxt" name="Username" type="text"
+                                               placeholder="Username" class="form-control input-md color-indigo-bordered" required>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label" for="userDialog_firstNameTxt">First Name</label>
+                                    <div class="col-md-6">
+                                        <input id="userDialog_firstNameTxt" name="First Name" type="text"
+                                               placeholder="First Name" class="form-control input-md color-indigo-bordered" required>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label" for="userDialog_lastNameTxt">Last Name</label>
+                                    <div class="col-md-6">
+                                        <input id="userDialog_lastNameTxt" name="Last Name" type="text" placeholder="Last Name"
+                                               class="form-control input-md color-indigo-bordered" required>
+                                    </div>
+                                </div>
+
+                                <div class="form-group ">
+                                    <label class="col-md-4 control-label" for="userDialog_emailTxt">Email</label>
+                                    <div class="col-md-6">
+                                        <input id="userDialog_emailTxt" name="Date Of Birth" type="text" placeholder="Email"
+                                               class="form-control input-md color-indigo-bordered" required>
+                                    </div>
+                                </div>
+
+                                <div class="form-group ">
+                                    <label class="col-md-4 control-label" for="userDialog_roleBox">Role</label>
+                                    <div class="col-md-6">
+                                        <select id="userDialog_roleBox" class="select form-control color-indigo-bordered" required >
+                                            <option>Manager</option>
+                                            <option>Director</option>
+                                            <option>Admin</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group ">
+                                    <label class="col-md-4 control-label" for="userDialog_projectBox">Project</label>
+                                    <div class="col-md-6">
+                                        <select id="userDialog_projectBox" class="select form-control color-indigo-bordered" >
+                                            <option>KPI</option>
+                                            <option>VitalQIP CE</option>
+                                            <option>VitalQIP Dev</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label"></label>
+                                    <div class="col-md-4">
+                                        <button id="userDialog_createBtn" type="submit" class="btn btn-success"><span
+                                            class="glyphicon glyphicon-thumbs-up"></span>&nbsp;&nbsp;Create</button>
+                                        &nbsp;
+                                        <button id="userDialog_clearBtn" type="button" class="btn btn-danger"><span
+                                            class="glyphicon glyphicon-remove-sign"></span>&nbsp;&nbsp;Clear</button>
+                                    </div>
+                                </div>
+
+                            </fieldset>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- End Menu -->
+<!-- build:js scripts/vendor.js -->
+<!-- bower:js -->
+<script src="/bower_components/modernizr/modernizr.js"></script>
+<script src="/bower_components/jquery/dist/jquery.js"></script>
+<script src="/bower_components/bootstrap/dist/js/bootstrap.js"></script>
+<script src="/bower_components/vue/dist/vue.js"></script>
+<script src="/bower_components/axios/dist/axios.js"></script>
+<script src="/bower_components/vue-router/dist/vue-router.js"></script>
+<script>
+    let isMiniSizebar = $('#wrapper').hasClass('wrapper-minibar');
+    $('#sidebar-toggle').click(function () {
+        if($(window).width() > 767) {
+            $('#wrapper').toggleClass('wrapper-minibar');
+        }
+        isMiniSizebar = $('#wrapper').hasClass('wrapper-minibar');
+        if(isMiniSizebar) {
+            $('.sidemenu-item-dropdown').removeClass('sidemenu-item-dropdown-open');
+            $(this).addClass('sidebar-toggle-active');
+            $(this).removeClass('sidebar-toggle-disable');
+        } else {
+            $(this).removeClass('sidebar-toggle-active');
+            $(this).addClass('sidebar-toggle-disable');
+        }
+    });
+
+    $('#addUserBtn').click(function () {
+        $('#addUserDialog').modal({
+            backdrop: 'static',
+            keyboard: false
+        });
+        $("#userDialog_roleBox").prop("selectedIndex", -1);
+        $("#userDialog_projectBox").prop("selectedIndex", -1);
+    });
+
+    $("#userDialog_createBtn").click( function () {
+
+    });
+
+    $("#userDialog_clearBtn").click( function () {
+        $("#userDialog_usernameTxt").val("");
+        $("#userDialog_firstNameTxt").val("");
+        $("#userDialog_lastNameTxt").val("");
+        $("#userDialog_emailTxt").val("");
+        $("#userDialog_roleBox").prop("selectedIndex", -1);
+        $("#userDialog_projectBox").prop("selectedIndex", -1);
+    });
+
+    var deleteUserConfirmBox = 'Are you sure to delete this user?' +
+        '<div class="row"> ' +
+        '<div class="col-sm-12 text-center"> ' +
+        '<button id="user-delete-yes" data-toggle="clickover" class="btn btn-sm btn-success" >Yes</button> &nbsp;' +
+        '<button id="user-delete-no" data-toggle="clickover" class="btn btn-sm btn-danger" >No</button>' +
+        '</div></div>';
+
+    $('.user-action-btn-delete').tooltip({placement: 'auto bottom', title: 'Delete User'});
+    $('.user-action-btn-lock').tooltip({placement: 'auto bottom', title: 'Lock User'});
+    $('.user-action-btn-edit').tooltip({placement: 'auto bottom', title: 'Edit User Profile'});
+    $('.user-action-btn-resetpassword').tooltip({placement: 'auto bottom', title: 'Reset User Password'});
+
+
+    $('.user-action-btn-delete').popover({
+        animation: true,
+        content: deleteUserConfirmBox,
+        html: true,
+        placement: 'auto left',
+        trigger: 'focus'
+    }).on('shown.bs.popover', function () {
+        var popup = $(this);
+        $(this).parent().find('div.popover #user-delete-yes').click(function () {
+            $('#userDeletionNotify').modal({
+                keyboard: true
+            });
+            popup.click();
+        });
+        $(this).parent().find('div.popover #user-delete-no').click(function () {
+            popup.click();
+        });
+    });
+
+    var resetUserPassword = 'Are you sure to reset password for this user?' +
+        '<div class="row"> ' +
+        '<div class="col-sm-12 text-center"> ' +
+        '<button id="user-reset-yes" data-toggle="clickover" class="btn btn-sm btn-success" >Yes</button> &nbsp;' +
+        '<button id="user-reset-no" data-toggle="clickover" class="btn btn-sm btn-danger" >No</button>' +
+        '</div></div>';
+
+    $('.user-action-btn-resetpassword').popover({
+        animation: true,
+        content: resetUserPassword,
+        html: true,
+        placement: 'auto left',
+        trigger: 'focus'
+    }).on('shown.bs.popover', function () {
+        var popup = $(this);
+        $(this).parent().find('div.popover #user-reset-yes').click(function () {
+            $('#resetpasswordNotify').modal('show');
+            popup.click();
+        });
+        $(this).parent().find('div.popover #user-reset-no').click(function () {
+            popup.click();
+        });
+    });
+
+    $('.sidemenu-item-dropdown').click( function () {
+        if($(window).width() > 992 && !$('#wrapper').hasClass('wrapper-minibar')) {
+            $(this).toggleClass('sidemenu-item-dropdown-open')
+        }
+    });
+
+
+</script>
+<!-- endbower -->
+<!-- endbuild -->
+
+<!-- build:js scripts/plugins.js -->
+<!-- endbuild -->
+
+<!-- build:js scripts/main.js -->
+<script src="scripts/main.js"></script>
+<!-- endbuild -->
+</body>
+<!--<footer class="footer">-->
+<!--<div class="container">-->
+<!--<p>© 2017<a href="#"> KPI Team</a>, All rights reserved 2017-2018.</p>-->
+<!--</div>-->
+<!--</footer>-->
+</html>

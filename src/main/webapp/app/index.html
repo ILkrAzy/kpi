@@ -8,6 +8,7 @@
     <!-- build:css styles/vendor.css -->
     <!-- bower:css -->
     <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="/bower_components/font-awesome/css/font-awesome.css" />
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -34,8 +35,14 @@
             <ul class="nav navbar-nav">
                 <li><a href="../users.html" id="navbar-users">Users</a></li>
                 <li><a href="#" id="navbar-kpis">KPIs</a></li>
-                <li><a href="#" id="navbar-projects">Projects</a></li>
+                <li><a href="#" id="navbar-projects" class="dropdown-toggle" data-toggle="dropdown">Projects<span class="caret"></span></a>
+                    <ul class="dropdown-menu kpi-menu-dropdown">
+                        <li><a href="#" >Project Types</a></li>
+                        <li><a href="#">Projects</a></li>
+                    </ul>
+                </li>
             </ul>
+
             <ul class="nav navbar-nav navbar-right">
                 <li>
                     <a href="#" class="dropdown-toggle user-info" data-toggle="dropdown" id="navbar-userprof-fullname">
