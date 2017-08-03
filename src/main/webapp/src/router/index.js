@@ -17,11 +17,13 @@ export default new Router({
       path: '/',
       name: 'Home',
       component: Home,
-    },
-    {
-      path: '/users',
-      name: 'Users',
-      component: Users,
+      children: [
+        {
+          path: '/users',
+          name: 'Users',
+          component: Users,
+        },
+      ],
     },
   ],
 });

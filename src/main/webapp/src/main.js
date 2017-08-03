@@ -4,6 +4,7 @@ import Vue from 'vue';
 import App from './App';
 import router from './router';
 import auth from './auth';
+import store from './store';
 
 require('bootstrap/dist/css/bootstrap.min.css');
 require('../static/styles/kpi.css');
@@ -20,6 +21,7 @@ router.beforeEach((to, from, next) => {
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
+  store,
   router,
   template: '<App/>',
   components: { App },

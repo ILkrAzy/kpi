@@ -1,17 +1,16 @@
 <template>
   <div class="container " style="min-height: 100%;">
-    <navbar></navbar>
     <div class="panel ">
       <div class="panel-heading">
         <div class="page-header">
-          <a href="../users.html" class="h3 color-indigo">Users</a>
+          <span class="h3 color-indigo">Users</span>
         </div>
         <div class="row">
           <div class="col-xs-12 col-sm-6 col-md-4">
             <button type="button" class="btn btn-md btn-indigo panel-heading-control"><span
               class="glyphicon glyphicon-plus"></span>&nbsp; Add User
             </button>
-            <button type="button" class="btn btn-md btn-indigo panel-heading-control"><span
+            <button v-on:click="getUsers" type="button" class="btn btn-md btn-indigo panel-heading-control"><span
               class="glyphicon glyphicon-refresh"></span>&nbsp; Refresh
             </button>
           </div>
@@ -60,135 +59,10 @@
           </tr>
           </thead>
           <tbody>
-          <tr class="user-row text-middle">
-            <td class="text-middle">
-              <img style="width: 50px; height: 50px; border-radius: 4px" src="images/avatar.png"/>
-            </td>
-            <td class="text-middle"><a href="#"> ddlanh</a></td>
-            <td class="text-middle">Lanh Dang</td>
-            <td class="text-middle">ddlanh@tma.com.vn</td>
-            <td class="text-middle">Manager</td>
-            <td class="text-middle">KPI22</td>
-            <td class="text-middle">
-
-              <button class="btn btn-sm  user-action-btn">
-                <span class="glyphicon glyphicon-repeat"></span>
-              </button>
-              <button class="btn btn-sm  user-action-btn">
-                <span class="glyphicon glyphicon-ban-circle"></span>
-              </button>
-              <button class="btn btn-sm  user-action-btn ">
-                <span class="glyphicon glyphicon-edit"></span>
-              </button>
-              <button class="btn btn-sm  user-action-btn user-action-btn-delete" data-toggle="clickover">
-                <span class="glyphicon glyphicon-trash"></span>
-              </button>
-            </td>
-          </tr>
-          <tr class="user-row text-middle">
-            <td class="text-middle">
-              <img style="width: 50px; height: 50px; border-radius: 4px" src="images/avatar.png"/>
-            </td>
-            <td class="text-middle"><a href="#"> ddlanh</a></td>
-            <td class="text-middle">Lanh Dang</td>
-            <td class="text-middle">ddlanh@tma.com.vn</td>
-            <td class="text-middle">Manager</td>
-            <td class="text-middle">KPI22</td>
-            <td class="text-middle">
-
-              <button class="btn btn-sm  user-action-btn">
-                <span class="glyphicon glyphicon-repeat"></span>
-              </button>
-              <button class="btn btn-sm  user-action-btn">
-                <span class="glyphicon glyphicon-ban-circle"></span>
-              </button>
-              <button class="btn btn-sm  user-action-btn">
-                <span class="glyphicon glyphicon-edit"></span>
-              </button>
-              <button class="btn btn-sm  user-action-btn user-action-btn-delete">
-                <span class="glyphicon glyphicon-trash"></span>
-              </button>
-            </td>
-          </tr>
-          <tr class="user-row text-middle">
-            <td class="text-middle">
-              <img style="width: 50px; height: 50px; border-radius: 4px" src="images/avatar.png"/>
-            </td>
-            <td class="text-middle"><a href="#"> ddlanh</a></td>
-            <td class="text-middle">Lanh Dang</td>
-            <td class="text-middle">ddlanh@tma.com.vn</td>
-            <td class="text-middle">Manager</td>
-            <td class="text-middle">KPI22</td>
-            <td class="text-middle">
-
-              <button class="btn btn-sm  user-action-btn">
-                <span class="glyphicon glyphicon-repeat"></span>
-              </button>
-              <button class="btn btn-sm  user-action-btn">
-                <span class="glyphicon glyphicon-ban-circle"></span>
-              </button>
-              <button class="btn btn-sm  user-action-btn">
-                <span class="glyphicon glyphicon-edit"></span>
-              </button>
-              <button class="btn btn-sm  user-action-btn">
-                <span class="glyphicon glyphicon-trash"></span>
-              </button>
-            </td>
-          </tr>
-          <tr class="user-row text-middle">
-            <td class="text-middle">
-              <img style="width: 50px; height: 50px; border-radius: 4px" src="images/avatar.png"/>
-            </td>
-            <td class="text-middle"><a href="#"> ddlanh</a></td>
-            <td class="text-middle">Lanh Dang</td>
-            <td class="text-middle">ddlanh@tma.com.vn</td>
-            <td class="text-middle">Manager</td>
-            <td class="text-middle">KPI22</td>
-            <td class="text-middle">
-
-              <button class="btn btn-sm  user-action-btn">
-                <span class="glyphicon glyphicon-repeat"></span>
-              </button>
-              <button class="btn btn-sm  user-action-btn">
-                <span class="glyphicon glyphicon-ban-circle"></span>
-              </button>
-              <button class="btn btn-sm  user-action-btn">
-                <span class="glyphicon glyphicon-edit"></span>
-              </button>
-              <button class="btn btn-sm  user-action-btn">
-                <span class="glyphicon glyphicon-trash"></span>
-              </button>
-            </td>
-          </tr>
-          <tr class="user-row text-middle">
-            <td class="text-middle">
-              <img style="width: 50px; height: 50px; border-radius: 4px" src="images/avatar.png"/>
-            </td>
-            <td class="text-middle"><a href="#"> ddlanh</a></td>
-            <td class="text-middle">Lanh Dang</td>
-            <td class="text-middle">ddlanh@tma.com.vn</td>
-            <td class="text-middle">Manager</td>
-            <td class="text-middle">KPI22</td>
-            <td class="text-middle">
-
-              <button class="btn btn-sm  user-action-btn">
-                <span class="glyphicon glyphicon-repeat"></span>
-              </button>
-              <button class="btn btn-sm  user-action-btn">
-                <span class="glyphicon glyphicon-ban-circle"></span>
-              </button>
-              <button class="btn btn-sm  user-action-btn">
-                <span class="glyphicon glyphicon-edit"></span>
-              </button>
-              <button class="btn btn-sm  user-action-btn">
-                <span class="glyphicon glyphicon-trash"></span>
-              </button>
-            </td>
-          </tr>
+          <user-row v-for="user in users" :key="user.username" v-bind:user="user"></user-row>
           </tbody>
         </table>
       </div>
-
       <div class="panel-footer">
         <div class="row">
           <div class="pagination pull-left">
@@ -219,17 +93,22 @@
 
 <script>
 
-  import navbar from './Navbar';
+  import { mapGetters, mapActions } from 'vuex';
+  import userRow from './UserRow';
 
   export default {
     name: 'users',
-    data() {
-      return {
-        msg: 'Welcome to Your Vue.js App',
-      };
-    },
     components: {
-      navbar,
+      userRow,
+    },
+    computed: mapGetters({
+      users: 'allUsers',
+    }),
+    methods: mapActions([
+      'getUsers',
+    ]),
+    created() {
+      this.$store.dispatch('getUsers');
     },
   };
 </script>
