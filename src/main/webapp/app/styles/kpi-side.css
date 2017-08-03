@@ -698,7 +698,7 @@ body {
 .user-table a,
 .user-table th a,
 .user-table td a {
-    background-color: #ffffff;
+    /*background-color: #ffffff;*/
     border-color: #d7d7d7 !important;
     color: #096b9a;
 }

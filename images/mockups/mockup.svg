@@ -179,12 +179,12 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.45525132"
-     inkscape:cx="654.86442"
-     inkscape:cy="250.49958"
+     inkscape:zoom="5.6568543"
+     inkscape:cx="716.02631"
+     inkscape:cy="362.52244"
      inkscape:document-units="px"
-     inkscape:current-layer="g9127"
-     showgrid="false"
+     inkscape:current-layer="layer5"
+     showgrid="true"
      showborder="true"
      borderlayer="false"
      inkscape:showpageshadow="true"
@@ -473,7 +473,7 @@
      inkscape:groupmode="layer"
      id="layer5"
      inkscape:label="kpi-logo"
-     style="display:none">
+     style="display:inline">
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;line-height:0%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#42e7e8;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
@@ -481,7 +481,8 @@
        y="235.88145"
        id="text10076-0"
        inkscape:export-xdpi="192.03999"
-       inkscape:export-ydpi="192.03999"><tspan
+       inkscape:export-ydpi="192.03999"
+       sodipodi:linespacing="0%"><tspan
          sodipodi:role="line"
          id="tspan10078-0"
          x="634.2663"
@@ -494,7 +495,8 @@
        y="345.88147"
        x="635.71399"
        style="font-style:normal;font-weight:normal;line-height:0%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#0c5f7e;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       xml:space="preserve"><tspan
+       xml:space="preserve"
+       sodipodi:linespacing="0%"><tspan
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:62.50100708px;line-height:1.25;font-family:'Bauhaus 93';-inkscape-font-specification:'Bauhaus 93, ';fill:#0c5f7e;fill-opacity:1"
          y="345.88147"
          x="635.71399"
@@ -527,12 +529,72 @@
        y="471.27209"
        id="text8599"
        inkscape:export-xdpi="32.529999"
-       inkscape:export-ydpi="32.529999"><tspan
+       inkscape:export-ydpi="32.529999"
+       sodipodi:linespacing="0%"><tspan
          sodipodi:role="line"
          id="tspan8597"
          x="633.83899"
          y="471.27209"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:62.50100708px;line-height:1.25;font-family:'Bauhaus 93';-inkscape-font-specification:'Bauhaus 93, ';fill:#42e7e8;fill-opacity:1">KPI</tspan></text>
+    <rect
+       inkscape:export-ydpi="32.279999"
+       inkscape:export-xdpi="32.279999"
+       inkscape:export-filename="D:\QIPProjects\lkpi\images\logo-kpi.png"
+       y="527.35461"
+       x="639.99493"
+       height="90.003227"
+       width="90.001053"
+       id="rect8934"
+       style="fill:#106ba0;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:2.08219481;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       ry="8.6730967" />
+    <g
+       transform="scale(1.0087923,0.99128434)"
+       style="font-style:normal;font-weight:normal;font-size:11.91567516px;line-height:0%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       id="text8937"
+       inkscape:export-filename="D:\QIPProjects\lkpi\images\logo-kpi.png"
+       inkscape:export-xdpi="32.279999"
+       inkscape:export-ydpi="32.279999">
+      <path
+         d="m 670.42535,557.21863 -9.71149,18.75794 9.65753,22.6065 -12.30122,0 -8.33569,-22.84893 9.44172,-18.51551 11.24915,0 z m -21.01459,0 0,41.36444 -10.9524,0 0,-41.36444 10.9524,0 z"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:62.06181335px;line-height:1.25;font-family:'Bauhaus 93';-inkscape-font-specification:'Bauhaus 93, ';fill:#ffffff;fill-opacity:1"
+         id="path8942"
+         inkscape:connector-curvature="0" />
+      <path
+         d="m 688.97544,584.27976 0,-10.8487 q 3.41077,0 3.41077,-2.84854 0,-2.60611 -2.6066,-2.60611 -2.63433,0 -2.63433,3.57583 l 0,27.03083 -11.2583,0 0,-25.75808 q 0,-4.00008 0.72097,-6.54558 0.74871,-2.57581 2.52342,-4.78797 1.99654,-2.45459 4.99136,-3.87887 2.99482,-1.42427 6.18375,-1.42427 5.7678,0 9.6777,4.24251 3.93764,4.24251 3.93764,10.51536 0,6.09103 -3.52169,9.87898 -3.21665,3.48491 -9.70543,3.48491 l -1.71926,-0.0303 z"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:62.06181335px;line-height:1.25;font-family:'Bauhaus 93';-inkscape-font-specification:'Bauhaus 93, ';fill:#ffffff;fill-opacity:1"
+         id="path8944"
+         inkscape:connector-curvature="0" />
+      <path
+         d="m 719.71993,557.21863 0,41.36444 -10.80261,0 0,-41.36444 10.80261,0 z"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:62.06181335px;line-height:1.25;font-family:'Bauhaus 93';-inkscape-font-specification:'Bauhaus 93, ';fill:#ffffff;fill-opacity:1"
+         id="path8947"
+         inkscape:connector-curvature="0" />
+    </g>
+    <rect
+       ry="8.6730967"
+       style="fill:#106ba0;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:2.08219481;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect8949"
+       width="90.001053"
+       height="90.003227"
+       x="639.99493"
+       y="627.35461"
+       inkscape:export-filename="D:\QIPProjects\lkpi\images\logo-kpi-1.png"
+       inkscape:export-xdpi="32.279999"
+       inkscape:export-ydpi="32.279999" />
+    <g
+       inkscape:export-ydpi="32.279999"
+       inkscape:export-xdpi="32.279999"
+       inkscape:export-filename="D:\QIPProjects\lkpi\images\logo-kpi-1.png"
+       id="g8951"
+       style="font-style:normal;font-weight:normal;font-size:11.91567516px;line-height:0%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       transform="matrix(1.207371,0,0,0.99128434,-134.91701,100)">
+      <path
+         inkscape:connector-curvature="0"
+         id="path8954"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:62.06181335px;line-height:1.25;font-family:'Bauhaus 93';-inkscape-font-specification:'Bauhaus 93, ';fill:#ffffff;fill-opacity:1"
+         d="m 703.78047,547.24241 -15.0096,27.29473 14.92621,32.89477 -19.01217,0 -12.88324,-33.24754 14.59267,-26.94196 z m -32.84516,0 0,60.1895 -16.56147,0 0,-60.1895 z"
+         sodipodi:nodetypes="cccccccccccc" />
+    </g>
   </g>
   <g
      inkscape:groupmode="layer"
@@ -925,7 +987,7 @@
     </g>
   </g>
   <g
-     style="display:inline"
+     style="display:none"
      inkscape:label="home"
      id="g8268"
      inkscape:groupmode="layer"
@@ -943,7 +1005,8 @@
        y="209.59573"
        x="210.08774"
        style="font-style:normal;font-weight:normal;line-height:0%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#74feff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       xml:space="preserve"><tspan
+       xml:space="preserve"
+       sodipodi:linespacing="0%"><tspan
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:63.00418854px;line-height:1.25;font-family:'Bauhaus 93';-inkscape-font-specification:'Bauhaus 93, ';fill:#74feff;fill-opacity:1"
          y="209.59573"
          x="210.08774"
@@ -954,7 +1017,8 @@
        y="201.68381"
        x="377.67767"
        style="font-style:normal;font-weight:normal;line-height:0%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       xml:space="preserve"><tspan
+       xml:space="preserve"
+       sodipodi:linespacing="0%"><tspan
          style="font-size:25px;line-height:1.25;font-family:sans-serif"
          y="201.68381"
          x="377.67767"
@@ -965,7 +1029,8 @@
        style="font-style:normal;font-weight:normal;line-height:0%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        x="508.42767"
        y="201.68381"
-       id="text8280"><tspan
+       id="text8280"
+       sodipodi:linespacing="0%"><tspan
          sodipodi:role="line"
          id="tspan8282"
          x="508.42767"
@@ -976,7 +1041,8 @@
        y="201.68381"
        x="629.92767"
        style="font-style:normal;font-weight:normal;line-height:0%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       xml:space="preserve"><tspan
+       xml:space="preserve"
+       sodipodi:linespacing="0%"><tspan
          style="font-size:25px;line-height:1.25;font-family:sans-serif"
          y="201.68381"
          x="629.92767"
@@ -1016,7 +1082,8 @@
        style="font-style:normal;font-weight:normal;line-height:0%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        x="1111.8027"
        y="201.68381"
-       id="text8553"><tspan
+       id="text8553"
+       sodipodi:linespacing="0%"><tspan
          sodipodi:role="line"
          id="tspan8551"
          x="1111.8027"
@@ -1028,7 +1095,8 @@
        x="839.1369"
        y="310.91025"
        id="text8557"
-       transform="scale(1.5539741,0.64351135)"><tspan
+       transform="scale(1.5539741,0.64351135)"
+       sodipodi:linespacing="0%"><tspan
          sodipodi:role="line"
          id="tspan8555"
          x="839.1369"
@@ -1047,7 +1115,8 @@
        style="font-style:normal;font-weight:normal;line-height:0%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        x="233.30267"
        y="992.93384"
-       id="text8609"><tspan
+       id="text8609"
+       sodipodi:linespacing="0%"><tspan
          sodipodi:role="line"
          x="233.30267"
          y="992.93384"
@@ -1055,7 +1124,7 @@
          id="tspan8613">Designed by KPI team</tspan><tspan
          sodipodi:role="line"
          x="233.30267"
-         y="1004.8235"
+         y="1024.1838"
          style="font-size:25px;line-height:1.25;font-family:sans-serif"
          id="tspan8611" /></text>
   </g>
@@ -3039,7 +3108,7 @@
     </g>
   </g>
   <g
-     style="display:inline"
+     style="display:none"
      inkscape:label="home-user-management-op3"
      id="g8709"
      inkscape:groupmode="layer"
@@ -4592,7 +4661,7 @@
     </g>
   </g>
   <g
-     style="display:inline"
+     style="display:none"
      inkscape:label="home-user-management-resetpassword-complete"
      id="g9127"
      inkscape:groupmode="layer">
