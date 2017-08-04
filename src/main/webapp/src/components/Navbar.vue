@@ -1,41 +1,59 @@
 <template>
-  <nav class="navbar navbar-inverse navbar-fixed-top megamenu" role="navigation">
-    <div class="container">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-          <span class="sr-only"> Toggle navigation </span> <span class="icon-bar"> </span>
-          <span class="icon-bar"> </span> <span class="icon-bar"> </span></button>
-        <router-link to="/" class="navbar-brand navbar-logo" > <img src="/static/images/kpi-home-logo.png"
-                                                                    alt="KPI Home"></router-link>
-      </div>
-      <div class="navbar-collapse collapse">
-        <ul class="nav navbar-nav">
-          <li>
-            <router-link to="/users">Users</router-link>
-          </li>
-          <li><router-link to="/bar">KPIs</router-link></li>
-          <li><router-link to="/bar">Projects</router-link></li>
-        </ul>
-        <ul class="nav navbar-nav navbar-right">
-          <li>
-            <a href="#" class="dropdown-toggle user-info" data-toggle="dropdown"
-               id="navbar-userprof-fullname">
-              Lanh Dang
-              <img class="avatar" src="/assets/images/avatar.png"/>
-              <span class="caret"></span>
+  <div id="navbar-wrapper">
+    <header>
+      <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand kpi-logo" href="#" style="color: #3BAFEA;">KPI System</a>
+            <a id="sidebar-toggle" class="sidebar-toggle" style="height: 50px" href="#">
+              <i class="fa fa-chevron-left"></i>
+              <i class="fa fa-chevron-right"></i>
             </a>
-            <ul class="dropdown-menu kpi-menu-dropdown">
-              <li><a href="#" id="navbar-userprof-profile">Profile</a></li>
-              <li><a href="../signin.html" id="navbar-userprof-signout">Sign out</a></li>
+            <!--<div style="height: 46px; border-right: 1px solid; border-color: #074c6e; width: 3px; float: left; margin-top: 2px; margin-bottom: 2px;"></div>-->
+          </div>
+          <div id="navbar-collapse" class="collapse navbar-collapse">
+            <div id="navbar-search-box" class="navbar-form navbar-left" role="search">
+              <div class="input-group col-sm-12 col-md-12">
+                <input type="text" class="form-control" placeholder="Search">
+                <span class="input-group-btn">
+                                    <button class="btn" type="button">
+                                        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                                    </button>
+                                </span>
+              </div>
+            </div>
+            <ul class="nav navbar-nav navbar-right">
+              <li class="dropdown">
+                <a id="user-profile" href="#" class="dropdown-toggle" data-toggle="dropdown"><img
+                  src="images/avatar.png"
+                  class="img-responsive img-thumbnail img-circle">
+                  Username
+                  <b class="caret"></b>
+                </a>
+                <ul id="user-profile-dropdown" style="margin-top: 1px;" class="dropdown-menu dropdown-block"
+                    role="menu">
+                  <li><a href="#">Profil edition</a></li>
+                  <li><a href="#">Admin</a></li>
+                  <li class="divider"></li>
+                  <li><a href="#">Logout</a></li>
+                </ul>
+              </li>
             </ul>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
+          </div>
+        </div>
+      </nav>
+    </header>
+  </div>
 </template>
 
 <script>
+
   export default {
     name: 'navbar',
   };

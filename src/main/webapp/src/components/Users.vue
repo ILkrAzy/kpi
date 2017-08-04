@@ -1,114 +1,138 @@
 <template>
-  <div class="container " style="min-height: 100%;">
-    <div class="panel ">
-      <div class="panel-heading">
-        <div class="page-header">
-          <span class="h3 color-indigo">Users</span>
-        </div>
-        <div class="row">
-          <div class="col-xs-12 col-sm-6 col-md-4">
-            <button type="button" class="btn btn-md btn-indigo panel-heading-control"><span
-              class="glyphicon glyphicon-plus"></span>&nbsp; Add User
-            </button>
-            <button v-on:click="getUsers" type="button" class="btn btn-md btn-indigo panel-heading-control"><span
-              class="glyphicon glyphicon-refresh"></span>&nbsp; Refresh
-            </button>
-          </div>
+  <div class="panel ">
+    <div class="panel-heading">
+      <div class="page-header">
+        <a href="../users.html" class="h3 color-indigo">Users</a>
+      </div>
 
-          <div class="col-xs-12 col-sm-6 col-md-8">
-            <div
-              class="input-group input-group-md col-xs-12 col-sm-12 col-md-6 pull-right panel-heading-control">
-              <input type="text" class="form-control color-indigo-bordered" name="username"
-                     placeholder="Search for users...">
-              <div class="input-group-btn">
-                <button type="button" class="btn btn-md background-color-indigo"><span
-                  class=" glyphicon glyphicon-search"></span></button>
-              </div>
-            </div>
+      <div class="col-xs-12 col-sm-6 col-md-4 static-pos">
+        <button id="addUserBtn" type="button" class="btn btn-md btn-indigo panel-heading-control"><span
+          class="fa fa-user-plus static-pos"></span>&nbsp; Add User
+        </button>
+        <button v-on:click="getUsers" type="button" class="btn btn-md btn-indigo panel-heading-control"><span
+          class="fa fa-refresh static-pos"></span>&nbsp; Refresh
+        </button>
+      </div>
+
+      <div class="col-xs-12 col-sm-6 col-md-8 static-pos">
+        <div
+          class="input-group input-group-md col-xs-12 col-sm-12 col-md-6 pull-right panel-heading-control static-pos">
+          <input v-model="searchUsers" type="text" class="form-control color-indigo-bordered static-pos" name="username"
+                 placeholder="Search for users...">
+          <div class="input-group-btn">
+            <button type="button" class="btn btn-md background-color-indigo"><span
+              class="fa fa-search"></span></button>
           </div>
         </div>
       </div>
-
-      <div class="panel-body ">
-        <table class="table table-hover user-table">
-          <thead>
-          <tr>
-            <th class="col-lg-1 col-md-1 col-sm-1"></th>
-            <th class="col-lg-2 col-md-2 col-sm-2">
-              <a href="#">
-                Username
-                <span class="glyphicon glyphicon-triangle-bottom"></span>
-              </a>
-            </th>
-
-            <th class="col-lg-2 col-md-2 col-sm-2">
-              <a href="#">
-                Full Name
-                <span class="glyphicon glyphicon-triangle-bottom"></span>
-              </a>
-            </th>
-            <th class="col-lg-2 col-md-2 col-sm-2"><a href="#">
-              Email
-              <span class="glyphicon glyphicon-triangle-bottom"></span>
-            </a></th>
-            <th class="col-lg-1 col-md-1 col-sm-1"><a href="#">Role
-              <span class="glyphicon glyphicon-triangle-bottom"></span>
-            </a></th>
-            <th class="col-lg-2 col-md-2 col-sm-2">Project</th>
-            <th class="col-lg-2 col-md-2 co2-sm-2">Action</th>
-          </tr>
-          </thead>
-          <tbody>
-          <user-row v-for="user in users" :key="user.username" v-bind:user="user"></user-row>
-          </tbody>
-        </table>
-      </div>
-      <div class="panel-footer">
-        <div class="row">
-          <div class="pagination pull-left">
-            <div class="pull-left color-indigo" style="padding-top: 5px;">
-              Entities per page: &nbsp; &nbsp;
-            </div>
-            <div class="pull-left"><select class="select form-control">
-              <option>10</option>
-              <option>25</option>
-              <option>50</option>
-              <option>100</option>
-            </select></div>
-          </div>
-          <ul class="pagination pull-right color-indigo-bordered">
-            <li class="disabled"><a href="#"><span class="glyphicon glyphicon-chevron-left"></span></a></li>
-            <li class="active"><a href="#">1</a></li>
-            <li><a href="#">2</a></li>
-            <li><a href="#">3</a></li>
-            <li><a href="#">4</a></li>
-            <li><a href="#">5</a></li>
-            <li><a href="#"><span class="glyphicon glyphicon-chevron-right"></span></a></li>
-          </ul>
-        </div>
-      </div>
+      <div class="clearfix"></div>
     </div>
+
+    <div class="panel-body table-responsive">
+      <table class="table table-hover user-table">
+        <thead>
+        <tr>
+          <th class="col-lg-1 col-md-1 col-sm-1"></th>
+          <th class="col-lg-2 col-md-2 col-sm-2">
+            <a href="#">
+              Username
+              <span class="fa fa-sort-down static-pos"></span>
+            </a>
+          </th>
+
+          <th class="col-lg-2 col-md-2 col-sm-2">
+            <a href="#">
+              Full Name
+              <span class="fa fa-sort"></span>
+            </a>
+          </th>
+          <th class="col-lg-2 col-md-2 col-sm-2"><a href="#">
+            Email
+            <span class="fa fa-sort"></span>
+          </a></th>
+          <th class="col-lg-1 col-md-1 col-sm-1"><a href="#">Role
+            <span class="fa fa-sort"></span>
+          </a></th>
+          <th class="col-lg-2 col-md-2 col-sm-2">Project</th>
+          <th class="col-lg-2 col-md-2 co2-sm-2">Action</th>
+        </tr>
+        </thead>
+        <paginate name="users" :list="filteredUsers" :per="userPerPage" tag="tbody">
+          <user-row v-for="user in paginated('users')" :key="user.username" v-bind:user="user"></user-row>
+        </paginate>
+      </table>
+    </div>
+
+    <div id="panel-footer" class="panel-footer">
+      <div class="pagination pull-left">
+        <div class="pull-left color-indigo" style="padding-top: 5px;">
+          Entities per page: &nbsp; &nbsp;
+        </div>
+        <div class="pull-left">
+          <select v-model="userPerPage" class="select form-control">
+            <option v-for="option in userPerPageOptions">{{ option }}</option>
+          </select>
+        </div>
+      </div>
+      <paginate-links for="users" :classes="{'ul': ['pagination', 'pull-right' ,'color-indigo-bordered']}"
+                      :show-step-links="true" :hide-single-page="true"></paginate-links>
+      <div class="clearfix"></div>
+    </div>
+    <add-user-modal></add-user-modal>
   </div>
 </template>
-
 <script>
 
+  import $ from 'jquery';
   import { mapGetters, mapActions } from 'vuex';
   import userRow from './UserRow';
+  import addUserModal from './AddUserModal';
+
+  function searchCondition(query, ...properties) {
+    for (let i = 0; i < properties.length; i += 1) {
+      if (properties[i].includes(query)) return true;
+    }
+    return false;
+  }
 
   export default {
     name: 'users',
+    data() {
+      return {
+        paginate: ['users'],
+        userPerPage: 10,
+        userPerPageOptions: [5, 10, 25, 50, 100],
+        searchUsers: '',
+      };
+    },
     components: {
       userRow,
+      addUserModal,
     },
-    computed: mapGetters({
-      users: 'allUsers',
-    }),
+    computed: {
+      filteredUsers() {
+        return this.users.filter(user => searchCondition(this.searchUsers, user.username,
+          user.firstName, user.lastName, user.email));
+      },
+      ...mapGetters({
+        users: 'allUsers',
+      }),
+    },
     methods: mapActions([
       'getUsers',
     ]),
     created() {
       this.$store.dispatch('getUsers');
+    },
+    mounted() {
+      $('#addUserBtn').click(() => {
+        $('#addUserDialog').modal({
+          backdrop: 'static',
+          keyboard: false,
+        });
+        $('#userDialog_roleBox').prop('selectedIndex', -1);
+        $('#userDialog_projectBox').prop('selectedIndex', -1);
+      });
     },
   };
 </script>

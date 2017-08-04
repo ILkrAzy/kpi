@@ -34,6 +34,11 @@
       <br/>
       <a href="#" class="btn-link">Lost your password?</a>
     </form>
+    <footer class="footer">
+      <div class="container">
+        <p>© 2017<a href="#"> KPI Team</a>, All rights reserved 2017-2018.</p>
+      </div>
+    </footer>
   </div>
 </template>
 

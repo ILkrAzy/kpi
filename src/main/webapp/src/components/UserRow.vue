@@ -11,16 +11,16 @@
     <td class="text-middle">
 
       <button class="btn btn-sm  user-action-btn">
-        <span class="glyphicon glyphicon-repeat"></span>
+        <span class="fa fa-key"></span>
       </button>
       <button class="btn btn-sm  user-action-btn">
-        <span class="glyphicon glyphicon-ban-circle"></span>
+        <span class="fa fa-ban"></span>
       </button>
       <button class="btn btn-sm  user-action-btn">
-        <span class="glyphicon glyphicon-edit"></span>
+        <span class="fa fa-edit"></span>
       </button>
       <button v-on:click="deleteUser(user)" class="btn btn-sm  user-action-btn">
-        <span class="glyphicon glyphicon-trash"></span>
+        <span class="fa fa-trash"></span>
       </button>
     </td>
   </tr>

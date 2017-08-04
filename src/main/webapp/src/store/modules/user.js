@@ -18,6 +18,9 @@ const actions = {
   deleteUser({ commit }, user) {
     commit(types.DELETE_USER, user);
   },
+  addUser({ commit }, user) {
+    api.addUser(user).then(() => commit(types.ADD_USER, user));
+  },
 };
 
 // mutations
@@ -29,6 +32,9 @@ const mutations = {
   [types.DELETE_USER](states, user) {
     const index = states.users.indexOf(user);
     states.users.splice(index, 1);
+  },
+  [types.ADD_USER](states, user) {
+    states.users.push(user);
   },
 };
 
