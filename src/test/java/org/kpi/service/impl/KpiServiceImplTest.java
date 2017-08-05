@@ -4,7 +4,7 @@
 package org.kpi.service.impl;
 
 import static org.hamcrest.core.IsEqual.equalTo;
-import static org.junit.Assert.assertThat;
+import static org.junit.Assert.*;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -16,6 +16,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.kpi.model.Kpi;
+import org.kpi.model.dto.KpiDTO;
 import org.kpi.repository.KpiRepository;
 import org.kpi.service.KpiService;
 import org.mockito.Mock;
@@ -82,5 +83,51 @@ public class KpiServiceImplTest {
         String uuid = "171a1372-9718-495b-ad39-73b55d3993a4";
         when(kpiRepository.findByUuid(uuid)).thenReturn(null);
         kpiService.getKpiByUUID(uuid);
+    }
+    
+    @Test
+    public void update(){
+        List<KpiDTO> kpiDTOs = new ArrayList<>();
+        List<Kpi> kpi2s = new ArrayList<>();
+        Kpi defect1 = new Kpi();
+        Kpi people1 = new Kpi();
+        defect1.setId(1);
+        defect1.setMeasure("Defect1");
+        defect1.setName("Number of Defect 1");
+        defect1.setUuid("171a1372-9718-495b-ad39-73b55d3993a2");
+        
+        people1.setId(2);
+        people1.setName("Number of Defect 2");
+        people1.setMeasure("Defect2");
+        people1.setUuid("171a1372-9718-495b-ad39-73b55d3993a3");
+        kpi2s.add(defect1);
+        kpi2s.add(people1);
+        
+        when(kpiService.getAll()).thenReturn(kpis);
+        for(Kpi kpi : kpis){
+            KpiDTO kpiDTO = new KpiDTO();
+            kpiDTOs.add(kpiDTO.fromModel(kpi));
+        }
+        
+        setDataforModel(kpiDTOs);
+        
+        
+        int i = 0;
+        for(KpiDTO kpiDTO : kpiDTOs){
+            when(kpiRepository.findByUuid(kpiDTO.getUuid())).thenReturn(kpi2s.get(i));
+            i++;
+        }
+        
+        kpiService.update(kpiDTOs);
+        verify(kpiRepository, Mockito.times(1)).save(kpi2s);
+    }
+    
+    private void setDataforModel(List<KpiDTO> kpiDTOs){
+        int i = 1;
+        for(KpiDTO kpiDTO : kpiDTOs){
+            kpiDTO.setMeasure("Defect" + i);
+            kpiDTO.setName("Number of Defect " + i);
+            i++;
+        }
     }
 }
