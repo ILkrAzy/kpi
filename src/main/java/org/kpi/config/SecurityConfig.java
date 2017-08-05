@@ -54,10 +54,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable().authorizeRequests()
+                .antMatchers(HttpMethod.GET,"/").permitAll()
                 .anyRequest().authenticated()
-                .and().formLogin().loginPage("/signin").permitAll()
-                .and().httpBasic().realmName(REALM).authenticationEntryPoint(getBasicAuthenticationEntryPoint())
-                .and().addFilterBefore(new JWTLoginFilter("/login", authenticationManager()), UsernamePasswordAuthenticationFilter.class)
+                .and().formLogin().disable()
+                .httpBasic().realmName(REALM).authenticationEntryPoint(getBasicAuthenticationEntryPoint())
+                .and().addFilterBefore(new JWTLoginFilter("/api/login", authenticationManager()), UsernamePasswordAuthenticationFilter.class)
                 .addFilterBefore(new JWTAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
     }
 
@@ -72,9 +73,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(WebSecurity web) throws Exception {
         web.ignoring().antMatchers(HttpMethod.OPTIONS, "/**")
-        .antMatchers(HttpMethod.GET, "/styles/**")
-        .antMatchers(HttpMethod.GET, "/scripts/**")
-        .antMatchers(HttpMethod.GET, "/fonts/**")
-        .antMatchers(HttpMethod.GET, "/images/**");
+//        .antMatchers(HttpMethod.GET, "/styles/**")
+//        .antMatchers(HttpMethod.GET, "/scripts/**")
+//        .antMatchers(HttpMethod.GET, "/fonts/**")
+        .antMatchers(HttpMethod.GET, "/images/**")
+        .antMatchers(HttpMethod.GET, "/assets/**")
+        .antMatchers(HttpMethod.GET, "/static/**");
     }
 }

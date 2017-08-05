@@ -5,10 +5,9 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.Arrays;
+import java.io.IOException;
 import java.util.Date;
 
 import static java.util.Collections.emptyList;
@@ -30,14 +29,17 @@ class TokenAuthenticationService {
                 .setExpiration(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
                 .signWith(SignatureAlgorithm.HS512, SECRET)
                 .compact();
-        Cookie cookie = new Cookie(COOKIE_STRING, jwt);
-        cookie.setHttpOnly(true);
-        res.addCookie(cookie);
+        res.addHeader(HEADER_STRING, TOKEN_PREFIX + " " + jwt);
+        try {
+            res.getWriter().write(jwt);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     static Authentication getAuthentication(HttpServletRequest request) {
-        String token = getToken(request);
-        if (token != null) {
+        String token = request.getHeader(HEADER_STRING);
+        if (token != null && token.startsWith(TOKEN_PREFIX)) {
             // parse the token.
             String user = Jwts.parser().setSigningKey(SECRET).parseClaimsJws(token.replace(TOKEN_PREFIX, "")).getBody().getSubject();
             if (user != null) {
@@ -45,16 +47,5 @@ class TokenAuthenticationService {
             }
         }
         return null;
-    }
-
-    private static String getToken(HttpServletRequest request) {
-        return getTokenByCookie(request);
-    }
-
-    private static String getTokenByCookie(HttpServletRequest request) {
-        if (request.getCookies() == null) {
-            return null;
-        }
-        return Arrays.stream(request.getCookies()).filter(cookie -> COOKIE_STRING.equals(cookie.getName())).map(Cookie::getValue).findFirst().orElse(null);
     }
 }
