@@ -1,11 +1,9 @@
 package org.kpi.service.impl;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 import org.kpi.model.Kpi;
-import org.kpi.model.dto.KpiDTO;
 import org.kpi.repository.KpiRepository;
 import org.kpi.service.KpiService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,23 +40,5 @@ public class KpiServiceImpl implements KpiService {
     public List<Kpi> getAll() {
         List<Kpi> kpis = (List<Kpi>) kpiRepository.findAll();
         return kpis == null ? Collections.emptyList() : kpis;
-    }
-
-    @Override
-    public void update(List<KpiDTO> kpiDTOs) {
-        List<Kpi> kpis = new ArrayList<>();
-        for(KpiDTO kpiDTO : kpiDTOs){
-           Kpi kpi =  kpiRepository.findByUuid(kpiDTO.getUuid());
-           if(kpi != null){
-               updateModel(kpi, kpiDTO);
-               kpis.add(kpi);
-           }
-        }
-        kpiRepository.save(kpis);
-    }
-    
-    private void updateModel(Kpi kpi, KpiDTO kpiDTO){
-        kpi.setMeasure(kpiDTO.getMeasure());
-        kpi.setName(kpiDTO.getName());
     }
 }

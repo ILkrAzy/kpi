@@ -45,9 +45,4 @@ public class KpiController {
         }
         return kpiDTOs;
     }
-    
-    @PutMapping
-    public void update(@RequestBody List<KpiDTO> kpiDTOs){
-        kpiService.update(kpiDTOs);
-    }
 }

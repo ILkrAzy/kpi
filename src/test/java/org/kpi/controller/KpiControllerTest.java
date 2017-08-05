@@ -72,36 +72,4 @@ public class KpiControllerTest {
         defectDTO.fromModel(defect);
         assertThat(kpiController.getKpiByUUID("171a1372-9718-495b-ad39-73b55d3993a2"), equalTo(ResponseEntity.ok(defectDTO)));
     }
-    
-    @Test
-    public void update(){
-        List<KpiDTO> kpiDTOs = new ArrayList<>();
-        List<Kpi> kpis = new ArrayList<>();
-        Kpi defect = new Kpi();
-        defect.setUuid("171a1372-9718-495b-ad39-73b55d3993a2");
-        defect.setMeasure("Defect");
-        defect.setName("Number of Defects");
-        Kpi people = new Kpi();
-        people.setUuid("171a1372-9718-495b-ad39-73b55d3993a1");
-        people.setMeasure("People");
-        people.setName("Number of People");
-        kpis.add(people);
-        kpis.add(defect);
-        
-        when(kpiService.getAll()).thenReturn(kpis);
-        for(Kpi kpi : kpis){
-            KpiDTO kpiDTO = new KpiDTO();
-            kpiDTOs.add(kpiDTO.fromModel(kpi));
-        }
-        
-        int i = 1;
-        for(KpiDTO kpiDTO : kpiDTOs){
-            kpiDTO.setMeasure("Defect" + i);
-            kpiDTO.setName("Number of Defect" + i);
-            i++;
-        }
-        
-        kpiController.update(kpiDTOs);
-        verify(kpiService, Mockito.times(1)).update(kpiDTOs);
-    }
 }
