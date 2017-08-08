@@ -1,8 +1,8 @@
 @import "less/mixins/buttons.less";
 
-@venice-blue: #085B83;
-@venice-blue-dark: #074b6c;
-@venice-blue-light: #096b9a;
+@venice-blue: #09638f;
+@venice-blue-dark: #08547a;
+@venice-blue-light: #0a7db5;
 
 @main-color: @venice-blue;
 @main-color-dark: @venice-blue-dark;
@@ -46,7 +46,7 @@ body {
             &:hover,
             &:active,
             &:focus {
-                background-color: @main-color-dark;
+                background-color: @main-color-dark !important;
                 color: #3ee5e5;
             }
 
@@ -61,7 +61,7 @@ body {
         }
 
         #user-profile-dropdown {
-            background-color: #074e71;
+            background-color: @main-color-dark;
             color: #ffffff !important;
             border: none;
 
@@ -72,7 +72,7 @@ body {
                 border: inherit;
 
                 &:hover {
-                    background-color: #09608b;
+                    background-color: @main-color;
                     color: #3ee5e5 !important;
                     border: none;
                 }
@@ -95,9 +95,9 @@ body {
 
 #navbar-search-box .input-group input,
 #navbar-search-box .input-group .btn {
-    background-color: #074c6e;
+    background-color: @main-color-dark;
     color: #ffffff;
-    border-color: #0c87c3;
+    border-color: @main-color-light;
     /*box-shadow: none;*/
 }
 
@@ -116,7 +116,7 @@ body {
         height: 100%;
         margin-left: -225px;
         /*overflow-x: auto;*/
-        background: #085b83;
+        background: @main-color;
         -webkit-transition: all .5s ease;
         -moz-transition: all .5s ease;
         -o-transition: all .5s ease;
@@ -125,9 +125,10 @@ body {
             a {
                 white-space: nowrap;
                 overflow: hidden;
-                .active {
-                    background-color: #0b7bb0 !important;
+                &.active {
+                    background-color: @main-color !important;
                     border-left: solid 2px #4cd738;
+                    background-color: @main-color-light !important;
                 }
             }
             .active > i {
@@ -158,9 +159,9 @@ body {
                 a {
                     display: block;
                     text-decoration: none;
-                    color: #428bca;
+                    color: @main-color-light;
                     &:hover {
-                        background-color: #0b7bb0 !important;
+                        background-color: @main-color-light !important;
                     }
                     .sidebar-icon {
                         width: 45px;
@@ -230,7 +231,6 @@ body {
         display: block !important;
     }
 }
-
 
 .sidebar-toggle-disable {
     .fa-chevron-left {
@@ -318,7 +318,7 @@ body {
     border-radius: 4px;
 
     &:hover {
-        background-color: #074b6c;
+        background-color: @main-color-dark;
         color: #ffffff;
     }
     &:active,
@@ -331,9 +331,6 @@ body {
         line-height: 20px;
     }
 }
-
-
-
 
 @media (max-width: 992px) {
     #wrapper #sidebar-wrapper {
@@ -374,14 +371,14 @@ body {
 }
 
 .sidebar-nav li a {
-    background: #085b83 !important;
+    background: @main-color !important;
     color: #fff !important;
 }
 
 /*<!--      SIDE BAR     -->*/
 
 .kpi-background-color {
-    background-color: #085b83;
+    background-color: @main-color;
 }
 
 /* Sign in page */
@@ -396,22 +393,22 @@ body {
 
 .signin-input-group {
     text-align: center;
-    background-color: #0c5f7e;
+    background-color: @main-color-dark;
     border: 1px;
-    border-color: #1f7697;
+    border-color: @main-color;
     border-radius: 8px
 }
 
 .signin-input-group > input {
     /* box-shadow: rgba(0, 0, 0, 0.03) 0px 0.41701px 0.41701px 0px inset, rgba(102, 175, 233, 0.25) 0px 0px 3.33608px 0px; */
-    background-color: #0c5f7e;
+    background-color: @main-color-dark;
     border: none;
     color: #ffffff;
     box-shadow: none
 }
 
 .signin-input-group > .input-group-addon {
-    background-color: #0c5f7e;
+    background-color: @main-color;
     border: none;
     color: #ffffff;
 }
@@ -424,7 +421,7 @@ body {
 }
 
 .signin-btn {
-    border-color: #1f7697;
+    border-color: @main-color;
     background-color: #11a309;
 }
 
@@ -471,7 +468,7 @@ body {
 
 .navbar {
     margin: auto;
-    background-color: #085b83;
+    background-color: @main-color;
     color: #c2f3f5;
     border: none;
     font-size: 18px;
@@ -480,39 +477,6 @@ body {
 #page-content-wrapper {
     margin: 8px;
     border-radius: 6px;
-}
-
-.navbar-logo {
-    padding-top: 2px;
-    padding-bottom: 2px;
-}
-
-.navbar-inverse .navbar-nav > li > a {
-    color: #ffffff;
-}
-
-.navbar-inverse .navbar-nav > li > a:hover {
-    color: #45ffff;
-}
-
-.navbar-inverse .navbar-nav .active > a,
-.navbar-inverse .navbar-nav .active > a:hover,
-.navbar-inverse .navbar-nav .active > a:focus {
-    background-color: #085c84;
-    color: #45ffff;
-}
-
-.navbar-inverse .navbar-nav .open > a,
-.navbar-inverse .navbar-nav .open > a:hover,
-.navbar-inverse .navbar-nav .open > a:active,
-.navbar-inverse .navbar-nav .open > a:focus {
-    color: #45ffff;
-    background-color: #085c84;
-}
-
-.navbar-inverse .navbar-toggle,
-.navbar-inverse .navbar-collapse {
-    border: none;
 }
 
 .footer p {
@@ -537,7 +501,7 @@ body {
 }
 
 .footer {
-    background-color: #085b83;
+    background-color: @main-color;
     text-align: center;
     color: #ffffff;
     position: absolute;
@@ -573,12 +537,12 @@ body {
     color: #096b9a;
 }
 
-.color-indigo-bordered,
+.kpi-maincolor-bordered,
 .user-action-btn,
 .user-action-btn:focus {
     background-color: #ffffff;
-    border-color: #096b9a !important;
-    color: #096b9a;
+    border-color: @main-color !important;
+    color: @main-color;
 }
 
 .user-table,
@@ -587,8 +551,8 @@ body {
 .user-table a,
 .user-table th a,
 .user-table td a {
-    border-color: #d7d7d7 !important;
-    color: #096b9a;
+    border-color: @background-color !important;
+    color: @main-color;
 }
 
 .user-table .popover {
@@ -650,18 +614,18 @@ body {
 
 #resetpasswordNotify .modal-content,
 #userDeletionNotify .modal-content {
-    background-color: #096b9a;
+    background-color: @main-color;
     color: #ffffff;
 }
 
 #addUserDialog .modal-content {
     background-color: #ffffff;
-    color: #075d85;
-    border-color: #075d85;
+    color: @main-color;
+    border-color: @main-color-dark;
 }
 
 #addUserDialog .modal-header {
-    background-color: #075d85;
+    background-color: @main-color;
     color: #ffffff;
 }
 
@@ -670,12 +634,12 @@ body {
 }
 
 .tooltip-inner {
-    background-color: #075d85;
+    background-color: @main-color;
     color: #ffffff;
 }
 
 .tooltip-arrow {
-    border-bottom-color: #075d85 !important;
+    border-bottom-color: @main-color !important;
 }
 
 .modal-body {
