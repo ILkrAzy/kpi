@@ -45,4 +45,9 @@ public class ProjectTypeController {
         }
         return ResponseEntity.ok(type);
     }
+    
+    @PutMapping("/assign/{name}")
+    public void assign(@PathVariable String name, @RequestBody List<String> kpiUUIDs){
+        projectTypeService.assign(name, kpiUUIDs);
+    }
 }

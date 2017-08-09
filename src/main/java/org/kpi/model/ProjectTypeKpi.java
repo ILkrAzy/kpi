@@ -1,13 +1,22 @@
 package org.kpi.model;
 
 import javax.persistence.*;
+
 import java.io.Serializable;
+import java.util.UUID;
+
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
 @Table(name = "project_type_kpi")
 public class ProjectTypeKpi implements Serializable {
     private static final long serialVersionUID = 1L;
 
+    @Getter
+    @Setter 
+    String uuid = UUID.randomUUID().toString();
+    
     @Id
     @ManyToOne
     @JoinColumn(name = "project_type_id", foreignKey = @ForeignKey(name = "PROJECTTYPEKPI_PROJECT_TYPE_ID_FK"))

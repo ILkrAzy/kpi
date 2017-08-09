@@ -1,13 +1,16 @@
 package org.kpi.model.dto;
 
+import java.util.List;
+
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
-import org.kpi.model.Kpi;
-
 import lombok.Getter;
 import lombok.Setter;
+
+import org.kpi.model.Kpi;
+import org.kpi.model.ProjectTypeKpi;
 
 /**
  * Created by vquochuy on 7/21/2017.
@@ -32,11 +35,21 @@ public class KpiDTO {
     @Setter
     private String uuid;
     
+    @Getter
+    @Setter
+    private List<String> projectTypeUuid;
+    
     public KpiDTO fromModel(Kpi kpi){
         //KpiDTO kpiDTO = new KpiDTO();
         this.setName(kpi.getName());
         this.setMeasure(kpi.getMeasure());
         this.setUuid(kpi.getUuid());
+        if(kpi.getProjectTypes() != null){
+            for(ProjectTypeKpi projectTypeKpi : kpi.getProjectTypes()){
+                String uuid = projectTypeKpi.getUuid();
+                projectTypeUuid.add(uuid);
+            }
+        }
         return this;
     }
    
