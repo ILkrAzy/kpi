@@ -51,13 +51,15 @@ node {
     nodeModulesDir = file("src/main/webapp/")
 }
 
+task installFeDependencies(type: NpmTask) {
+    args = ['install']
+}
+
 task buildFrontEnd(type: NpmTask) {
-    // install the express package only
     args = ['run', 'build']
 }
-//// processResources is a Java task. Run the gulpfile.js before this task using the 'default' task in the gulpfile.js
-//processResources.dependsOn gulp_default
 
+buildFrontEnd.dependsOn installFeDependencies
 
 checkstyle {
 
