@@ -115,7 +115,7 @@
 
 
         <!-- User password reset notify -->
-        <div id="resetpasswordNotify" class="modal fade" role="dialog">
+        <div id="resetpasswordNotify" class="modal fade kpi-notify" role="dialog">
             <div class="modal-dialog modal-md">
 
                 <!-- Modal content-->
@@ -132,7 +132,7 @@
             </div>
         </div>
 
-        <div id="userDeletionNotify" class="modal fade" role="dialog">
+        <div id="userDeletionNotify" class="modal fade kpi-notify" role="dialog">
             <div class="modal-dialog modal-md">
                 <!-- Modal content-->
                 <div class="modal-content">
@@ -219,17 +219,17 @@
                         <td class="text-middle">KPI22</td>
                         <td class="text-middle">
 
-                            <button class="btn btn-sm  user-action-btn user-action-btn-resetpassword">
+                            <button class="btn btn-md user-action-btn user-action-btn-resetpassword">
                                 <span class="fa fa-key">
                                 </span>
                             </button>
-                            <button class="btn btn-sm  user-action-btn user-action-btn-lock">
+                            <button class="btn btn-md user-action-btn user-action-btn-lock">
                                 <span class="fa fa-ban"></span>
                             </button>
-                            <button class="btn btn-sm  user-action-btn user-action-btn-edit">
+                            <button class="btn btn-md user-action-btn user-action-btn-edit">
                                 <span class="fa fa-edit"></span>
                             </button>
-                            <button class="btn btn-sm  user-action-btn user-action-btn-delete">
+                            <button class="btn btn-md user-action-btn user-action-btn-delete">
                                 <span class="fa fa-trash"></span>
                             </button>
                         </td>
@@ -268,7 +268,7 @@
 </div>
 
 <!-- Add new User dialog -->
-<div id="addUserDialog" class="modal fade" role="dialog">
+<div id="addUserDialog" class="modal fade kpi-dialog" role="dialog">
     <div class="modal-dialog modal-lg">
 
         <!-- Modal content-->
@@ -281,7 +281,7 @@
             <div class="modal-body ">
 
                 <div class="row">
-                    <div class="col-md-10 ">
+                    <div class="col-md-12">
                         <form class="form-horizontal">
                             <fieldset>
 
@@ -344,8 +344,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="col-md-4 control-label"></label>
-                                    <div class="col-md-4">
+                                    <div class="text-center">
                                         <button id="userDialog_createBtn" type="submit" class="btn btn-success"><span
                                             class="fa fa-save"></span>&nbsp;&nbsp;Save</button>
                                         &nbsp;
