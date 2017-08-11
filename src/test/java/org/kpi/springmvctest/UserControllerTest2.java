@@ -28,7 +28,7 @@ public class UserControllerTest2 {
     @Rule
     public JUnitRestDocumentation restDocumentation = new JUnitRestDocumentation("build/generated-snippets");
 
-    private MockMvc               mockMvc;
+    private MockMvc mockMvc;
 
     @Autowired
     private WebApplicationContext context;
@@ -46,7 +46,8 @@ public class UserControllerTest2 {
                 fieldWithPath("username").description("The user's username"),
                 fieldWithPath("email").description("The user's email address"),
                 fieldWithPath("firstName").description("The user's last name"),
-                fieldWithPath("lastName").description("The user's last name") };
+                fieldWithPath("lastName").description("The user's last name"),
+                fieldWithPath("role").description("The user's roles") };
 
         this.mockMvc
                 .perform(get("/api/users").accept(MediaType.APPLICATION_JSON))

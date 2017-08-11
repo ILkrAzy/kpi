@@ -36,22 +36,18 @@
           <th class="col-lg-2 col-md-2 col-sm-2">
             <a href="#">
               Username
-              <span class="fa fa-sort-down static-pos"></span>
             </a>
           </th>
 
           <th class="col-lg-2 col-md-2 col-sm-2">
             <a href="#">
               Full Name
-              <span class="fa fa-sort"></span>
             </a>
           </th>
           <th class="col-lg-2 col-md-2 col-sm-2"><a href="#">
             Email
-            <span class="fa fa-sort"></span>
           </a></th>
           <th class="col-lg-1 col-md-1 col-sm-1"><a href="#">Role
-            <span class="fa fa-sort"></span>
           </a></th>
           <th class="col-lg-2 col-md-2 col-sm-2">Project</th>
           <th class="col-lg-2 col-md-2 co2-sm-2">Action</th>

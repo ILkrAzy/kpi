@@ -34,7 +34,7 @@ export default {
     localStorage.removeItem('id_token');
     localStorage.removeItem('current_user');
     this.authenticated = false;
-    this.$route.router.go('/');
+    window.location.reload(true);
   },
 
   isAuth() {

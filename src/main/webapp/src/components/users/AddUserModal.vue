@@ -96,8 +96,8 @@
 <script>
 
   import $ from 'jquery';
-  import userApi from '../api/user';
-  import projectApi from '../api/project';
+  import userApi from '../../api/user';
+  import projectApi from '../../api/project';
 
   function newUser() {
     return {

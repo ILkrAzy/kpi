@@ -31,7 +31,7 @@
             <ul class="nav navbar-nav navbar-right">
               <li class="dropdown">
                 <a id="user-profile" href="#" class="dropdown-toggle" data-toggle="dropdown"><img
-                  src="images/avatar.png"
+                  src="static/images/default_avatar.jpg"
                   class="img-responsive img-thumbnail img-circle">
                   {{ user }}
                   <b class="caret"></b>
