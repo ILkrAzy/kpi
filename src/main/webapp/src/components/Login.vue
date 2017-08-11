@@ -9,8 +9,7 @@
     <h3 class="text-white">Sign in</h3>
     <br/>
     <form v-on:submit="submit" class="signin-form">
-      <div v-if="error" class="alert alert-danger alert-dismissable fade in signin-fail">
-        <!--<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>-->
+      <div id="error-panel" v-if="error" class="alert alert-danger alert-dismissable fade in signin-fail">
         Invalid username/password!
       </div>
       <br/>
@@ -64,7 +63,7 @@
           username: this.credentials.username,
           password: this.credentials.password,
         };
-        this.error = auth.login(this, credentials, '/');
+        auth.login(this, credentials, '/');
       },
     },
   };

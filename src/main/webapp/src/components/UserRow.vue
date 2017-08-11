@@ -19,9 +19,7 @@
       <button class="btn btn-sm  user-action-btn">
         <span class="fa fa-edit"></span>
       </button>
-      <button v-on:click="deleteUser(user)" class="btn btn-sm  user-action-btn">
-        <span class="fa fa-trash"></span>
-      </button>
+      <delete-user-button v-bind:user="user"></delete-user-button>
     </td>
   </tr>
 </template>
@@ -29,8 +27,10 @@
 <script>
 
   import { mapActions } from 'vuex';
+  import DeleteUserButton from './DeleteUserButton';
 
   export default {
+    components: { DeleteUserButton },
     name: 'userRow',
     props: ['user'],
     methods: mapActions([

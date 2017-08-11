@@ -7,24 +7,34 @@ export default {
 
   authenticated: false,
   checkAuthed: false,
+  user: null,
 
   login(context, creds, redirect) {
     const self = this;
     axios.post(LOGIN_URL, creds).then((data) => {
       localStorage.setItem('id_token', data.data);
-
+      localStorage.setItem('current_user', creds.username);
       self.authenticated = true;
+      self.user = creds.username;
 
       if (redirect) {
         router.push(redirect);
       }
-    }).catch(() => false);
-    return true;
+    }).catch(() => {
+      /* eslint no-param-reassign: ["error", { "props": false }] */
+      context.error = true;
+    });
+  },
+
+  getUser() {
+    return this.user;
   },
 
   logout() {
     localStorage.removeItem('id_token');
+    localStorage.removeItem('current_user');
     this.authenticated = false;
+    this.$route.router.go('/');
   },
 
   isAuth() {
@@ -37,6 +47,7 @@ export default {
   checkAuth() {
     this.checkAuthed = true;
     const jwt = localStorage.getItem('id_token');
+    this.user = localStorage.getItem('current_user');
     if (jwt) {
       this.authenticated = true;
     } else {

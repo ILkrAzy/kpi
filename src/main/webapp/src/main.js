@@ -4,6 +4,7 @@ import Vue from 'vue';
 import VuePaginate from 'vue-paginate';
 import 'jquery';
 import 'bootstrap';
+import 'notifyjs-browser';
 import App from './App';
 import router from './router';
 import auth from './auth';

@@ -30,8 +30,10 @@ const mutations = {
     users.forEach(e => states.users.push(e));
   },
   [types.DELETE_USER](states, user) {
-    const index = states.users.indexOf(user);
-    states.users.splice(index, 1);
+    api.deleteUser(user.username).then(() => {
+      const index = states.users.indexOf(user);
+      states.users.splice(index, 1);
+    });
   },
   [types.ADD_USER](states, user) {
     states.users.push(user);

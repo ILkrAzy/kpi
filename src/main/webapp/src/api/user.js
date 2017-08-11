@@ -18,6 +18,16 @@ export default {
       }, 500);
     });
   },
+  deleteUser(user) {
+    // return axios.post('/api/users', user, {
+    //   headers: auth.getAuthHeader(),
+    // });
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve(user);
+      }, 500);
+    });
+  },
   getRoles() {
     return new Promise((resolve) => {
       const roles = {

@@ -33,15 +33,15 @@
                 <a id="user-profile" href="#" class="dropdown-toggle" data-toggle="dropdown"><img
                   src="images/avatar.png"
                   class="img-responsive img-thumbnail img-circle">
-                  Username
+                  {{ user }}
                   <b class="caret"></b>
                 </a>
                 <ul id="user-profile-dropdown" style="margin-top: 1px;" class="dropdown-menu dropdown-block"
                     role="menu">
-                  <li><a href="#">Profil edition</a></li>
+                  <li><a href="#">Profile</a></li>
                   <li><a href="#">Admin</a></li>
                   <li class="divider"></li>
-                  <li><a href="#">Logout</a></li>
+                  <li><a href="#" v-on:click="logout">Logout</a></li>
                 </ul>
               </li>
             </ul>
@@ -54,8 +54,20 @@
 
 <script>
 
+  import auth from '../auth';
+
   export default {
     name: 'navbar',
+    data() {
+      return {
+        user: auth.getUser(),
+      };
+    },
+    methods: {
+      logout() {
+        auth.logout();
+      },
+    },
   };
 </script>
 

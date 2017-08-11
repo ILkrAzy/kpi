@@ -392,7 +392,8 @@ body {
 
 /* Sign in page */
 .signin-body {
-  margin-top: 30px;
+  /*margin-top: 30px;*/
+  padding-top: 30px;
   text-align: center;
 }
 
