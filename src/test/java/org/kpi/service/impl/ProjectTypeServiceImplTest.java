@@ -4,6 +4,8 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.kpi.model.ProjectType;
+import org.kpi.repository.KpiRepository;
+import org.kpi.repository.ProjectTypeKpiRepository;
 import org.kpi.repository.ProjectTypeRepository;
 import org.kpi.service.ProjectTypeService;
 import org.mockito.Mock;
@@ -27,12 +29,15 @@ public class ProjectTypeServiceImplTest {
 
     @Mock
     private ProjectTypeRepository projectTypeRepository;
-
+    @Mock
+    private KpiRepository kpiRepository;
+    @Mock
+    private ProjectTypeKpiRepository projectTypeKpiRepository;
     private ProjectTypeService service;
 
     @Before
     public void setUp() throws Exception {
-        service = new ProjectTypeServiceImpl(projectTypeRepository);
+        service = new ProjectTypeServiceImpl(projectTypeRepository, kpiRepository, projectTypeKpiRepository);
     }
 
     @Test

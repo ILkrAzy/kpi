@@ -9,6 +9,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -33,17 +35,23 @@ public class ProjectTypeController {
     }
 
     @GetMapping
-    public List<ProjectType> getAll() {
-        return projectTypeService.getAll();
+    public List<ProjectTypeDTO> getAll() {
+        List<ProjectTypeDTO> list = new ArrayList<>();
+        for(ProjectType projectType : projectTypeService.getAll()){
+            ProjectTypeDTO projectTypeDTO = new ProjectTypeDTO();
+            list.add(projectTypeDTO.fromModel(projectType));
+        }
+        return list;
     }
 
     @GetMapping("/{name}")
-    public ResponseEntity<ProjectType> get(@PathVariable String name) {
+    public ResponseEntity<ProjectTypeDTO> get(@PathVariable String name) {
         ProjectType type = projectTypeService.getByName(name);
         if (type == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        return ResponseEntity.ok(type);
+        ProjectTypeDTO projectTypeDTO = new ProjectTypeDTO();
+        return ResponseEntity.ok(projectTypeDTO.fromModel(type));
     }
     
     @PutMapping("/assign/{name}")

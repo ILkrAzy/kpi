@@ -1,5 +1,6 @@
 package org.kpi.model.dto;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.validation.constraints.NotNull;
@@ -12,6 +13,8 @@ import lombok.Setter;
 import org.kpi.model.Kpi;
 import org.kpi.model.ProjectTypeKpi;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 /**
  * Created by vquochuy on 7/21/2017.
  */
@@ -22,6 +25,7 @@ public class KpiDTO {
     @Size(min = 3, max = 254)
     @Getter
     @Setter
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
     private String name;
     
     @NotNull
@@ -29,6 +33,7 @@ public class KpiDTO {
     @Size(min = 3, max = 50)
     @Getter
     @Setter
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
     private String measure;
     
     @Getter
@@ -37,19 +42,13 @@ public class KpiDTO {
     
     @Getter
     @Setter
-    private List<String> projectTypeUuid;
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
+    private List<ProjectTypeDTO> projectType = new ArrayList<ProjectTypeDTO>();
     
     public KpiDTO fromModel(Kpi kpi){
-        //KpiDTO kpiDTO = new KpiDTO();
         this.setName(kpi.getName());
         this.setMeasure(kpi.getMeasure());
         this.setUuid(kpi.getUuid());
-        if(kpi.getProjectTypes() != null){
-            for(ProjectTypeKpi projectTypeKpi : kpi.getProjectTypes()){
-                String uuid = projectTypeKpi.getUuid();
-                projectTypeUuid.add(uuid);
-            }
-        }
         return this;
     }
    
@@ -59,7 +58,23 @@ public class KpiDTO {
        kpi.setName(name);
        return kpi;
    }
+   
+   public KpiDTO fromSimpleModel(Kpi kpi){
+       this.setName(kpi.getName());
+       this.setMeasure(kpi.getMeasure());
+       this.setUuid(kpi.getUuid());
+       for(ProjectTypeKpi projectTypeKpi : kpi.getProjectTypes()){
+           ProjectTypeDTO projectTypeDTO= new ProjectTypeDTO();
+           projectTypeDTO.fromSimpleModel(projectTypeKpi.getProjectType());
+           this.projectType.add(projectTypeDTO);
+       }
+       return this;
+   }
 
+   public KpiDTO fromSimpleModel2(Kpi kpi){
+       this.setUuid(kpi.getUuid());
+       return this;
+   }
 @Override
 public int hashCode() {
     final int prime = 31;

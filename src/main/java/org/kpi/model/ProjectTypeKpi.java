@@ -2,6 +2,8 @@ package org.kpi.model;
 
 import javax.persistence.*;
 
+import org.hibernate.annotations.GenericGenerator;
+
 import java.io.Serializable;
 import java.util.UUID;
 
@@ -18,11 +20,16 @@ public class ProjectTypeKpi implements Serializable {
     String uuid = UUID.randomUUID().toString();
     
     @Id
+    @GeneratedValue(generator = "increment")
+    @GenericGenerator(name = "increment", strategy = "increment")
+    @Getter
+    @Setter
+    private int id;
+    
     @ManyToOne
     @JoinColumn(name = "project_type_id", foreignKey = @ForeignKey(name = "PROJECTTYPEKPI_PROJECT_TYPE_ID_FK"))
     private ProjectType projectType;
 
-    @Id
     @ManyToOne
     @JoinColumn(name = "kpi_id", foreignKey = @ForeignKey(name = "PROJECTTYPEKPI_KPI_ID_FK"))
     private Kpi kpi;
@@ -55,6 +62,5 @@ public class ProjectTypeKpi implements Serializable {
         this.kpi = null;
         this.projectType = null;
     }
-
 
 }

@@ -1,5 +1,7 @@
 package org.kpi.service.impl;
 
+import java.util.List;
+
 import org.kpi.model.Kpi;
 import org.kpi.model.ProjectType;
 import org.kpi.model.ProjectTypeKpi;
@@ -9,8 +11,6 @@ import org.kpi.repository.ProjectTypeRepository;
 import org.kpi.service.ProjectTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 /**
  * @author lnphi

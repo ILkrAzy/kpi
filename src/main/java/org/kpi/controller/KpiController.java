@@ -41,7 +41,11 @@ public class KpiController {
         List<Kpi> kpis = kpiService.getAll();
         List<KpiDTO> kpiDTOs = new ArrayList<>();
         for (Kpi kpi : kpis) {
-            kpiDTOs.add(new KpiDTO().fromModel(kpi));
+            if(kpi.getProjectTypes()!=null){
+                kpiDTOs.add(new KpiDTO().fromSimpleModel(kpi));
+            }else{
+                kpiDTOs.add(new KpiDTO().fromModel(kpi));
+            }
         }
         return kpiDTOs;
     }
