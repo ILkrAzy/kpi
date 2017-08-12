@@ -34,6 +34,14 @@ public class ProjectTypeDTO {
     private String uuid;
     
     
+    public ProjectTypeDTO() {
+    }
+
+    public ProjectTypeDTO(ProjectType type) {
+        this.name = type.getName();
+        this.uuid = type.getUuid();
+    }
+
     public ProjectType toModel() {
         ProjectType type = new ProjectType();
         type.setName(this.name);
@@ -55,4 +63,37 @@ public class ProjectTypeDTO {
         this.uuid = projectType.getUuid();
         return this;
     }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((name == null) ? 0 : name.hashCode());
+        result = prime * result + ((uuid == null) ? 0 : uuid.hashCode());
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        ProjectTypeDTO other = (ProjectTypeDTO) obj;
+        if (name == null) {
+            if (other.name != null)
+                return false;
+        } else if (!name.equals(other.name))
+            return false;
+        if (uuid == null) {
+            if (other.uuid != null)
+                return false;
+        } else if (!uuid.equals(other.uuid))
+            return false;
+        return true;
+    }
+    
+    
 }
