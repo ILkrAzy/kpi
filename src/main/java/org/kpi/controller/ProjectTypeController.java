@@ -1,6 +1,9 @@
 package org.kpi.controller;
 
+import org.kpi.model.Kpi;
 import org.kpi.model.ProjectType;
+import org.kpi.model.ProjectTypeKpi;
+import org.kpi.model.dto.KpiDTO;
 import org.kpi.model.dto.ProjectTypeDTO;
 import org.kpi.service.ProjectTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,8 +41,7 @@ public class ProjectTypeController {
     public List<ProjectTypeDTO> getAll() {
         List<ProjectTypeDTO> list = new ArrayList<>();
         for(ProjectType projectType : projectTypeService.getAll()){
-            ProjectTypeDTO projectTypeDTO = new ProjectTypeDTO();
-            list.add(projectTypeDTO.fromModel(projectType));
+            list.add(new ProjectTypeDTO(projectType));
         }
         return list;
     }
@@ -50,12 +52,21 @@ public class ProjectTypeController {
         if (type == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        ProjectTypeDTO projectTypeDTO = new ProjectTypeDTO();
-        return ResponseEntity.ok(projectTypeDTO.fromModel(type));
+        return ResponseEntity.ok(new ProjectTypeDTO(type));
     }
     
     @PutMapping("/assign/{name}")
     public void assign(@PathVariable String name, @RequestBody List<String> kpiUUIDs){
         projectTypeService.assign(name, kpiUUIDs);
+    }
+    
+    @GetMapping("/{name}/kpis")
+    public List<KpiDTO> getKpis(@PathVariable String name) {
+        ProjectType type = projectTypeService.getByName(name);
+        List<KpiDTO> kpiDTOs = new ArrayList<>();
+        for(ProjectTypeKpi ptk : type.getKpis()){
+            kpiDTOs.add(new KpiDTO(ptk.getKpi()));
+        }
+        return kpiDTOs;
     }
 }

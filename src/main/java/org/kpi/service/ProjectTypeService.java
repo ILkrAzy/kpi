@@ -1,8 +1,9 @@
 package org.kpi.service;
 
-import org.kpi.model.ProjectType;
-
 import java.util.List;
+
+import org.kpi.model.Kpi;
+import org.kpi.model.ProjectType;
 
 /**
  * @author lnphi
@@ -16,4 +17,6 @@ public interface ProjectTypeService {
     ProjectType getByName(String name);
     
     void assign(String projectTypeName, List<String> kpiUUIDs);
+    
+    List<Kpi> getKpisByProjectName(String name);
 }

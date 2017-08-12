@@ -55,4 +55,10 @@ public class ProjectTypeServiceImpl implements ProjectTypeService {
         }
     }
 
+    @Override
+    public List<Kpi> getKpisByProjectName(String name) {
+        
+        return null;
+    }
+
 }

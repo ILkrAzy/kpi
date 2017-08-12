@@ -45,6 +45,15 @@ public class KpiDTO {
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     private List<ProjectTypeDTO> projectType = new ArrayList<ProjectTypeDTO>();
     
+    public KpiDTO() {
+    }
+       
+    public KpiDTO(Kpi kpi) {
+        this.name = kpi.getName();
+        this.measure = kpi.getMeasure();
+        this.uuid = kpi.getUuid();
+    }
+
     public KpiDTO fromModel(Kpi kpi){
         this.setName(kpi.getName());
         this.setMeasure(kpi.getMeasure());
@@ -105,6 +114,5 @@ public boolean equals(Object obj) {
         return false;
     return true;
 }
-   
-   
+
 }
