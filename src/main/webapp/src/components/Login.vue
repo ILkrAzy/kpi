@@ -15,14 +15,14 @@
       <br/>
 
       <div class="input-group input-group-lg signin-input-group">
-        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+        <span class="input-group-addon"><i class="fa fa-user"></i></span>
         <!-- process focus for input so that there is a outer highlight of it later - relate to box-shadow -->
         <input id="username" v-model="credentials.username" type="text" class="form-control" name="username" placeholder="Username or Email" required>
       </div>
       <br/>
 
       <div class="input-group input-group-lg signin-input-group">
-        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+        <span class="input-group-addon"><i class="fa fa-lock"></i></span>
         <input id="password" v-model="credentials.password" type="password" class="form-control" name="password" placeholder="Password" required>
       </div>
       <br/>

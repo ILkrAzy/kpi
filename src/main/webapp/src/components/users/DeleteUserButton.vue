@@ -1,5 +1,5 @@
 <template>
-  <button class="btn btn-sm  user-action-btn" :class="'user-' + user.username + '-action-btn-delete'">
+  <button class="btn btn-sm  user-action-btn user-action-btn-delete" :class="'user-' + user.username + '-action-btn-delete'">
     <span class="fa fa-trash"></span>
   </button>
 </template>
@@ -11,6 +11,7 @@
     name: 'deleteUserButton',
     props: ['user'],
     mounted() {
+      $('.user-action-btn-delete').tooltip({ placement: 'auto bottom', title: 'Delete User' });
       const deleteUserConfirmBox = 'Are you sure to delete this user?' +
         '<div class="row"> ' +
         '<div class="col-sm-12 text-center"> ' +

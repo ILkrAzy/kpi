@@ -10,13 +10,13 @@
     <td class="text-middle">KPI22</td>
     <td class="text-middle">
 
-      <button class="btn btn-sm  user-action-btn">
+      <button class="btn btn-sm user-action-btn user-action-btn-resetpassword">
         <span class="fa fa-key"></span>
       </button>
-      <button class="btn btn-sm  user-action-btn">
+      <button class="btn btn-sm user-action-btn user-action-btn-lock">
         <span class="fa fa-ban"></span>
       </button>
-      <button class="btn btn-sm  user-action-btn">
+      <button class="btn btn-sm user-action-btn user-action-btn-edit">
         <span class="fa fa-edit"></span>
       </button>
       <delete-user-button v-bind:user="user"></delete-user-button>
@@ -26,6 +26,7 @@
 
 <script>
 
+  import $ from 'jquery';
   import { mapActions } from 'vuex';
   import DeleteUserButton from './DeleteUserButton';
 
@@ -36,6 +37,10 @@
     methods: mapActions([
       'deleteUser',
     ]),
+    mounted() {
+      $('.user-action-btn-lock').tooltip({ placement: 'auto bottom', title: 'Lock User' });
+      $('.user-action-btn-edit').tooltip({ placement: 'auto bottom', title: 'Edit User Profile' });
+      $('.user-action-btn-resetpassword').tooltip({ placement: 'auto bottom', title: 'Reset User Password' });
+    },
   };
 </script>
-
