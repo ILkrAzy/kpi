@@ -12,7 +12,7 @@ import store from './store';
 
 require('bootstrap/dist/css/bootstrap.min.css');
 require('font-awesome/css/font-awesome.min.css');
-require('../static/styles/kpi-side.css');
+require('../static/styles/kpi.css');
 
 
 Vue.config.productionTip = false;
