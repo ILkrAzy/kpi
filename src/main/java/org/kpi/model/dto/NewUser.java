@@ -1,8 +1,10 @@
 package org.kpi.model.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+
 import lombok.Getter;
 import lombok.Setter;
+
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.kpi.model.User;
@@ -13,6 +15,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -53,12 +56,24 @@ public class NewUser {
     @Setter
     private String lastName;
 
-    @NotEmpty
     @Getter
     @Setter
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     private String role;
     
+    
+    public NewUser() {
+    }
+
+    public NewUser(String username, String email, String firstName,
+            String lastName, String password) {
+        this.username = username;
+        this.email = email;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.password = password;
+    }
+
     public User toModel(PasswordEncoder passwordEncoder) {
         return new User(username, passwordEncoder.encode(password), email, firstName, lastName, null);
     }
