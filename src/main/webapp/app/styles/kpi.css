@@ -355,9 +355,6 @@ body {
   -o-transition: all .5s ease;
   transition: all .5s ease;
 }
-.static-pos {
-  position: static !important;
-}
 @media (min-width: 992px) {
   #wrapper #sidebar-wrapper {
     width: 225px;
@@ -567,6 +564,7 @@ body {
   color: #096b9a;
 }
 .kpi-maincolor-bordered,
+.kpi-maincolor-bordered .list-group-item,
 .user-action-btn,
 .user-action-btn:focus {
   background-color: #ffffff;
@@ -628,6 +626,8 @@ body {
 }
 .panel-body {
   background-color: #ffffff;
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
 }
 .panel-body.transperent {
   background-color: #ececec !important;
@@ -747,4 +747,67 @@ body {
 }
 .kpi-label-purple {
   color: #a00ebc;
+}
+#project-type-kpi .form-group {
+  margin-bottom: 0px !important;
+}
+#project-type-kpi .list-group-item .fa {
+  display: none;
+}
+#project-type-kpi .list-group-item:hover .fa {
+  display: block;
+}
+.nav-tabs > li > a:hover {
+  background-color: #0a7db5 !important;
+  color: #ffffff;
+}
+.nav-tabs > li > a {
+  border-radius: 0px;
+  color: #09638f;
+}
+.nav-tabs > li.active > a {
+  font-weight: bold;
+}
+.nav-tabs > li.active > a,
+.nav-tabs > li.active > a:focus,
+.nav-tabs > li.active > a:hover {
+  border-top: none !important;
+  border-left: none !important;
+  border-right: none !important;
+  border-bottom: 2px solid #09638f !important;
+  color: #09638f !important;
+  background-color: #ffffff !important;
+}
+.tab-content {
+  color: #09638f;
+}
+#available-kpis .list-group {
+  border-color: rgba(16, 130, 225, 0.37);
+}
+#available-kpis .list-group .list-group-item {
+  color: #09638f;
+  border-color: #ffffff;
+  background-color: #DFDFDF;
+  margin-top: 1px;
+}
+#available-kpis .list-group .list-group-item:hover {
+  color: #ffffff;
+  border-color: #ffffff;
+  background-color: #0a7db5;
+  margin-top: 1px;
+}
+#associated-kpis .list-group {
+  border-color: rgba(16, 130, 225, 0.37);
+}
+#associated-kpis .list-group .list-group-item {
+  color: #ffffff;
+  border-color: #ffffff;
+  background-color: #0a7db5;
+  margin-top: 1px;
+}
+#associated-kpis .list-group .list-group-item:hover {
+  color: #09638f;
+  border-color: #ffffff;
+  background-color: #DFDFDF;
+  margin-top: 1px;
 }

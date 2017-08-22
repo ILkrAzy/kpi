@@ -306,7 +306,7 @@ body {
 }
 
 .static-pos {
-    position: static !important;
+    //position: static !important;
 }
 
 @media (min-width: 992px) {
@@ -551,7 +551,9 @@ body {
     color: #096b9a;
 }
 
+
 .kpi-maincolor-bordered,
+.kpi-maincolor-bordered .list-group-item,
 .user-action-btn,
 .user-action-btn:focus {
     background-color: #ffffff;
@@ -625,6 +627,8 @@ body {
 
 .panel-body {
     background-color: #ffffff;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
 }
 
 .panel-body.transperent {
@@ -772,4 +776,91 @@ body {
 
 .kpi-label-purple {
     color: @label-color-purple
+}
+
+#project-type-kpi {
+    .form-group {
+        margin-bottom: 0px !important;
+    }
+    .list-group-item {
+        .fa {
+            display: none;
+        }
+        &:hover {
+            .fa {
+                display: block;
+            }
+        }
+    }
+}
+
+.nav-tabs {
+    //border: none !important;
+
+    &> li  {
+        &> a:hover {
+            background-color: @main-color-light !important;
+            color: #ffffff;
+        }
+        &> a {
+            border-radius: 0px;
+            color: @main-color;
+        }
+    }
+    &> li.active {
+        &> a {
+            font-weight: bold;
+        }
+        &> a, &> a:focus, &> a:hover{
+            border-top: none !important;
+            border-left: none !important;
+            border-right: none !important;
+            border-bottom: 2px solid @main-color !important;
+            color: @main-color !important;
+            background-color: #ffffff !important;
+        }
+    }
+}
+
+.tab-content {
+    color: @main-color;
+}
+
+#available-kpis {
+    .list-group {
+        border-color: rgba(16, 130, 225, 0.37);
+        .list-group-item {
+            color: @main-color;
+            border-color: #ffffff;
+            background-color: #DFDFDF;
+            margin-top: 1px;
+            //margin-bottom: 1px;
+            &:hover {
+                color: #ffffff;
+                border-color: #ffffff;
+                background-color: @main-color-light;
+                margin-top: 1px;
+            }
+        }
+
+    }
+}
+#associated-kpis {
+    .list-group {
+        border-color: rgba(16, 130, 225, 0.37);
+        .list-group-item {
+            color: #ffffff;
+            border-color: #ffffff;
+            background-color: @main-color-light;
+            margin-top: 1px;
+            //margin-bottom: 1px;
+            &:hover {
+                color: @main-color;
+                border-color: #ffffff;
+                background-color: #DFDFDF;
+                margin-top: 1px;
+            }
+        }
+
+    }
 }
