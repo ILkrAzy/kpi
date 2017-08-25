@@ -703,6 +703,16 @@ body {
 .item-box .item-box-heading .btn:focus {
   box-shadow: none;
 }
+.item-box .item-box-heading .item-title {
+  width: 90%;
+  float: left;
+}
+.item-box .item-box-heading .item-label {
+  float: right;
+}
+.item-box .item-box-heading .item-label .fa {
+  font-size: 24px !important;
+}
 .item-box .item-box-body {
   height: 192px;
   padding: 8px 0 8px;

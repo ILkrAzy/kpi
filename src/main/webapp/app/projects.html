@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home | KPI</title>
+    <link rel="shortcut icon" href="images/kpi-icon.png"/>
+    <!--<link rel="stylesheet" href="css/bootstrap-theme.min.css"/>-->
+    <!-- build:css styles/vendor.css -->
+    <!-- bower:css -->
+    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="/bower_components/font-awesome/css/font-awesome.css" />
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <!-- build:css styles/main.css -->
+    <link rel="stylesheet" href="styles/kpi.css">
+    <!--<link rel="stylesheet" href="styles/font-awesome.min.css" />-->
+    <!-- endbuild -->
+</head>
+<body>
+<!-- MENU -->
+<div id="navbar-wrapper">
+    <header>
+        <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand kpi-logo" href="#" style="color: #3BAFEA;">KPI System</a>
+                    <a id="sidebar-toggle" class="sidebar-toggle" style="height: 50px" href="#">
+                        <i class="fa fa-chevron-left"></i>
+                        <i class="fa fa-chevron-right"></i>
+                    </a>
+                    <!--<div style="height: 46px; border-right: 1px solid; border-color: #074c6e; width: 3px; float: left; margin-top: 2px; margin-bottom: 2px;"></div>-->
+                </div>
+                <div id="navbar-collapse" class="collapse navbar-collapse">
+                    <div id="navbar-search-box" class="navbar-form navbar-left" role="search">
+                        <div class="input-group col-sm-12 col-md-12">
+                            <input type="text" class="form-control" placeholder="Search">
+                            <span class="input-group-btn">
+                                    <button class="btn" type="button">
+                                        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                                    </button>
+                                </span>
+                        </div>
+                    </div>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown">
+                            <a id="user-profile" href="#" class="dropdown-toggle" data-toggle="dropdown"><img
+                                src="images/avatar.png"
+                                class="img-responsive img-thumbnail img-circle">
+                                Username
+                                <b class="caret"></b>
+                            </a>
+                            <ul id="user-profile-dropdown" style="margin-top: 1px;" class="dropdown-menu dropdown-block"
+                                role="menu">
+                                <li><a href="#">Profil edition</a></li>
+                                <li><a href="#">Admin</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#">Logout</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+</div>
+<div id="wrapper">
+    <div id="sidebar-wrapper">
+        <aside id="sidebar">
+            <ul id="sidemenu" class="sidebar-nav">
+                <li>
+                    <a href="#">
+                        <i class="fa fa-users sidebar-icon"></i>
+                        <span class="sidebar-title">Users</span>
+                    </a>
+                </li>
+                <li class="sidemenu-item-dropdown">
+                    <a class="active accordion-toggle collapsed toggle-switch" href="#submenu-2">
+                        <i class="fa fa-folder sidebar-icon"></i>
+                        <span class="sidebar-title">Projects</span>
+                        <b class="caret"></b>
+                    </a>
+                    <ul id="submenu-2" class="panel-collapse collapse panel-switch submenu" role="menu">
+                        <li>
+                            <a href="#">
+                                <i class="fa fa-caret-right sidebar-icon"></i>
+                                <span class="sidebar-title">Projects</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fa fa-caret-right sidebar-icon"></i>
+                                <span class="sidebar-title">Project Types</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a class="accordion-toggle collapsed toggle-switch" href="#submenu-3">
+                        <i class="fa fa-list sidebar-icon"></i>
+                        <span class="sidebar-title">KPIs</span>
+                        <!--<b class="caret"></b>-->
+                    </a>
+                </li>
+            </ul>
+        </aside>
+    </div>
+    <main id="page-content-wrapper" role="main">
+
+
+        <!-- User password reset notify -->
+        <div id="resetpasswordNotify" class="modal fade" role="dialog">
+            <div class="modal-dialog modal-md">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="row text-center">
+                            <div class="col-sm-12"><p>Reset password for user "ddlanh" successfully.</p></div>
+                            <div class="col-sm-12">
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel ">
+
+            <div class="panel-heading">
+                <div class="page-header">
+                    <a href="../project-types.html" class="h3 color-indigo">Projects</a>
+                </div>
+
+                <div class="col-xs-12 col-sm-6 col-md-5 static-pos">
+                    <button id="addProjectTypeBtn" type="button" class="btn btn-md btn-kpi-default panel-heading-control"><span
+                        class="fa fa-plus-square static-pos"></span>&nbsp; Add Project
+                    </button>
+                    <button id="refreshBtn" type="button" class="btn btn-md btn-kpi-default panel-heading-control"><span
+                        class="fa fa-refresh static-pos"></span>&nbsp; Refresh
+                    </button>
+                </div>
+
+                <div class="col-xs-12 col-sm-6 col-md-7 static-pos">
+                    <div
+                        class="input-group input-group-md col-xs-12 col-sm-12 col-md-6 pull-right panel-heading-control static-pos">
+                        <input type="text" class="form-control kpi-maincolor-bordered static-pos" name="username"
+                               placeholder="Search for project types...">
+                        <div class="input-group-btn">
+                            <button type="button" class="btn btn-md btn-kpi-default"><span
+                                class=" fa fa-search"></span></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+
+            <div class="panel-body transperent">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 static-pos">
+                        <div class="item-box">
+                            <div class="item-box-heading">
+                                <div class="item-title">
+                                VitalQIP Dev
+                                </div>
+                                <div class="item-label">
+                                    <span class="fa fa-tag kpi-label-red"></span>
+                                </div>
+                            </div>
+                            <div class="item-box-body">
+                                <div class="col-xs-3">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="col-header">
+                                                Type
+                                            </div>
+                                            Dev
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-3">
+                                    <div class="col-header">
+                                        Managers
+                                    </div>
+                                    Thanh Pham
+                                    <br/>
+                                </div>
+                                <div class="col-xs-3">
+                                    <div class="col-header">
+                                        Health
+                                    </div>
+                                    Good
+                                    <br/>
+                                </div>
+                            </div>
+                            <div class="item-box-footer">
+                                <button class="btn btn-md btn-kpi-default-inverse btn-edit-project-type">
+                                    <span class="fa fa-pencil"></span>
+                                </button>
+                                <button class="btn btn-md btn-kpi-default-inverse btn-close-project">
+                                    <span class="fa fa-stop-circle-o"></span>
+                                </button>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+
+        </div>
+    </main>
+</div>
+
+<div id="project-close-notify" class="modal fade kpi-notify" role="dialog">
+    <div class="modal-dialog modal-md">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="row text-center">
+                    <div class="col-sm-12"><p>Deleted Project Type "DEV" successfully.</p></div>
+                    <div class="col-sm-12">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Add new Project type dialog -->
+<div id="newProjectTypeDialog" class="modal fade kpi-dialog" role="dialog">
+    <div class="modal-dialog modal-lg">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><i class="fa fa-close"></i></button>
+                <h4 class="modal-title">Add new Project Type</h4>
+            </div>
+
+            <div class="modal-body ">
+
+                <div class="row">
+                    <div class="col-md-12 ">
+                        <form class="form-horizontal">
+                            <fieldset>
+
+                                <!-- Form Name -->
+                                <!--<legend>User profile form requirement</legend>-->
+
+                                <!-- Text input-->
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label" for="newProjectTypeDialog_projectTypenameTxt">Project
+                                        Type Name</label>
+                                    <div class="col-md-6">
+                                        <input id="newProjectTypeDialog_projectTypenameTxt" name="projectTypeName"
+                                               type="text"
+                                               placeholder="Project Type Name"
+                                               class="form-control input-md kpi-maincolor-bordered" required>
+                                    </div>
+                                </div>
+
+                                <div class="form-group ">
+                                    <label class="col-md-4 control-label"
+                                           for="newProjectTypeDialog_labelBox">Label</label>
+                                    <div class="col-md-6">
+                                        <select id="newProjectTypeDialog_labelBox"
+                                                class="select form-control kpi-maincolor-bordered" required
+                                                style="font-family:Helvetica,sans-serif,FontAwesome;">
+                                            <option class="kpi-label-default" style="font-size: 18px;">&#xf02b; &nbsp;
+                                                Default
+                                            </option>
+                                            <option class="kpi-label-red" style="font-size: 18px;">&#xf02b; &nbsp; Red
+                                            </option>
+                                            <option class="kpi-label-blue" style="font-size: 18px;">&#xf02b; &nbsp;
+                                                Blue
+                                            </option>
+                                            <option class="kpi-label-green" style="font-size: 18px;">&#xf02b; &nbsp;
+                                                Green
+                                            </option>
+                                            <option class="kpi-label-purple" style="font-size: 18px;">&#xf02b; &nbsp;
+                                                Purple
+                                            </option>
+                                            <option class="kpi-label-orange" style="font-size: 18px;">&#xf02b; &nbsp;
+                                                Orange
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <!--<div class="form-group">-->
+                                    <!--<div style="position: relative; width: 100%; border-top: solid 1px #dfdfdf"></div>-->
+                                <!--</div>-->
+
+                                <div class="form-group">
+                                    <div class="col-md-12 text-center">
+                                        <button id="newProjectTypeDialog_createBtn" type="submit" class="btn btn-success"><span
+                                            class="fa fa-save"></span>&nbsp;&nbsp;Save
+                                        </button>
+                                        &nbsp;
+                                        <button id="newProjectTypeDialog_clearBtn" type="button" class="btn btn-danger"><span
+                                            class="fa fa-times-circle"></span>&nbsp;&nbsp;Clear
+                                        </button>
+                                    </div>
+                                </div>
+
+                            </fieldset>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- End Menu -->
+<!-- build:js scripts/vendor.js -->
+<!-- bower:js -->
+<script src="/bower_components/modernizr/modernizr.js"></script>
+<script src="/bower_components/jquery/dist/jquery.js"></script>
+<script src="/bower_components/bootstrap/dist/js/bootstrap.js"></script>
+<script src="/bower_components/vue/dist/vue.js"></script>
+<script src="/bower_components/axios/dist/axios.js"></script>
+<script src="/bower_components/vue-router/dist/vue-router.js"></script>
+<!-- endbower -->
+<!-- endbuild -->
+
+<!-- build:js scripts/plugins.js -->
+<!-- endbuild -->
+
+<!-- build:js scripts/main.js -->
+<script src="scripts/main.js"></script>
+<!-- endbuild -->
+
+<script>
+    let isMiniSizebar = $('#wrapper').hasClass('wrapper-minibar');
+    $('#sidebar-toggle').click(function () {
+        if ($(window).width() > 767) {
+            $('#wrapper').toggleClass('wrapper-minibar');
+        }
+        isMiniSizebar = $('#wrapper').hasClass('wrapper-minibar');
+        if (isMiniSizebar) {
+            $('.sidemenu-item-dropdown').removeClass('sidemenu-item-dropdown-open');
+            $(this).addClass('sidebar-toggle-active');
+            $(this).removeClass('sidebar-toggle-disable');
+        } else {
+            $(this).removeClass('sidebar-toggle-active');
+            $(this).addClass('sidebar-toggle-disable');
+        }
+    });
+
+    $('#addProjectTypeBtn').click(function () {
+        $('#newProjectTypeDialog').modal({
+            backdrop: 'static',
+            keyboard: false
+        });
+        $('#newProjectTypeDialog_labelBox').prop('selectedIndex', 0);
+    });
+
+    $('#newProjectTypeDialog_createBtn').click(function () {
+
+    });
+
+    $('#newProjectTypeDialog_clearBtn').click(function () {
+        $('#newProjectTypeDialog_projectTypenameTxt').val('');
+        $('#newProjectTypeDialog_labelBox').prop('selectedIndex', 0);
+    });
+
+    var deleteProjectTypeConfirmBox = 'Are you sure to delete this Project Type?' +
+        '<div class="row"> ' +
+        '<div class="col-sm-12 text-center"> ' +
+        '<button id="project-close-yes" data-toggle="clickover" class="btn btn-sm btn-success" >Yes</button> &nbsp;' +
+        '<button id="project-close-no" data-toggle="clickover" class="btn btn-sm btn-danger" >No</button>' +
+        '</div></div>';
+
+    $('.btn-close-project').tooltip({placement: 'bottom', title: 'Close Project'});
+    $('.btn-edit-project-type').tooltip({placement: 'bottom', title: 'Edit Project'});
+
+
+    $('.btn-close-project').popover({
+        animation: true,
+        content: deleteProjectTypeConfirmBox,
+        html: true,
+        placement: 'auto left',
+        trigger: 'focus'
+    }).on('shown.bs.popover', function () {
+        var popup = $(this);
+        $(this).parent().find('div.popover #project-close-yes').click(function () {
+            $('#project-close-notify').modal({
+                keyboard: true
+            });
+            popup.click();
+        });
+        $(this).parent().find('div.popover #project-close-no').click(function () {
+            popup.click();
+        });
+    });
+
+    $('.sidemenu-item-dropdown').click(function () {
+        if ($(window).width() > 992 && !$('#wrapper').hasClass('wrapper-minibar')) {
+            $(this).toggleClass('sidemenu-item-dropdown-open')
+        }
+    });
+
+
+</script>
+
+</body>
+<!--<footer class="footer">-->
+<!--<div class="container">-->
+<!--<p>© 2017<a href="#"> KPI Team</a>, All rights reserved 2017-2018.</p>-->
+<!--</div>-->
+<!--</footer>-->
+</html>
