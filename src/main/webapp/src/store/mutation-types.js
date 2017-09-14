@@ -1,3 +1,5 @@
 export const DELETE_USER = 'DELETE_USER';
 export const UPDATE_USERS = 'UPDATE_USERS';
 export const ADD_USER = 'ADD_USER';
+export const ADD_PROJECT_TYPE = 'ADD_PROJECT_TYPE';
+export const UPDATE_PROJECT_TYPES = 'UPDATE_PROJECT_TYPES';

@@ -138,7 +138,6 @@ checkstyle {
         dependsOn restdoc
     }
 
-
     jar {
         dependsOn asciidoctor
             from ("${asciidoctor.outputDir}/html5") {
