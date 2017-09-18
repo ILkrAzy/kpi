@@ -1,12 +1,23 @@
 package org.kpi.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.hibernate.annotations.GenericGenerator;
-
-import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Index;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+import lombok.Getter;
+import lombok.Setter;
+
+import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 @Table(name = "project_type", indexes = { @Index(name = "PROJECT_TYPE_NAME_IDX", columnList = "name", unique = true)})
@@ -19,6 +30,11 @@ public class ProjectType implements Serializable {
 
     @Column(length = 50, nullable = false)
     private String name;
+    
+    @Column(length = 50)
+    @Getter
+    @Setter
+    private String label;
 
     @OneToMany(mappedBy = "projectType", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<ProjectTypeKpi> kpis = new ArrayList<>();
