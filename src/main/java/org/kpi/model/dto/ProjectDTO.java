@@ -1,14 +1,15 @@
 package org.kpi.model.dto;
 
-import javax.validation.constraints.Pattern;
+import java.util.ArrayList;
+import java.util.List;
 
-import org.kpi.model.Project;
+import javax.validation.constraints.Pattern;
 
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.ArrayList;
-import java.util.List;
+import org.kpi.model.Project;
+import org.kpi.model.UserProject;
 
 public class ProjectDTO {
     @Getter
@@ -19,6 +20,10 @@ public class ProjectDTO {
     @Getter
     @Setter
     private String projectType;
+    
+    @Getter
+    @Setter
+    private List<String> userManagers = new ArrayList<>();
     
     public Project toModel() {
         Project project = new Project();
@@ -31,6 +36,9 @@ public class ProjectDTO {
         projectDTO.setName(project.getName());
         if(project.getType()!=null){
             projectDTO.setProjectType(project.getType().getName());
+        }
+        for(UserProject userProject : project.getManagers()){
+            projectDTO.userManagers.add(userProject.getUser().getUsername());
         }
         return projectDTO;
     }

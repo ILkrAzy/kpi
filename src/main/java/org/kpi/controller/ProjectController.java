@@ -6,9 +6,11 @@ import javax.validation.Valid;
 
 import org.kpi.model.Project;
 import org.kpi.model.ProjectType;
+import org.kpi.model.User;
 import org.kpi.model.dto.ProjectDTO;
 import org.kpi.service.ProjectService;
 import org.kpi.service.ProjectTypeService;
+import org.kpi.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,16 +32,23 @@ public class ProjectController {
     private ProjectService projectService;
 
     private ProjectTypeService projectTypeService;
+    
+    private UserService userService;
 
     @Autowired
-    public ProjectController(ProjectService projectService, ProjectTypeService projectTypeService) {
+    public ProjectController(ProjectService projectService, ProjectTypeService projectTypeService, UserService userService) {
         this.projectTypeService = projectTypeService;
         this.projectService = projectService;
+        this.userService = userService;
     }
     
     @PostMapping
     public ResponseEntity<Void> create(@Valid @RequestBody ProjectDTO projectDTO) {
         Project project = projectDTO.toModel();
+        for(String userName : projectDTO.getUserManagers()){
+            User user = userService.getByUsername(userName);
+            project.addManager(user);
+        }
         ProjectType projectType = projectTypeService.getByName(projectDTO.getProjectType());
         project.setType(projectType);
         projectService.addProject(project);

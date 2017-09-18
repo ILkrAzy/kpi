@@ -16,6 +16,7 @@ import org.kpi.model.Project;
 import org.kpi.model.dto.ProjectDTO;
 import org.kpi.service.ProjectService;
 import org.kpi.service.ProjectTypeService;
+import org.kpi.service.UserService;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
@@ -30,13 +31,15 @@ public class ProjectControllerTest {
     private ProjectService projectService;
     @Mock
     private ProjectTypeService projectTypeService;
+    @Mock
+    private UserService userService;
     private ProjectController projectController;
 
     private final static String NAME_PROJECT= "KPI PROJECT";
 
     @Before
     public void setUp() throws Exception {
-        projectController = new ProjectController(projectService, projectTypeService);
+        projectController = new ProjectController(projectService, projectTypeService, userService);
     }
 
     @Test
