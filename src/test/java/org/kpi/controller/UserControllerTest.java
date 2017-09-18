@@ -1,24 +1,27 @@
 package org.kpi.controller;
 
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.not;
+import static org.junit.Assert.assertThat;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.kpi.model.User;
 import org.kpi.model.dto.NewUser;
+import org.kpi.service.RoleService;
 import org.kpi.service.UserService;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.not;
-import static org.junit.Assert.assertThat;
-import static org.mockito.Mockito.*;
 
 /**
  * Created by lnphi on 7/4/2017.
@@ -28,6 +31,8 @@ public class UserControllerTest {
 
     @Mock
     private UserService userService;
+    @Mock
+    private RoleService roleService;
 
     private UserController controller;
     private User ddlanh;
@@ -36,7 +41,7 @@ public class UserControllerTest {
 
     @Before
     public void setUp() throws Exception {
-        controller = new UserController(userService, new BCryptPasswordEncoder());
+        controller = new UserController(userService, new BCryptPasswordEncoder(), roleService);
         ddlanh = new User();
         ddlanh.setUsername("ddlanh");
         ddlanh.setFirstName("Lanh");

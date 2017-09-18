@@ -1,7 +1,9 @@
 package org.kpi.controller;
 
+import org.kpi.model.Role;
 import org.kpi.model.User;
 import org.kpi.model.dto.NewUser;
+import org.kpi.service.RoleService;
 import org.kpi.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -11,6 +13,7 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,10 +25,14 @@ public class UserController {
 
     private PasswordEncoder passwordEncoder;
 
+    private RoleService roleService;
+
     @Autowired
-    public UserController(UserService userService, PasswordEncoder passwordEncoder) {
+    public UserController(UserService userService,
+            PasswordEncoder passwordEncoder, RoleService roleService) {
         this.userService = userService;
         this.passwordEncoder = passwordEncoder;
+        this.roleService = roleService;
     }
 
     @GetMapping("/{username}")
@@ -39,21 +46,27 @@ public class UserController {
     }
 
     @PostMapping
-    public void create(@Valid @RequestBody NewUser user) {
-        userService.save(user.toModel(passwordEncoder));
+    public void create(@Valid @RequestBody NewUser newUser) {
+        User user = newUser.toModel(passwordEncoder);
+        Role role = roleService.getRoleByName(newUser.getRole());
+        user.setRole(role);
+        userService.save(user);
     }
 
     @GetMapping
-    public ResponseEntity<List<NewUser>> search(@RequestParam(required = false) String firstName, @RequestParam(required = false) String lastName,
-                                @RequestParam(required = false) String userName, @RequestParam(required = false) String email,
-                                @RequestParam(required = false) String query) {
+    public ResponseEntity<List<NewUser>> search(
+            @RequestParam(required = false) String firstName,
+            @RequestParam(required = false) String lastName,
+            @RequestParam(required = false) String userName,
+            @RequestParam(required = false) String email,
+            @RequestParam(required = false) String query) {
         List<User> users = new ArrayList<>();
-        if(!StringUtils.isEmpty(query)){
+        if (!StringUtils.isEmpty(query)) {
             users = userService.searchEverything(query);
-        }else{
+        } else {
             users = userService.search(firstName, lastName, userName, email);
         }
-        if(users == null || users.isEmpty()){
+        if (users == null || users.isEmpty()) {
             return new ResponseEntity<List<NewUser>>(HttpStatus.NOT_FOUND);
         }
         return ResponseEntity.ok(NewUser.toList(users));
