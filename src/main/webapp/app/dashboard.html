@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard | KPI</title>
+    <link rel="shortcut icon" href="images/kpi-icon.png"/>
+    <!--<link rel="stylesheet" href="css/bootstrap-theme.min.css"/>-->
+    <!-- build:css styles/vendor.css -->
+    <!-- bower:css -->
+    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="/bower_components/font-awesome/css/font-awesome.css" />
+    <link rel="stylesheet" href="/bower_components/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css" />
+    <link rel="stylesheet" href="/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker3.css" />
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <!-- build:css styles/main.css -->
+    <link rel="stylesheet" href="styles/kpi.css">
+    <!--<link rel="stylesheet" href="styles/font-awesome.min.css" />-->
+    <!-- endbuild -->
+</head>
+<body>
+<!-- MENU -->
+<div id="navbar-wrapper">
+    <header>
+        <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand kpi-logo" href="#" style="color: #3BAFEA;">KPI System</a>
+                    <a id="sidebar-toggle" class="sidebar-toggle" style="height: 50px" href="#">
+                        <i class="fa fa-chevron-left"></i>
+                        <i class="fa fa-chevron-right"></i>
+                    </a>
+                    <!--<div style="height: 46px; border-right: 1px solid; border-color: #074c6e; width: 3px; float: left; margin-top: 2px; margin-bottom: 2px;"></div>-->
+                </div>
+                <div id="navbar-collapse" class="collapse navbar-collapse">
+                    <div id="navbar-search-box" class="navbar-form navbar-left" role="search">
+                        <div class="input-group col-sm-12 col-md-12">
+                            <input type="text" class="form-control" placeholder="Search">
+                            <span class="input-group-btn">
+                                    <button class="btn" type="button">
+                                        <span class="fa fa-search" aria-hidden="true"></span>
+                                    </button>
+                                </span>
+                        </div>
+                    </div>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown">
+                            <a id="user-profile" href="#" class="dropdown-toggle" data-toggle="dropdown"><img
+                                src="images/avatar.png"
+                                class="img-responsive img-thumbnail img-circle">
+                                Username
+                                <b class="caret"></b>
+                            </a>
+                            <ul id="user-profile-dropdown" style="margin-top: 1px;" class="dropdown-menu dropdown-block"
+                                role="menu">
+                                <li><a href="#">Profile edition</a></li>
+                                <li><a href="#">Admin</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#">Logout</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+</div>
+<div id="wrapper">
+    <div id="sidebar-wrapper">
+        <aside id="sidebar">
+            <ul id="sidemenu" class="sidebar-nav">
+                <li>
+                    <a href="#">
+                        <i class="fa fa-users sidebar-icon"></i>
+                        <span class="sidebar-title">Users</span>
+                    </a>
+                </li>
+                <li class="sidemenu-item-dropdown">
+                    <a class="accordion-toggle collapsed toggle-switch" href="#submenu-2">
+                        <i class="fa fa-folder sidebar-icon"></i>
+                        <span class="sidebar-title">Projects</span>
+                        <b class="caret"></b>
+                    </a>
+                    <ul id="submenu-2" class="panel-collapse collapse panel-switch submenu" role="menu">
+                        <li>
+                            <a href="#">
+                                <i class="fa fa-caret-right sidebar-icon"></i>
+                                <span class="sidebar-title">Projects</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fa fa-caret-right sidebar-icon"></i>
+                                <span class="sidebar-title">Project Types</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li >
+                    <a class="accordion-toggle collapsed toggle-switch active"  href="#submenu-3">
+                        <i class="fa fa-list sidebar-icon"></i>
+                        <span class="sidebar-title">KPIs</span>
+                        <!--<b class="caret"></b>-->
+                    </a>
+                </li>
+                <li >
+                    <a class="accordion-toggle collapsed toggle-switch active"  href="#submenu-3">
+                        <i class="fa fa-dashboard sidebar-icon"></i>
+                        <span class="sidebar-title">Dashboard</span>
+                        <!--<b class="caret"></b>-->
+                    </a>
+                </li>
+            </ul>
+        </aside>
+    </div>
+    <main id="page-content-wrapper" role="main">
+
+
+        <!-- User password reset notify -->
+        <div id="resetpasswordNotify" class="modal fade kpi-notify" role="dialog">
+            <div class="modal-dialog modal-md">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="row text-center">
+                            <div class="col-sm-12"><p>Reset password for user "ddlanh" successfully.</p></div>
+                            <div class="col-sm-12">
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="userDeletionNotify" class="modal fade kpi-notify" role="dialog">
+            <div class="modal-dialog modal-md">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="row text-center">
+                            <div class="col-sm-12"><p>Deleted user "ddlanh" successfully.</p></div>
+                            <div class="col-sm-12">
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel ">
+
+            <div class="panel-heading">
+                <div class="page-header">
+                    <a href="../projects.html" class="h3 color-indigo">Projects</a>
+                    &nbsp;<span class="fa fa-angle-double-right"></span>
+                    <a href="../project-details.html" class="h3 color-indigo">VitalQIP Dev</a>
+                    &nbsp;<span class="fa fa-angle-double-right"></span>
+                    <a href="../project-report.html" class="h3 color-indigo">Report</a>
+                </div>
+
+                <div class="col-xs-12 col-sm-4 col-md-4">
+                    <button id="saveReportBtn" type="button" class="btn btn-md btn-kpi-default panel-heading-control"><span
+                        class="fa fa-save"></span>&nbsp; Save
+                    </button>
+                </div>
+
+                <div class="col-xs-12 col-sm-8 col-md-6 pull-right">
+                    <div class="form-group form-horizontal panel-heading-control">
+                        <div class="input-group">
+                            <span class="input-group-addon">Month / Year</span>
+                            <input class="form-control" id="month-selecion">
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+
+            <div class="panel-body table-responsive">
+                <table class="table table-hover user-table">
+                    <thead>
+                    <tr>
+                        <th class="col-sm-5">
+                            <a href="#">
+                                Name
+                                <span class="fa fa-sort-down static-pos"></span>
+                            </a>
+                        </th>
+                        <th class="col-sm-2">Value</th>
+                        <th class="col-sm-5">Comments</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="user-row text-middle">
+                        <td class="text-middle">
+                            Number of opened defects
+                        </td>
+                        <td class="text-middle">
+                            <input class="editable form-control" value="10">
+                        </td>
+                        <td class="text-middle">
+                            <textarea class="form-control"></textarea>
+                        </td>
+                    </tr><tr class="user-row text-middle">
+                        <td class="text-middle">
+                            Number of opened defects
+                        </td>
+                        <td class="text-middle">
+                            <input class="editable form-control" value="10">
+                        </td>
+                        <td class="text-middle">
+                            <textarea class="form-control"></textarea>
+                        </td>
+                    </tr><tr class="user-row text-middle">
+                        <td class="text-middle">
+                            Number of opened defects
+                        </td>
+                        <td class="text-middle">
+                            <input class="editable form-control" value="10">
+                        </td>
+                        <td class="text-middle">
+                            <textarea class="form-control"></textarea>
+                        </td>
+                    </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+</div>
+
+
+<!-- End Menu -->
+<!-- build:js scripts/vendor.js -->
+<!-- bower:js -->
+<script src="/bower_components/modernizr/modernizr.js"></script>
+<script src="/bower_components/jquery/dist/jquery.js"></script>
+<script src="/bower_components/bootstrap/dist/js/bootstrap.js"></script>
+<script src="/bower_components/vue/dist/vue.js"></script>
+<script src="/bower_components/axios/dist/axios.js"></script>
+<script src="/bower_components/vue-router/dist/vue-router.js"></script>
+<script src="/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.js"></script>
+<!-- endbower -->
+<!-- endbuild -->
+
+<!-- build:js scripts/plugins.js -->
+<!-- endbuild -->
+
+<!-- build:js scripts/main.js -->
+<script src="scripts/main.js"></script>
+<!-- endbuild -->
+
+<script>
+    let isMiniSizebar = $('#wrapper').hasClass('wrapper-minibar');
+    $('#sidebar-toggle').click(function () {
+        if($(window).width() > 767) {
+            $('#wrapper').toggleClass('wrapper-minibar');
+        }
+        isMiniSizebar = $('#wrapper').hasClass('wrapper-minibar');
+        if(isMiniSizebar) {
+            $('.sidemenu-item-dropdown').removeClass('sidemenu-item-dropdown-open');
+            $(this).addClass('sidebar-toggle-active');
+            $(this).removeClass('sidebar-toggle-disable');
+        } else {
+            $(this).removeClass('sidebar-toggle-active');
+            $(this).addClass('sidebar-toggle-disable');
+        }
+    });
+
+    $('#addUserBtn').click(function () {
+        $('#addUserDialog').modal({
+            backdrop: 'static',
+            keyboard: false
+        });
+        $("#userDialog_roleBox").prop("selectedIndex", -1);
+        $("#userDialog_projectBox").prop("selectedIndex", -1);
+    });
+
+    $("#userDialog_createBtn").click( function () {
+
+    });
+
+    $("#userDialog_clearBtn").click( function () {
+        $("#userDialog_usernameTxt").val("");
+        $("#userDialog_firstNameTxt").val("");
+        $("#userDialog_lastNameTxt").val("");
+        $("#userDialog_emailTxt").val("");
+        $("#userDialog_roleBox").prop("selectedIndex", -1);
+        $("#userDialog_projectBox").prop("selectedIndex", -1);
+    });
+
+    var deleteUserConfirmBox = 'Are you sure to delete this user?' +
+        '<div class="row"> ' +
+        '<div class="col-sm-12 text-center"> ' +
+        '<button id="user-delete-yes" data-toggle="clickover" class="btn btn-sm btn-success" >Yes</button> &nbsp;' +
+        '<button id="user-delete-no" data-toggle="clickover" class="btn btn-sm btn-danger" >No</button>' +
+        '</div></div>';
+
+    $('.user-action-btn-delete').tooltip({placement: 'auto bottom', title: 'Delete User'});
+    $('.user-action-btn-lock').tooltip({placement: 'auto bottom', title: 'Lock User'});
+    $('.user-action-btn-edit').tooltip({placement: 'auto bottom', title: 'Edit User Profile'});
+    $('.user-action-btn-resetpassword').tooltip({placement: 'auto bottom', title: 'Reset User Password'});
+
+
+    $('.user-action-btn-delete').popover({
+        animation: true,
+        content: deleteUserConfirmBox,
+        html: true,
+        placement: 'auto left',
+        trigger: 'focus'
+    }).on('shown.bs.popover', function () {
+        var popup = $(this);
+        $(this).parent().find('div.popover #user-delete-yes').click(function () {
+            $('#userDeletionNotify').modal({
+                keyboard: true
+            });
+            popup.click();
+        });
+        $(this).parent().find('div.popover #user-delete-no').click(function () {
+            popup.click();
+        });
+    });
+
+    var resetUserPassword = 'Are you sure to reset password for this user?' +
+        '<div class="row"> ' +
+        '<div class="col-sm-12 text-center"> ' +
+        '<button id="user-reset-yes" data-toggle="clickover" class="btn btn-sm btn-success" >Yes</button> &nbsp;' +
+        '<button id="user-reset-no" data-toggle="clickover" class="btn btn-sm btn-danger" >No</button>' +
+        '</div></div>';
+
+    $('.user-action-btn-resetpassword').popover({
+        animation: true,
+        content: resetUserPassword,
+        html: true,
+        placement: 'auto left',
+        trigger: 'focus'
+    }).on('shown.bs.popover', function () {
+        var popup = $(this);
+        $(this).parent().find('div.popover #user-reset-yes').click(function () {
+            $('#resetpasswordNotify').modal('show');
+            popup.click();
+        });
+        $(this).parent().find('div.popover #user-reset-no').click(function () {
+            popup.click();
+        });
+    });
+
+    $('.sidemenu-item-dropdown').click( function () {
+        if($(window).width() > 992 && !$('#wrapper').hasClass('wrapper-minibar')) {
+            $(this).toggleClass('sidemenu-item-dropdown-open')
+        }
+    });
+
+    $('#month-selecion').datepicker({
+        autoclose: true,
+        minViewMode: 1,
+        format: 'mm/yyyy'
+    });
+
+
+</script>
+
+</body>
+<!--<footer class="footer">-->
+<!--<div class="container">-->
+<!--<p>© 2017<a href="#"> KPI Team</a>, All rights reserved 2017-2018.</p>-->
+<!--</div>-->
+<!--</footer>-->
+</html>
