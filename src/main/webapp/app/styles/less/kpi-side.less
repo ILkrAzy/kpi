@@ -596,8 +596,19 @@ body {
     color: #ffffff;
 }
 
-.popover.left .arrow::after {
-    border-left-color: @main-color-dark !important;
+.popover {
+    &.left .arrow::after {
+        border-left-color: @main-color-dark !important;
+    }
+    &.bottom .arrow::after {
+        border-bottom-color: @main-color-dark !important;
+    }
+    &.right .arrow::after {
+        border-right-color: @main-color-dark !important;
+    }
+    &.top .arrow::after {
+        border-top-color: @main-color-dark !important;
+    }
 }
 
 .btn-green {
@@ -643,6 +654,10 @@ body {
     -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
     box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
     margin-bottom: 2px;
+
+    .no-margin-right {
+        margin-right: 0px !important;
+    }
 }
 
 .panel-body {

@@ -104,7 +104,7 @@
                     </ul>
                 </li>
                 <li >
-                    <a class="accordion-toggle collapsed toggle-switch active"  href="#submenu-3">
+                    <a class="accordion-toggle collapsed toggle-switch"  href="#submenu-3">
                         <i class="fa fa-list sidebar-icon"></i>
                         <span class="sidebar-title">KPIs</span>
                         <!--<b class="caret"></b>-->
@@ -161,27 +161,39 @@
 
             <div class="panel-heading">
                 <div class="page-header">
-                    <a href="../projects.html" class="h3 color-indigo">Projects</a>
-                    &nbsp;<span class="fa fa-angle-double-right"></span>
-                    <a href="../project-details.html" class="h3 color-indigo">VitalQIP Dev</a>
-                    &nbsp;<span class="fa fa-angle-double-right"></span>
-                    <a href="../project-report.html" class="h3 color-indigo">Report</a>
+                    <a href="../projects.html" class="h3 color-indigo">Dashboard</a>
                 </div>
 
-                <div class="col-xs-12 col-sm-4 col-md-4">
-                    <button id="saveReportBtn" type="button" class="btn btn-md btn-kpi-default panel-heading-control"><span
-                        class="fa fa-save"></span>&nbsp; Save
+                <div class="col-xs-12">
+                    <div class="col-xs-4 form-group form-horizontal panel-heading-control">
+                        <div class="row input-group no-margin-right">
+                            <span class="input-group-addon">Project</span>
+                            <select class="form-control" id="project-selection">
+                                <option>VitalQIP Dev</option>
+                                <option>VitalQIP QA</option>
+                                <option>VitalQIP CE</option>
+                                <option>VitalSuite Dev</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-xs-3 form-group form-horizontal panel-heading-control">
+                        <div class="row input-group no-margin-right">
+                            <span class="input-group-addon">From</span>
+                            <input class="form-control" id="from-month">
+                        </div>
+                    </div>
+                    <div class="col-xs-3 form-group form-horizontal panel-heading-control">
+                        <div class="row input-group no-margin-right">
+                            <span class="input-group-addon">To</span>
+                            <input class="form-control" id="to-month">
+                        </div>
+                    </div>
+                    <button id="viewDashBoard" type="button" class="btn btn-md btn-kpi-default panel-heading-control"><span
+                        class="fa fa-eye"></span>&nbsp; View
                     </button>
                 </div>
 
-                <div class="col-xs-12 col-sm-8 col-md-6 pull-right">
-                    <div class="form-group form-horizontal panel-heading-control">
-                        <div class="input-group">
-                            <span class="input-group-addon">Month / Year</span>
-                            <input class="form-control" id="month-selecion">
-                        </div>
-                    </div>
-                </div>
+
                 <div class="clearfix"></div>
             </div>
 
@@ -189,14 +201,18 @@
                 <table class="table table-hover user-table">
                     <thead>
                     <tr>
-                        <th class="col-sm-5">
+                        <th >
                             <a href="#">
-                                Name
+                                KPI
                                 <span class="fa fa-sort-down static-pos"></span>
                             </a>
                         </th>
-                        <th class="col-sm-2">Value</th>
-                        <th class="col-sm-5">Comments</th>
+                        <th >May / 2017</th>
+                        <th >June / 2017</th>
+                        <th >July / 2017</th>
+                        <th >August / 2017</th>
+                        <th >September / 2017</th>
+                        <th >October / 2017</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -205,33 +221,24 @@
                             Number of opened defects
                         </td>
                         <td class="text-middle">
-                            <input class="editable form-control" value="10">
+                            10 <a id="kpi-value-comment" href="javascript:void();"><span class="fa fa-commenting"></span></a>
                         </td>
                         <td class="text-middle">
-                            <textarea class="form-control"></textarea>
-                        </td>
-                    </tr><tr class="user-row text-middle">
-                        <td class="text-middle">
-                            Number of opened defects
+                            20
                         </td>
                         <td class="text-middle">
-                            <input class="editable form-control" value="10">
+                            20
                         </td>
                         <td class="text-middle">
-                            <textarea class="form-control"></textarea>
-                        </td>
-                    </tr><tr class="user-row text-middle">
-                        <td class="text-middle">
-                            Number of opened defects
+                            20
                         </td>
                         <td class="text-middle">
-                            <input class="editable form-control" value="10">
+                            20
                         </td>
                         <td class="text-middle">
-                            <textarea class="form-control"></textarea>
+                            20
                         </td>
                     </tr>
-
                     </tbody>
                 </table>
             </div>
@@ -361,10 +368,23 @@
         }
     });
 
-    $('#month-selecion').datepicker({
+    $('#from-month').datepicker({
         autoclose: true,
         minViewMode: 1,
         format: 'mm/yyyy'
+    });
+    $('#to-month').datepicker({
+        autoclose: true,
+        minViewMode: 1,
+        format: 'mm/yyyy'
+    });
+
+    $('#kpi-value-comment').popover({
+        animation: true,
+        content: '- This is comment<br/>- Hello',
+        html: true,
+        placement: 'bottom',
+        trigger: 'click'
     });
 
 

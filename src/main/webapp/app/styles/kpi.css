@@ -627,6 +627,15 @@ body {
 .popover.left .arrow::after {
   border-left-color: #08547a !important;
 }
+.popover.bottom .arrow::after {
+  border-bottom-color: #08547a !important;
+}
+.popover.right .arrow::after {
+  border-right-color: #08547a !important;
+}
+.popover.top .arrow::after {
+  border-top-color: #08547a !important;
+}
 .btn-green {
   color: #ffffff;
   background-color: #11a309;
@@ -663,6 +672,9 @@ body {
   -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
   margin-bottom: 2px;
+}
+.panel-heading .no-margin-right {
+  margin-right: 0px !important;
 }
 .panel-body {
   background-color: #ffffff;
