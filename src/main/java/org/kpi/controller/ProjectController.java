@@ -1,5 +1,6 @@
 package org.kpi.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -24,6 +25,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -91,5 +93,16 @@ public class ProjectController {
         projectKpiValue.setProject(project);
         projectKpiValueService.save(projectKpiValue);
         return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+    
+    @GetMapping("/{name}/kpis")
+    public ResponseEntity< List<ProjectKpiValueDTO>> getKpiValueForProject(@PathVariable String name, @RequestParam int month){
+        Project project = projectService.getProject(name);
+        List<ProjectKpiValue> projectKpiValues = projectKpiValueService.getListKpiValueByMonth(project.getId(), month);
+        List<ProjectKpiValueDTO> list = new ArrayList<ProjectKpiValueDTO>();
+        for(ProjectKpiValue projectKpiValue : projectKpiValues){
+            list.add(new ProjectKpiValueDTO(projectKpiValue));
+        }
+        return ResponseEntity.ok(list);
     }
 }

@@ -7,11 +7,15 @@ import lombok.Setter;
 
 import org.kpi.model.ProjectKpiValue;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 public class ProjectKpiValueDTO {
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
     @NotNull
     @Getter
     @Setter
     private String projectUUID;
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
     @NotNull
     @Getter
     @Setter
@@ -28,6 +32,9 @@ public class ProjectKpiValueDTO {
     @Getter
     @Setter
     private String comment;
+    @Getter
+    @Setter
+    private String kpiName;
 
     @Override
     public int hashCode() {
@@ -60,9 +67,33 @@ public class ProjectKpiValueDTO {
             return false;
         return true;
     }
-    
+
     public ProjectKpiValue toModel() {
-        ProjectKpiValue project = new ProjectKpiValue(this.month, this.year, this.value, this.comment);
+        ProjectKpiValue project = new ProjectKpiValue(this.month, this.year,
+                this.value, this.comment);
         return project;
     }
+
+    public ProjectKpiValueDTO(String projectUUID, String kpiUUID, int month,
+            int year, String value, String comment, String kpiName) {
+        this.projectUUID = projectUUID;
+        this.kpiUUID = kpiUUID;
+        this.month = month;
+        this.year = year;
+        this.value = value;
+        this.comment = comment;
+        this.kpiName = kpiName;
+    }
+
+    public ProjectKpiValueDTO() {
+    }
+
+    public ProjectKpiValueDTO(ProjectKpiValue projectKpiValue) {
+        this.month = projectKpiValue.getMonth();
+        this.year = projectKpiValue.getYear();
+        this.value = projectKpiValue.getValue();
+        this.comment = projectKpiValue.getComment();
+        this.kpiName = projectKpiValue.getKpi().getName();
+    }
+
 }
