@@ -14,6 +14,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.kpi.model.Project;
 import org.kpi.model.dto.ProjectDTO;
+import org.kpi.service.KpiService;
+import org.kpi.service.ProjectKpiValueService;
 import org.kpi.service.ProjectService;
 import org.kpi.service.ProjectTypeService;
 import org.kpi.service.UserService;
@@ -33,13 +35,19 @@ public class ProjectControllerTest {
     private ProjectTypeService projectTypeService;
     @Mock
     private UserService userService;
+    @Mock
+    private ProjectKpiValueService projectKpiValueService;
+    @Mock
+    private KpiService kpiService;
+    
     private ProjectController projectController;
+    
 
     private final static String NAME_PROJECT= "KPI PROJECT";
 
     @Before
     public void setUp() throws Exception {
-        projectController = new ProjectController(projectService, projectTypeService, userService);
+        projectController = new ProjectController(projectService, projectTypeService, userService, projectKpiValueService, kpiService);
     }
 
     @Test

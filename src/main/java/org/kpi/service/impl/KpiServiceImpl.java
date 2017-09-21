@@ -33,7 +33,7 @@ public class KpiServiceImpl implements KpiService {
     public Kpi getKpiByUUID(String uuid) {
         Kpi kpi = kpiRepository.findByUuid(uuid);
         if(kpi == null){
-            throw new IllegalArgumentException("Kpi with name " + uuid + " does not exist");
+            throw new IllegalArgumentException("Kpi with uuid " + uuid + " does not exist");
         }
         return kpi;
     }

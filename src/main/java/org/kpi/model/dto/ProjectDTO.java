@@ -25,6 +25,10 @@ public class ProjectDTO {
     @Setter
     private List<String> userManagers = new ArrayList<>();
     
+    @Getter
+    @Setter
+    private String uuid;
+    
     public Project toModel() {
         Project project = new Project();
         project.setName(this.name);
@@ -40,6 +44,7 @@ public class ProjectDTO {
         for(UserProject userProject : project.getManagers()){
             projectDTO.userManagers.add(userProject.getUser().getUsername());
         }
+        projectDTO.setUuid(project.getUuid());
         return projectDTO;
     }
 

@@ -9,4 +9,5 @@ import org.springframework.data.repository.CrudRepository;
  */
 public interface ProjectRepository extends CrudRepository<Project, Integer>{
     Project findByName(String name);
+    Project findByUuid(String uuid);
 }

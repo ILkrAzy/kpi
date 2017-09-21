@@ -14,4 +14,6 @@ public interface ProjectService {
     List<Project> getProjects();
     
     Project getProject(String name);
+    
+    Project getKpiByUUID(String uuid);
 }

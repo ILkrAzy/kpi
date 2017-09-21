@@ -37,4 +37,13 @@ public class ProjectServiceImpl implements ProjectService {
     public Project getProject(String name) {
         return projectRepository.findByName(name);
     }
+
+    @Override
+    public Project getKpiByUUID(String uuid) {
+        Project project = projectRepository.findByUuid(uuid);
+        if(project == null){
+            throw new IllegalArgumentException("Project with uuid " + uuid + " does not exist");
+        }
+        return project;
+    }
 }

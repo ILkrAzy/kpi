@@ -4,10 +4,15 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import org.kpi.model.Kpi;
 import org.kpi.model.Project;
+import org.kpi.model.ProjectKpiValue;
 import org.kpi.model.ProjectType;
 import org.kpi.model.User;
 import org.kpi.model.dto.ProjectDTO;
+import org.kpi.model.dto.ProjectKpiValueDTO;
+import org.kpi.service.KpiService;
+import org.kpi.service.ProjectKpiValueService;
 import org.kpi.service.ProjectService;
 import org.kpi.service.ProjectTypeService;
 import org.kpi.service.UserService;
@@ -34,12 +39,18 @@ public class ProjectController {
     private ProjectTypeService projectTypeService;
     
     private UserService userService;
+    
+    private ProjectKpiValueService projectKpiValueService;
+    
+    private KpiService kpiService;
 
     @Autowired
-    public ProjectController(ProjectService projectService, ProjectTypeService projectTypeService, UserService userService) {
+    public ProjectController(ProjectService projectService, ProjectTypeService projectTypeService, UserService userService, ProjectKpiValueService projectKpiValueService, KpiService kpiService) {
         this.projectTypeService = projectTypeService;
         this.projectService = projectService;
         this.userService = userService;
+        this.projectKpiValueService = projectKpiValueService;
+        this.kpiService = kpiService;
     }
     
     @PostMapping
@@ -69,5 +80,16 @@ public class ProjectController {
             return new ResponseEntity<ProjectDTO>(HttpStatus.NOT_FOUND);
         }
         return ResponseEntity.ok(ProjectDTO.fromProject(project));
+    }
+    
+    @PostMapping("/kpis")
+    public ResponseEntity<Void> saveKpiValuesForProject(@Valid @RequestBody ProjectKpiValueDTO projectKpiValueDTO) {
+        Kpi kpi = kpiService.getKpiByUUID(projectKpiValueDTO.getKpiUUID());
+        Project project = projectService.getKpiByUUID(projectKpiValueDTO.getProjectUUID());
+        ProjectKpiValue projectKpiValue = projectKpiValueDTO.toModel();
+        projectKpiValue.setKpi(kpi);
+        projectKpiValue.setProject(project);
+        projectKpiValueService.save(projectKpiValue);
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 }
