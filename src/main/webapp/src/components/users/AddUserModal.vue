@@ -1,6 +1,6 @@
 <template>
   <div id="addUserDialog" class="modal fade" role="dialog">
-    <div class="modal-dialog modal-lg">
+    <div class="modal-dialog modal-lg kpi-dialog">
       <!-- Modal content-->
       <div class="modal-content">
         <div class="modal-header">
@@ -60,21 +60,12 @@
                     </div>
                   </div>
 
-                  <div class="form-group ">
-                    <label class="col-md-4 control-label" for="userDialog_projectBox">Project</label>
-                    <div class="col-md-6">
-                      <select id="userDialog_projectBox" class="select form-control color-indigo-bordered">
-                        <option v-for="project in projects">{{ project }}</option>
-                      </select>
-                    </div>
-                  </div>
-
                   <div class="form-group">
                     <label class="col-md-4 control-label"></label>
                     <div class="col-md-4">
                       <button id="userDialog_createBtn" type="submit"
                               class="btn btn-success"><span
-                        class="glyphicon glyphicon-thumbs-up"></span>&nbsp;&nbsp;Create
+                        class="fa fa-save"></span>&nbsp;&nbsp;Save
                       </button>
                       &nbsp;
                       <button v-on:click="clear" id="userDialog_clearBtn" type="button" class="btn btn-danger"><span

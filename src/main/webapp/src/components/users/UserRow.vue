@@ -1,7 +1,7 @@
 <template>
   <tr class="user-row text-middle">
     <td class="text-middle">
-      <img style="width: 50px; height: 50px; border-radius: 4px" src="static/images/default_avatar.jpg"/>
+      <img style="width: 50px; height: 50px; border-radius: 4px" src="static/images/default_avatar.png"/>
     </td>
     <td class="text-middle">{{ user.username }}</td>
     <td class="text-middle">{{ user.firstName + ' ' + user.lastName }}</td>
@@ -17,7 +17,7 @@
         <span class="fa fa-ban"></span>
       </button>
       <button class="btn btn-sm user-action-btn user-action-btn-edit">
-        <span class="fa fa-edit"></span>
+        <span class="fa fa-pencil"></span>
       </button>
       <delete-user-button v-bind:user="user"></delete-user-button>
     </td>
