@@ -17,13 +17,13 @@
           <ul id="submenu-2" class="panel-collapse collapse panel-switch submenu" role="menu">
             <li>
               <router-link to="/projecttypes" href="#">
-                <i class="fa fa-folder sidebar-icon"></i>
+                <i class="fa fa-caret-right sidebar-icon"></i>
                 <span class="sidebar-title">Project types</span>
               </router-link>
             </li>
             <li>
               <router-link to="/projects" href="#">
-                <i class="fa fa-folder sidebar-icon"></i>
+                <i class="fa fa-caret-right sidebar-icon"></i>
                 <span class="sidebar-title">Projects</span>
               </router-link>
             </li>
