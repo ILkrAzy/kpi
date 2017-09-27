@@ -14,7 +14,7 @@ export default {
     });
   },
   deleteUser(user) {
-    // return axios.post('/api/users', user, {
+    // return axios.delete('/api/users', user, {
     //   headers: auth.getAuthHeader(),
     // });
     return new Promise((resolve) => {

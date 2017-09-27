@@ -5,6 +5,7 @@ import VuePaginate from 'vue-paginate';
 import 'jquery';
 import 'bootstrap';
 import 'notifyjs-browser';
+import 'bootstrap-select';
 import App from './App';
 import router from './router';
 import auth from './auth';
@@ -12,6 +13,7 @@ import store from './store';
 
 require('bootstrap/dist/css/bootstrap.min.css');
 require('font-awesome/css/font-awesome.min.css');
+require('bootstrap-select/dist/css/bootstrap-select.min.css');
 require('../static/styles/kpi.css');
 
 

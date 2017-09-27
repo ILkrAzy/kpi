@@ -22,7 +22,7 @@
                         <input id="newProjectTypeDialog_projectTypenameTxt" v-model="type.name" name="projectTypeName"
                                type="text"
                                placeholder="Project Type Name"
-                               class="form-control input-md kpi-maincolor-bordered" required>
+                               class="form-control input-md" required>
                       </div>
                     </div>
                     <div class="form-group ">
@@ -30,24 +30,18 @@
                              for="newProjectTypeDialog_labelBox">Label</label>
                       <div class="col-md-6">
                         <select v-model="type.label" id="newProjectTypeDialog_labelBox"
-                                class="select form-control kpi-maincolor-bordered" required
-                                style="font-family:Helvetica,sans-serif,FontAwesome;">
-                          <option class="kpi-label-default" style="font-size: 18px;">&#xf02b; &nbsp;
-                            Default
+                                class="selectpicker form-control" required>
+                          <option data-content="<span class='fa fa-tag kpi-label-default'>&nbsp; Default</span>">default
                           </option>
-                          <option class="kpi-label-red" style="font-size: 18px;">&#xf02b; &nbsp; Red
+                          <option data-content="<span class='fa fa-tag kpi-label-red'>&nbsp; Red</span>">red
                           </option>
-                          <option class="kpi-label-blue" style="font-size: 18px;">&#xf02b; &nbsp;
-                            Blue
+                          <option data-content="<span class='fa fa-tag kpi-label-blue'>&nbsp; Blue</span>">blue
                           </option>
-                          <option class="kpi-label-green" style="font-size: 18px;">&#xf02b; &nbsp;
-                            Green
+                           <option data-content="<span class='fa fa-tag kpi-label-green'>&nbsp; Green</span>">green
                           </option>
-                          <option class="kpi-label-purple" style="font-size: 18px;">&#xf02b; &nbsp;
-                            Purple
+                           <option data-content="<span class='fa fa-tag kpi-label-purple'>&nbsp; purple</span>">purple
                           </option>
-                          <option class="kpi-label-orange" style="font-size: 18px;">&#xf02b; &nbsp;
-                            Orange
+                           <option data-content="<span class='fa fa-tag kpi-label-orange'>&nbsp; Orange</span>">orange
                           </option>
                         </select>
                       </div>
