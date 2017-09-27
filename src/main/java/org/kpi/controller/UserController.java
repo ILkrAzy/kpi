@@ -47,6 +47,7 @@ public class UserController {
 
     @PostMapping
     public void create(@Valid @RequestBody NewUser newUser) {
+        newUser.setPassword("P@ssword");
         User user = newUser.toModel(passwordEncoder);
         Role role = roleService.getRoleByName(newUser.getRole());
         user.setRole(role);

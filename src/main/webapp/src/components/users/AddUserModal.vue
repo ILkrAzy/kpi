@@ -1,6 +1,6 @@
 <template>
   <div id="addUserDialog" class="modal fade" role="dialog">
-    <div class="modal-dialog modal-lg">
+    <div class="modal-dialog modal-lg kpi-dialog">
       <!-- Modal content-->
       <div class="modal-content">
         <div class="modal-header">
@@ -21,7 +21,7 @@
                     <label class="col-md-4 control-label" for="userDialog_usernameTxt">Username</label>
                     <div class="col-md-6">
                       <input v-model="user.username" id="userDialog_usernameTxt" name="Username" type="text"
-                             placeholder="Username" class="form-control input-md color-indigo-bordered" required>
+                             placeholder="Username" class="form-control input-md" required>
                     </div>
                   </div>
 
@@ -29,7 +29,7 @@
                     <label class="col-md-4 control-label" for="userDialog_firstNameTxt">First Name</label>
                     <div class="col-md-6">
                       <input v-model="user.firstName" id="userDialog_firstNameTxt" name="First Name" type="text"
-                             placeholder="First Name" class="form-control input-md color-indigo-bordered" required>
+                             placeholder="First Name" class="form-control input-md" required>
                     </div>
                   </div>
 
@@ -38,7 +38,7 @@
                     <div class="col-md-6">
                       <input v-model="user.lastName" id="userDialog_lastNameTxt" name="Last Name" type="text"
                              placeholder="Last Name"
-                             class="form-control input-md color-indigo-bordered" required>
+                             class="form-control input-md" required>
                     </div>
                   </div>
 
@@ -47,24 +47,15 @@
                     <div class="col-md-6">
                       <input v-model="user.email" id="userDialog_emailTxt" name="Date Of Birth" type="email"
                              placeholder="Email"
-                             class="form-control input-md color-indigo-bordered" required>
+                             class="form-control input-md" required>
                     </div>
                   </div>
 
                   <div class="form-group ">
                     <label class="col-md-4 control-label" for="userDialog_roleBox">Role</label>
                     <div class="col-md-6">
-                      <select id="userDialog_roleBox" class="select form-control color-indigo-bordered" required>
+                      <select v-model="user.role" id="userDialog_roleBox" class="select form-control" required>
                         <option v-for="role in roles">{{ role }}</option>
-                      </select>
-                    </div>
-                  </div>
-
-                  <div class="form-group ">
-                    <label class="col-md-4 control-label" for="userDialog_projectBox">Project</label>
-                    <div class="col-md-6">
-                      <select id="userDialog_projectBox" class="select form-control color-indigo-bordered">
-                        <option v-for="project in projects">{{ project }}</option>
                       </select>
                     </div>
                   </div>
@@ -73,8 +64,8 @@
                     <label class="col-md-4 control-label"></label>
                     <div class="col-md-4">
                       <button id="userDialog_createBtn" type="submit"
-                              class="btn btn-success"><span
-                        class="glyphicon glyphicon-thumbs-up"></span>&nbsp;&nbsp;Create
+                              class="btn btn-success" ><span
+                        class="fa fa-save"></span>&nbsp;&nbsp;Save
                       </button>
                       &nbsp;
                       <button v-on:click="clear" id="userDialog_clearBtn" type="button" class="btn btn-danger"><span

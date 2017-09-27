@@ -32,3 +32,5 @@ kpi.ipr
 kpi.iml
 /**/.idea/
 /src/main/resources/static/
+src/main/webapp/.tmp/
+src/main/webapp/bower_components/

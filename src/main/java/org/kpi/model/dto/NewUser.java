@@ -29,7 +29,6 @@ public class NewUser {
     @Setter
     private String username;
 
-    @NotNull
     @Size(min = 6)
     @Getter
     @Setter

@@ -5,19 +5,19 @@
         <a href="../users.html" class="h3 color-indigo">Users</a>
       </div>
 
-      <div class="col-xs-12 col-sm-6 col-md-4 static-pos">
-        <button id="addUserBtn" type="button" class="btn btn-md btn-indigo panel-heading-control"><span
-          class="fa fa-user-plus static-pos"></span>&nbsp; Add User
+      <div class="col-xs-12 col-sm-6 col-md-4 ">
+        <button id="addUserBtn" type="button" class="btn btn-md btn-kpi-default panel-heading-control"><span
+          class="fa fa-user-plus "></span>&nbsp; Add User
         </button>
-        <button v-on:click="getUsers" type="button" class="btn btn-md btn-indigo panel-heading-control"><span
-          class="fa fa-refresh static-pos"></span>&nbsp; Refresh
+        <button v-on:click="getUsers" type="button" class="btn btn-md btn-kpi-default panel-heading-control"><span
+          class="fa fa-refresh "></span>&nbsp; Refresh
         </button>
       </div>
 
-      <div class="col-xs-12 col-sm-6 col-md-8 static-pos">
+      <div class="col-xs-12 col-sm-6 col-md-8 ">
         <div
-          class="input-group input-group-md col-xs-12 col-sm-12 col-md-6 pull-right panel-heading-control static-pos">
-          <input v-model="searchUsers" type="text" class="form-control color-indigo-bordered static-pos" name="username"
+          class="input-group input-group-md col-xs-12 col-sm-12 col-md-6 pull-right panel-heading-control">
+          <input v-model="searchUsers" type="text" class="form-control kpi-maincolor-bordered " name="username"
                  placeholder="Search for users...">
           <div class="input-group-btn">
             <button type="button" class="btn btn-md background-color-indigo"><span
@@ -70,7 +70,7 @@
           </select>
         </div>
       </div>
-      <paginate-links for="users" :classes="{'ul': ['pagination', 'pull-right' ,'color-indigo-bordered']}"
+      <paginate-links for="users" :classes="{'ul': ['pagination', 'pull-right' ,'kpi-maincolor-bordered']}"
                       :show-step-links="true" :hide-single-page="true"></paginate-links>
       <div class="clearfix"></div>
     </div>
