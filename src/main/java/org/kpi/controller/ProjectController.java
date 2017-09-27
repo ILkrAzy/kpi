@@ -85,13 +85,15 @@ public class ProjectController {
     }
     
     @PostMapping("/kpis")
-    public ResponseEntity<Void> saveKpiValuesForProject(@Valid @RequestBody ProjectKpiValueDTO projectKpiValueDTO) {
-        Kpi kpi = kpiService.getKpiByUUID(projectKpiValueDTO.getKpiUUID());
-        Project project = projectService.getKpiByUUID(projectKpiValueDTO.getProjectUUID());
-        ProjectKpiValue projectKpiValue = projectKpiValueDTO.toModel();
-        projectKpiValue.setKpi(kpi);
-        projectKpiValue.setProject(project);
-        projectKpiValueService.save(projectKpiValue);
+    public ResponseEntity<Void> saveKpiValuesForProject(@Valid @RequestBody List<ProjectKpiValueDTO> projectKpiValueDTOs) {
+        for(ProjectKpiValueDTO projectKpiValueDTO : projectKpiValueDTOs){
+            Kpi kpi = kpiService.getKpiByUUID(projectKpiValueDTO.getKpiUUID());
+            Project project = projectService.getKpiByUUID(projectKpiValueDTO.getProjectUUID());
+            ProjectKpiValue projectKpiValue = projectKpiValueDTO.toModel();
+            projectKpiValue.setKpi(kpi);
+            projectKpiValue.setProject(project);
+            projectKpiValueService.save(projectKpiValue);
+        }
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
     
