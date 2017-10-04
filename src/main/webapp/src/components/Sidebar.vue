@@ -3,7 +3,7 @@
     <aside id="sidebar">
       <ul id="sidemenu" class="sidebar-nav">
         <li>
-          <router-link to="/users" href="#">
+          <router-link to="/users" activeClass="active" exact>
             <i class="fa fa-users sidebar-icon"></i>
             <span class="sidebar-title">Users</span>
           </router-link>
@@ -16,13 +16,13 @@
           </a>
           <ul id="submenu-2" class="panel-collapse collapse panel-switch submenu" role="menu">
             <li>
-              <router-link to="/projecttypes" href="#">
+              <router-link to="/projecttypes" activeClass="active" exact>
                 <i class="fa fa-caret-right sidebar-icon"></i>
                 <span class="sidebar-title">Project types</span>
               </router-link>
             </li>
             <li>
-              <router-link to="/projects" href="#">
+              <router-link to="/projects"  activeClass="active" exact>
                 <i class="fa fa-caret-right sidebar-icon"></i>
                 <span class="sidebar-title">Projects</span>
               </router-link>
@@ -30,7 +30,7 @@
           </ul>
         </li>
         <li>
-          <router-link to="/kpis" href="#">
+          <router-link to="/kpis" activeClass="active" exact>
             <i class="fa fa-list sidebar-icon"></i>
             <span class="sidebar-title">KPIs</span>
           </router-link>

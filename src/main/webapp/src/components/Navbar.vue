@@ -41,7 +41,7 @@
                   <li><a href="#">Profile</a></li>
                   <li><a href="#">Admin</a></li>
                   <li class="divider"></li>
-                  <li><a href="#" v-on:click="logout">Logout</a></li>
+                  <li><a href="#" @click.prevent="logout">Logout</a></li>
                 </ul>
               </li>
             </ul>
