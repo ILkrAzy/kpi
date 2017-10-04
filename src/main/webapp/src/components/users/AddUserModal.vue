@@ -12,7 +12,7 @@
 
           <div class="row">
             <div class="col-md-10 ">
-              <form class="form-horizontal" v-on:submit="addUser">
+              <form class="form-horizontal" @submit.prevent="addUser">
                 <fieldset>
                   <!-- Form Name -->
                   <!--<legend>User profile form requirement</legend>-->
@@ -111,8 +111,7 @@
       };
     },
     methods: {
-      addUser(event) {
-        event.preventDefault();
+      addUser() {
         this.$store.dispatch('addUser', this.user);
         this.user = newUser();
         $('#addUserDialog').modal('toggle');

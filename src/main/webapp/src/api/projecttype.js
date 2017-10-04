@@ -12,4 +12,9 @@ export default {
       headers: auth.getAuthHeader(),
     });
   },
+  delete(type) {
+    return axios.delete('/api/projecttypes', type.id, {
+      headers: auth.getAuthHeader(),
+    });
+  },
 };

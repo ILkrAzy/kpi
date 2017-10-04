@@ -17,6 +17,9 @@ const actions = {
   getProjectTypes({ commit }) {
     api.getProjectTypes().then(res => commit(mutationTypes.UPDATE_PROJECT_TYPES, res.data));
   },
+  delete({ commit }, type) {
+    api.delete(type).then(() => commit(mutationTypes.DELETE_PROJECT_TYPE, type));
+  },
 };
 
 // mutations
@@ -27,6 +30,12 @@ const mutations = {
   [mutationTypes.UPDATE_PROJECT_TYPES](states, types) {
     states.types.splice(0, states.types.length);
     types.forEach(e => states.types.push(e));
+  },
+  [mutationTypes.DELETE_PROJECT_TYPE](states, type) {
+    api.deleteUser(type).then(() => {
+      const index = states.types.indexOf(type);
+      states.types.splice(index, 1);
+    });
   },
 };
 
