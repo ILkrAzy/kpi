@@ -48,11 +48,11 @@
                     </div>
                     <div class="form-group">
                       <div class="col-md-12 text-center">
-                        <button id="newProjectTypeDialog_createBtn" type="submit" @click.prevent="addProjectType" class="btn btn-success"><span
+                        <button id="newProjectTypeDialog_createBtn" type="submit" @click="addProjectType" class="btn btn-success"><span
                           class="fa fa-save"></span>&nbsp;&nbsp;Save
                         </button>
                         &nbsp;
-                        <button id="newProjectTypeDialog_clearBtn" type="button" @click.prevent="clear" class="btn btn-danger"><span
+                        <button id="newProjectTypeDialog_clearBtn" type="button" @click="clear" class="btn btn-danger"><span
                           class="fa fa-times-circle"></span>&nbsp;&nbsp;Clear
                         </button>
                       </div>

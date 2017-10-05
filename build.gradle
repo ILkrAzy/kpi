@@ -83,8 +83,8 @@ checkstyle {
         checkstyle
     }
 
- bootRun {
-       systemProperty 'spring.config.location', System.properties['spring.config.location']
+    bootRun {
+        systemProperty 'spring.config.location', System.properties['spring.config.location']
     }
     dependencies {
         assert project.hasProperty("checkstyleVersion")
@@ -105,7 +105,6 @@ checkstyle {
         compile "org.springframework.boot:spring-boot-starter-thymeleaf:${springBootVersion}"
         compile group: 'net.sourceforge.nekohtml', name: 'nekohtml', version: '1.9.22'
 
-
         compile 'io.jsonwebtoken:jjwt:0.7.0'
         compileOnly 'org.projectlombok:lombok:1.16.18'
 
@@ -124,25 +123,25 @@ checkstyle {
         compile group: 'org.springframework.restdocs', name: 'spring-restdocs-core', version: '1.2.1.RELEASE'
     }
 
-    test{
-            exclude 'org/kpi/springmvctest/**'
+    test {
+        exclude 'org/kpi/springmvctest/**'
     }
 
+//    task restdoc(type: Test) {
+//        include 'org/kpi/springmvctest/**'
+//        outputs.dir snippetsDir
+//    }
 
-    task restdoc( type: Test ) {
-         include 'org/kpi/springmvctest/**'
-         outputs.dir snippetsDir
-    }
     asciidoctor {
         inputs.dir snippetsDir
-        dependsOn restdoc
+        //dependsOn restdoc
     }
 
     jar {
-        dependsOn asciidoctor
-            from ("${asciidoctor.outputDir}/html5") {
-                into 'static/docs'
-        }
+//        dependsOn asciidoctor
+//        from("${asciidoctor.outputDir}/html5") {
+//            into 'static/docs'
+//        }
     }
-    check.dependsOn.remove(restdoc)
+//    check.dependsOn.remove(restdoc)
 }

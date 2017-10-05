@@ -16,9 +16,10 @@ export default {
       localStorage.setItem('current_user', creds.username);
       self.authenticated = true;
       self.user = creds.username;
-
       if (redirect) {
         router.push(redirect);
+      } else {
+        router.push('/');
       }
     }).catch(() => {
       /* eslint no-param-reassign: ["error", { "props": false }] */
@@ -34,7 +35,8 @@ export default {
     localStorage.removeItem('id_token');
     localStorage.removeItem('current_user');
     this.authenticated = false;
-    window.location.reload(true);
+    router.push('/login');
+    // window.location.reload(true);
   },
 
   isAuth() {

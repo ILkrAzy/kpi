@@ -8,7 +8,7 @@
     <br/><br/>
     <h3 class="text-white">Sign in</h3>
     <br/>
-    <form v-on:submit="submit" class="signin-form">
+    <form class="signin-form">
       <div id="error-panel" v-if="error" class="alert alert-danger alert-dismissable fade in signin-fail">
         Invalid username/password!
       </div>
@@ -28,7 +28,7 @@
       <br/>
 
       <div class="input-group input-group-lg signin-input-group">
-        <button type="submit" class="btn btn-lg btn-success signin-btn" id="signin">SIGN IN</button>
+        <button type="button" class="btn btn-lg btn-success signin-btn" id="signin" @click.prevent="login">SIGN IN</button>
       </div>
       <br/>
       <a href="#" class="btn-link">Lost your password?</a>
@@ -57,13 +57,12 @@
       };
     },
     methods: {
-      submit(event) {
-        event.preventDefault();
+      login() {
         const credentials = {
           username: this.credentials.username,
           password: this.credentials.password,
         };
-        auth.login(this, credentials, '/');
+        auth.login(this, credentials, this.$route.query.redirect);
       },
     },
   };

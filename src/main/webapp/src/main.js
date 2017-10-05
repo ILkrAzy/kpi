@@ -22,7 +22,12 @@ Vue.use(VuePaginate);
 
 router.beforeEach((to, from, next) => {
   if (to.name !== 'Login' && !auth.isAuth()) {
-    next('/login');
+    next({
+      path: '/login',
+      query: {
+        redirect: to.fullPath,
+      },
+    });
   }
   next();
 });
