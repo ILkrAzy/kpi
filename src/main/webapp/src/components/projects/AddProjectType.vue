@@ -103,6 +103,7 @@
         });
         $('#newProjectTypeDialog_labelBox').prop('selectedIndex', 0);
       });
+      $('.selectpicker').selectpicker();
     },
   };
 </script>

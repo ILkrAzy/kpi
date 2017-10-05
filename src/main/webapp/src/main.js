@@ -21,7 +21,6 @@ Vue.config.productionTip = false;
 Vue.use(VuePaginate);
 
 axios.interceptors.request.use((config) => {
-  // config.header
   Object.assign(config.headers.common, auth.getAuthHeader());
   return config;
 });
