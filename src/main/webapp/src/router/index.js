@@ -1,9 +1,11 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import Users from '@/components/users/Users';
-import Home from '@/components/Home';
-import Login from '@/components/Login';
-import ProjectTypes from '@/components/projects/ProjectTypes';
+
+// lazy load the components
+const Users = () => import('@/components/users/Users');
+const Home = () => import('@/components/Home');
+const Login = () => import('@/components/Login');
+const ProjectTypes = () => import('@/components/projects/ProjectTypes');
 
 Vue.use(Router);
 

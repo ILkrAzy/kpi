@@ -1,17 +1,11 @@
 import axios from 'axios';
-import auth from '../auth';
-
 
 export default {
   getUsers() {
-    return axios.get('/api/users', {
-      headers: auth.getAuthHeader(),
-    });
+    return axios.get('/api/users');
   },
   addUser(user) {
-    return axios.post('/api/users', user, {
-      headers: auth.getAuthHeader(),
-    });
+    return axios.post('/api/users', user);
   },
   deleteUser(user) {
     // return axios.delete('/api/users', user, {

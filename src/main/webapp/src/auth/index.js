@@ -35,8 +35,8 @@ export default {
     localStorage.removeItem('id_token');
     localStorage.removeItem('current_user');
     this.authenticated = false;
+    axios.defaults.headers.common.Authorization = null;
     router.push('/login');
-    // window.location.reload(true);
   },
 
   isAuth() {

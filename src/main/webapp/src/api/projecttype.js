@@ -1,20 +1,13 @@
 import axios from 'axios';
-import auth from '../auth';
 
 export default {
   add(type) {
-    return axios.post('/api/projecttypes', type, {
-      headers: auth.getAuthHeader(),
-    });
+    return axios.post('/api/projecttypes', type);
   },
   getProjectTypes() {
-    return axios.get('/api/projecttypes', {
-      headers: auth.getAuthHeader(),
-    });
+    return axios.get('/api/projecttypes');
   },
   delete(type) {
-    return axios.delete('/api/projecttypes', type.id, {
-      headers: auth.getAuthHeader(),
-    });
+    return axios.delete('/api/projecttypes', type.id);
   },
 };
