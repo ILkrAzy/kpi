@@ -3,6 +3,7 @@
 import Vue from 'vue';
 import axios from 'axios';
 import VuePaginate from 'vue-paginate';
+import VeeValidate from 'vee-validate';
 import 'jquery';
 import 'bootstrap';
 import 'notifyjs-browser';
@@ -19,6 +20,7 @@ require('../static/styles/kpi.css');
 
 Vue.config.productionTip = false;
 Vue.use(VuePaginate);
+Vue.use(VeeValidate);
 
 axios.interceptors.request.use((config) => {
   Object.assign(config.headers.common, auth.getAuthHeader());

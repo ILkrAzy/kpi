@@ -15,14 +15,15 @@
               <div class="col-md-12 ">
                 <form class="form-horizontal">
                   <fieldset>
-                    <div class="form-group">
+                    <div class="form-group" :class="{'has-error': errors.has('type.name')}" >
                       <label class="col-md-4 control-label" for="newProjectTypeDialog_projectTypenameTxt">Project
                         Type Name</label>
                       <div class="col-md-6">
                         <input id="newProjectTypeDialog_projectTypenameTxt" v-model="type.name" name="projectTypeName"
                                type="text"
                                placeholder="Project Type Name"
-                               class="form-control input-md" required>
+                               class="form-control input-md">
+                        <p class="text-danger" v-if="errors.has('type.name')">{{ errors.first('type.name') }}</p>
                       </div>
                     </div>
                     <div class="form-group ">
@@ -48,7 +49,7 @@
                     </div>
                     <div class="form-group">
                       <div class="col-md-12 text-center">
-                        <button id="newProjectTypeDialog_createBtn" type="submit" @click="addProjectType" class="btn btn-success"><span
+                        <button id="newProjectTypeDialog_createBtn" type="button" @click.prevent="addProjectType" class="btn btn-success"><span
                           class="fa fa-save"></span>&nbsp;&nbsp;Save
                         </button>
                         &nbsp;
@@ -74,12 +75,12 @@
   function newType() {
     return {
       name: '',
-      label: '',
+      label: 'default',
     };
   }
 
   export default {
-    name: 'projecttypes',
+    name: 'AddProjectType',
     data() {
       return {
         type: newType(),
@@ -87,9 +88,13 @@
     },
     methods: {
       addProjectType() {
-        this.$store.dispatch('add', this.type);
-        this.type = newType();
-        $('#newProjectTypeDialog').modal('toggle');
+        this.$validator.validateAll({ 'type.name': this.type.name }).then(() => {
+          if (!this.errors.any()) {
+            this.$store.dispatch('add', this.type);
+            this.type = newType();
+            $('#newProjectTypeDialog').modal('toggle');
+          }
+        });
       },
       clear() {
         this.type = newType();
@@ -104,6 +109,7 @@
         $('#newProjectTypeDialog_labelBox').prop('selectedIndex', 0);
       });
       $('.selectpicker').selectpicker();
+      this.$validator.attach('type.name', 'required', { alias: 'Project Type Name' });
     },
   };
 </script>
