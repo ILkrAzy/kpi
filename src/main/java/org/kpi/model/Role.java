@@ -3,13 +3,21 @@ package org.kpi.model;
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.util.StringUtils;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.UUID;
 
 @Entity
-@Table(name = "role", indexes = { @Index(name = "ROLE_NAME_IDX", columnList = "name", unique = true)})
+@Table(name = "role", indexes = { @Index(name = "ROLE_NAME_IDX", columnList = "name", unique = true) })
 public class Role implements Serializable {
     private static final long serialVersionUID = 1L;
+
+    @Getter
+    @Setter
+    String uuid = UUID.randomUUID().toString();
 
     @Id
     @GeneratedValue(generator = "increment")

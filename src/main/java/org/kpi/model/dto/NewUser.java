@@ -58,6 +58,10 @@ public class NewUser {
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     private String role;
     
+    @Getter
+    @Setter
+    private String uuid;
+    
     public User toModel(PasswordEncoder passwordEncoder) {
         return new User(username, passwordEncoder.encode(password), email, firstName, lastName, null);
     }
@@ -71,6 +75,7 @@ public class NewUser {
         if(user.getRole()!=null){
             newUser.setRole(user.getRoleName());
         }
+        newUser.setUuid(user.getUuid());
         return newUser;
     }
 

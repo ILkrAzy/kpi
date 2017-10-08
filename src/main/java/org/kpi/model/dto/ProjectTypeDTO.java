@@ -16,10 +16,14 @@ public class ProjectTypeDTO {
     @Setter
     @Pattern(regexp = "^[A-Za-z0-9]{2,50}$", message = "Name must contains letters or digit only")
     private String name;
-    
+
     @Getter
     @Setter
     private String label = "default";
+
+    @Getter
+    @Setter
+    private String uuid;
 
     public ProjectType toModel() {
         ProjectType type = new ProjectType();

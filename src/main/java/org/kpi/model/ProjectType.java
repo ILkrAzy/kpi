@@ -3,6 +3,7 @@ package org.kpi.model;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -20,9 +21,14 @@ import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
-@Table(name = "project_type", indexes = { @Index(name = "PROJECT_TYPE_NAME_IDX", columnList = "name", unique = true)})
+@Table(name = "project_type", indexes = { @Index(name = "PROJECT_TYPE_NAME_IDX", columnList = "name", unique = true) })
 public class ProjectType implements Serializable {
     private static final long serialVersionUID = 1L;
+
+    @Getter
+    @Setter
+    String uuid = UUID.randomUUID().toString();
+
     @Id
     @GeneratedValue(generator = "increment")
     @GenericGenerator(name = "increment", strategy = "increment")
@@ -30,7 +36,7 @@ public class ProjectType implements Serializable {
 
     @Column(length = 50, nullable = false)
     private String name;
-    
+
     @Column(length = 50)
     @Getter
     @Setter
@@ -68,12 +74,15 @@ public class ProjectType implements Serializable {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof ProjectType)) return false;
+        if (this == o)
+            return true;
+        if (!(o instanceof ProjectType))
+            return false;
 
         ProjectType type = (ProjectType) o;
 
-        if (getId() != type.getId()) return false;
+        if (getId() != type.getId())
+            return false;
         return getName() != null ? getName().equals(type.getName()) : type.getName() == null;
     }
 

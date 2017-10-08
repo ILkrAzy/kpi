@@ -2,18 +2,27 @@ package org.kpi.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
+import lombok.Getter;
+import lombok.Setter;
+
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Entity
-@Table(name = "user", indexes = {@Index(name = "USER_USERNAME_IDX", columnList = "username", unique = true),
-        @Index(name = "USER_EMAIL_IDX", columnList = "email", unique = true)})
+@Table(name = "user", indexes = { @Index(name = "USER_USERNAME_IDX", columnList = "username", unique = true),
+        @Index(name = "USER_EMAIL_IDX", columnList = "email", unique = true) })
 public class User implements Serializable {
     private static final long serialVersionUID = 1L;
+
+    @Getter
+    @Setter
+    String uuid = UUID.randomUUID().toString();
 
     @JsonIgnore
     @Id
@@ -23,7 +32,7 @@ public class User implements Serializable {
 
     @Column(nullable = false, length = 50)
     private String username;
-    
+
     @JsonIgnore
     @Column(nullable = false)
     private String password;
@@ -53,7 +62,6 @@ public class User implements Serializable {
     public User() {
     }
 
-
     public User(String username, String password, String email, String firstName, String lastName, Role role) {
         super();
         this.username = username;
@@ -63,7 +71,6 @@ public class User implements Serializable {
         this.lastName = lastName;
         this.role = role;
     }
-
 
     public int getId() {
         return id;
@@ -140,8 +147,10 @@ public class User implements Serializable {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof User)) return false;
+        if (this == o)
+            return true;
+        if (!(o instanceof User))
+            return false;
 
         User user = (User) o;
 
