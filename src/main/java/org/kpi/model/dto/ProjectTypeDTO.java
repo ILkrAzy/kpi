@@ -31,4 +31,11 @@ public class ProjectTypeDTO {
         type.setLabel(label);
         return type;
     }
+
+    public ProjectTypeDTO fromModel(ProjectType projectType) {
+        this.setLabel(projectType.getLabel());
+        this.setName(projectType.getLabel());
+        this.setUuid(projectType.getUuid());
+        return this;
+    }
 }
