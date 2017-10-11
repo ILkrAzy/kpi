@@ -1,7 +1,7 @@
 <template>
   <tr class="user-row text-middle">
     <td class="text-middle">
-      <img style="width: 50px; height: 50px; border-radius: 4px" src="static/images/default_avatar.png"/>
+      <img style="width: 50px; height: 50px; border-radius: 4px" src="assets/images/default_avatar.png"/>
     </td>
     <td class="text-middle">{{ user.username }}</td>
     <td class="text-middle">{{ user.firstName + ' ' + user.lastName }}</td>

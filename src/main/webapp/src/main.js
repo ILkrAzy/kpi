@@ -16,7 +16,7 @@ import store from './store';
 require('bootstrap/dist/css/bootstrap.min.css');
 require('font-awesome/css/font-awesome.min.css');
 require('bootstrap-select/dist/css/bootstrap-select.min.css');
-require('../static/styles/kpi.css');
+require('../assets/styles/kpi.css');
 
 Vue.config.productionTip = false;
 Vue.use(VuePaginate);
