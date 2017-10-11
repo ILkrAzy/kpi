@@ -49,7 +49,11 @@ public class ProjectTypeControllerTest {
         types.add(new ProjectType());
         types.add(new ProjectType());
         when(projectTypeService.getAll()).thenReturn(types);
-        assertThat(controller.getAll(), equalTo(types));
+        List<ProjectTypeDTO> projectTypeDTOs = new ArrayList<ProjectTypeDTO>();
+        for(ProjectType p : types){
+            projectTypeDTOs.add(new ProjectTypeDTO().fromModel(p));
+        }
+        assertThat(controller.getAll(), equalTo(projectTypeDTOs));
     }
 
     @Test
