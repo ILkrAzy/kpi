@@ -63,13 +63,13 @@ public class User implements Serializable {
     }
 
     public User(String username, String password, String email, String firstName, String lastName, Role role) {
-        super();
         this.username = username;
         this.password = password;
         this.email = email;
         this.firstName = firstName;
         this.lastName = lastName;
         this.role = role;
+        this.uuid = UUID.randomUUID().toString();
     }
 
     public int getId() {
