@@ -5,6 +5,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.kpi.model.ProjectType;
 import org.kpi.model.dto.ProjectTypeDTO;
+import org.kpi.service.KpiService;
 import org.kpi.service.ProjectTypeService;
 import org.mockito.Mock;
 import org.mockito.Mockito;
@@ -27,12 +28,14 @@ import static org.mockito.Mockito.when;
 public class ProjectTypeControllerTest {
     @Mock
     private ProjectTypeService projectTypeService;
-
+    @Mock
+    private KpiService kpiService;
+    
     private ProjectTypeController controller;
 
     @Before
     public void setUp() throws Exception {
-        controller = new ProjectTypeController(projectTypeService);
+        controller = new ProjectTypeController(projectTypeService, kpiService);
     }
 
     @Test

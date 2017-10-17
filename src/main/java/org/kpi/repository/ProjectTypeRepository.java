@@ -12,4 +12,5 @@ import java.util.List;
  */
 public interface ProjectTypeRepository extends CrudRepository<ProjectType, Integer> {
     ProjectType findByName(String name);
+    ProjectType findByUuid(String uuid);
 }

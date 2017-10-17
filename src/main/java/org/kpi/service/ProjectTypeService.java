@@ -14,4 +14,6 @@ public interface ProjectTypeService {
     List<ProjectType> getAll();
 
     ProjectType getByName(String name);
+    
+    ProjectType getUUID(String uuid);
 }

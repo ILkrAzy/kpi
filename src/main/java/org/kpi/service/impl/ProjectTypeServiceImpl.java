@@ -37,4 +37,9 @@ public class ProjectTypeServiceImpl implements ProjectTypeService {
         return typeRepository.findByName(name);
     }
 
+    @Override
+    public ProjectType getUUID(String uuid) {
+        return typeRepository.findByUuid(uuid);
+    }
+
 }
