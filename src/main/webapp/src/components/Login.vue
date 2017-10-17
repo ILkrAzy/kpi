@@ -1,6 +1,6 @@
 <template>
   <div style="min-height: 100%" class="kpi-background-color kpi-signin-page-layout signin-body">
-    <img src="/static/images/kpi-logo.png" style="width: 100px;">
+    <img src="/assets/images/kpi-logo.png" style="width: 100px;">
     <br/>
     <h4 class="text-white">Welcome to KPI System</h4>
     <div class="signin-blank"></div>

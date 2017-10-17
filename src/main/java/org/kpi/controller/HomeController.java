@@ -1,5 +1,7 @@
 package org.kpi.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,5 +18,11 @@ public class HomeController {
     @ResponseStatus(HttpStatus.OK)
     public String index() {
         return "index";
+    }
+    
+    @RequestMapping(value = "/{[path:[^\\.]*}")
+    @ResponseStatus(HttpStatus.OK)
+    public String redirectWithParams(HttpServletRequest request) {
+        return "forward:/";
     }
 }
