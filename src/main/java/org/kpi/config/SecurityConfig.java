@@ -56,8 +56,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable().authorizeRequests()
                 .antMatchers(HttpMethod.GET,"/").permitAll()
                 .anyRequest().authenticated()
-                .and().formLogin().disable()
-                .httpBasic().realmName(REALM).authenticationEntryPoint(getBasicAuthenticationEntryPoint())
+                .and().formLogin().loginPage("/login").permitAll()
+                .and().httpBasic().realmName(REALM).authenticationEntryPoint(getBasicAuthenticationEntryPoint())
                 .and().addFilterBefore(new JWTLoginFilter("/api/login", authenticationManager()), UsernamePasswordAuthenticationFilter.class)
                 .addFilterBefore(new JWTAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
     }
