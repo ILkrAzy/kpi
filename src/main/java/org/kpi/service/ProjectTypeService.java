@@ -16,4 +16,6 @@ public interface ProjectTypeService {
     ProjectType getByName(String name);
     
     ProjectType getUUID(String uuid);
+    
+    void assign(String projectTypeName, List<String> kpiUUIDs);
 }

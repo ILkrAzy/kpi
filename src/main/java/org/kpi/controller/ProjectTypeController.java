@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -39,9 +40,9 @@ public class ProjectTypeController {
     }
 
     @PostMapping
-    public ResponseEntity create(@Valid @RequestBody ProjectTypeDTO typeDTO) {
+    public ResponseEntity<Void> create(@Valid @RequestBody ProjectTypeDTO typeDTO) {
         projectTypeService.add(typeDTO.toModel());
-        return ResponseEntity.ok(null);
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     @GetMapping
@@ -72,4 +73,11 @@ public class ProjectTypeController {
         }
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
+    
+    @PutMapping("/assign/{name}")
+    public ResponseEntity<Void> assign(@PathVariable String name, @RequestBody List<String> kpiUUIDs){
+        projectTypeService.assign(name, kpiUUIDs);
+        return new ResponseEntity<Void>(HttpStatus.OK);
+    }
+
 }

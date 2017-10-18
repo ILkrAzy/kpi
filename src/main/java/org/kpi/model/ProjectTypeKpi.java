@@ -1,19 +1,41 @@
 package org.kpi.model;
 
-import javax.persistence.*;
 import java.io.Serializable;
+import java.util.UUID;
+
+import javax.persistence.Entity;
+import javax.persistence.ForeignKey;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+import lombok.Getter;
+import lombok.Setter;
+
+import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 @Table(name = "project_type_kpi")
 public class ProjectTypeKpi implements Serializable {
     private static final long serialVersionUID = 1L;
-
+    
     @Id
+    @GeneratedValue(generator = "increment")
+    @GenericGenerator(name = "increment", strategy = "increment")
+    @Getter
+    @Setter
+    private int id;
+
+    @Getter
+    @Setter 
+    String uuid = UUID.randomUUID().toString();
+
     @ManyToOne
     @JoinColumn(name = "project_type_id", foreignKey = @ForeignKey(name = "PROJECTTYPEKPI_PROJECT_TYPE_ID_FK"))
     private ProjectType projectType;
 
-    @Id
     @ManyToOne
     @JoinColumn(name = "kpi_id", foreignKey = @ForeignKey(name = "PROJECTTYPEKPI_KPI_ID_FK"))
     private Kpi kpi;
