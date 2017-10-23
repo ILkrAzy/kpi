@@ -63,8 +63,10 @@ public class ProjectTypeControllerTest {
     public void get() throws Exception {
         ProjectType type = new ProjectType();
         type.setName("hello");
-        when(projectTypeService.getByName(type.getName())).thenReturn(type);
-        assertThat(controller.get(type.getName()), equalTo(ResponseEntity.ok(type)));
+        type.setUuid("8924bd9d-27c1-4075-bc8a-e0875448ab6c");
+        when(projectTypeService.getUUID(type.getUuid())).thenReturn(type);
+        ProjectTypeDTO typeDTO = new ProjectTypeDTO().fromModel(type);
+        assertThat(controller.get(type.getUuid()), equalTo(ResponseEntity.ok(typeDTO)));
     }
 
     @Test
