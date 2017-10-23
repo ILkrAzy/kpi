@@ -18,6 +18,7 @@ import org.junit.runner.RunWith;
 import org.kpi.model.Kpi;
 import org.kpi.model.dto.KpiDTO;
 import org.kpi.repository.KpiRepository;
+import org.kpi.repository.ProjectTypeKpiRepository;
 import org.kpi.service.KpiService;
 import org.mockito.Mock;
 import org.mockito.Mockito;
@@ -31,7 +32,8 @@ public class KpiServiceImplTest {
     
     @Mock
     private KpiRepository kpiRepository;
-    
+    @Mock
+    private ProjectTypeKpiRepository typeKpiRepository;
     private KpiService kpiService;
     
     private Kpi defect = new Kpi();
@@ -39,7 +41,7 @@ public class KpiServiceImplTest {
     private List<Kpi> kpis = new ArrayList<>();
     @Before
     public void setUp(){
-        kpiService = new KpiServiceImpl(kpiRepository);
+        kpiService = new KpiServiceImpl(kpiRepository, typeKpiRepository);
         defect.setId(1);
         defect.setMeasure("Defect");
         defect.setName("Number of Defect");
