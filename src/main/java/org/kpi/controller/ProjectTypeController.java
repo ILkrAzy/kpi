@@ -68,11 +68,7 @@ public class ProjectTypeController {
     
     @DeleteMapping("/{projectTypeUUID}/kpis")
     public ResponseEntity<Void> remove(@PathVariable String projectTypeUUID, @RequestBody List<String> kpiUUIDs){
-        ProjectType type = projectTypeService.getUUID(projectTypeUUID);
-        for(String id : kpiUUIDs){
-            Kpi kpi = kpiService.getKpiByUUID(id);
-            type.removeKpi(kpi);
-        }
+        projectTypeService.deAssign(projectTypeUUID, kpiUUIDs);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
     

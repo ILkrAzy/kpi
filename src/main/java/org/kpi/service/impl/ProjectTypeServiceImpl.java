@@ -29,7 +29,7 @@ public class ProjectTypeServiceImpl implements ProjectTypeService {
         this.kpiRepository = kpiRepository;
         this.typeKpiRepository = typeKpiRepository;
     }
-
+ 
     @Override
     public void add(ProjectType projectType) {
         typeRepository.save(projectType);
@@ -53,12 +53,33 @@ public class ProjectTypeServiceImpl implements ProjectTypeService {
     @Override
     public void assign(String projectTypeUUID, List<String> kpiUUIDs) {
         ProjectType projectType = typeRepository.findByUuid(projectTypeUUID);
+        if(projectType == null){
+            throw new IllegalArgumentException("Project Type with uuid " + projectTypeUUID + " does not exist");
+        }
         for(String uuid : kpiUUIDs){
             Kpi kpi = kpiRepository.findByUuid(uuid);
+            if(kpi == null){
+                throw new IllegalArgumentException("Kpi with uuid " + uuid + " does not exist");
+            }
             ProjectTypeKpi projectTypeKpi = new ProjectTypeKpi(projectType, kpi);
             typeKpiRepository.save(projectTypeKpi);
         }
     }
 
+    @Override
+    public void deAssign(String projectTypeUUID, List<String> kpiUUIDs) {
+        ProjectType projectType = typeRepository.findByUuid(projectTypeUUID);
+        if(projectType == null){
+            throw new IllegalArgumentException("Project Type with uuid " + projectTypeUUID + " does not exist");
+        }
+        for(String uuid : kpiUUIDs){
+            Kpi kpi = kpiRepository.findByUuid(uuid);
+            if(kpi == null){
+                throw new IllegalArgumentException("Kpi with uuid " + uuid + " does not exist");
+            }
+            ProjectTypeKpi typeKpi = typeKpiRepository.findByProjectTypeAndKpi(projectType, kpi);
+            typeKpiRepository.delete(typeKpi);
+        }
+    }
 
 }
