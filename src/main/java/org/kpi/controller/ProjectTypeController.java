@@ -7,6 +7,8 @@ import javax.validation.Valid;
 
 import org.kpi.model.Kpi;
 import org.kpi.model.ProjectType;
+import org.kpi.model.ProjectTypeKpi;
+import org.kpi.model.dto.KpiDTO;
 import org.kpi.model.dto.ProjectTypeDTO;
 import org.kpi.model.dto.UUIDs;
 import org.kpi.service.KpiService;
@@ -55,29 +57,41 @@ public class ProjectTypeController {
         return projectTypeDTOs;
     }
 
-
-    @GetMapping("/{name}")
-    public ResponseEntity<ProjectType> get(@PathVariable String name) {
-        ProjectType type = projectTypeService.getByName(name);
+    @GetMapping("/{projectTypeUUID}")
+    public ResponseEntity<ProjectTypeDTO> get(@PathVariable String projectTypeUUID) {
+        ProjectType type = projectTypeService.getUUID(projectTypeUUID);
         if (type == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        return ResponseEntity.ok(type);
+        return ResponseEntity.ok(new ProjectTypeDTO().fromModel(type));
     }
-    @DeleteMapping("/{projectTypUUID}/kpis")
-    public ResponseEntity<Void> remove(@PathVariable String projectTypeUUID, @RequestBody UUIDs uuid){
+    
+    @DeleteMapping("/{projectTypeUUID}/kpis")
+    public ResponseEntity<Void> remove(@PathVariable String projectTypeUUID, @RequestBody List<String> kpiUUIDs){
         ProjectType type = projectTypeService.getUUID(projectTypeUUID);
-        for(String id : uuid.getUuids()){
+        for(String id : kpiUUIDs){
             Kpi kpi = kpiService.getKpiByUUID(id);
             type.removeKpi(kpi);
         }
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
     
-    @PutMapping("/assign/{name}")
-    public ResponseEntity<Void> assign(@PathVariable String name, @RequestBody List<String> kpiUUIDs){
-        projectTypeService.assign(name, kpiUUIDs);
+    @PutMapping("/assign/{projectTypeUUID}")
+    public ResponseEntity<Void> assign(@PathVariable String projectTypeUUID, @RequestBody List<String> kpiUUIDs){
+        projectTypeService.assign(projectTypeUUID, kpiUUIDs);
         return new ResponseEntity<Void>(HttpStatus.OK);
     }
 
+    @GetMapping("/{projectTypeUUID}/kpis")
+    public ResponseEntity<List<KpiDTO>> getKpisfromProjectType(@PathVariable String projectTypeUUID) {
+        ProjectType type = projectTypeService.getUUID(projectTypeUUID);
+        if (type == null || type.getKpis() == null || type.getKpis().isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        List<KpiDTO> kpiDTOs = new ArrayList<>();
+        for(ProjectTypeKpi kpi : type.getKpis()){
+            kpiDTOs.add(new KpiDTO().fromModel(kpi.getKpi()));
+        }
+        return ResponseEntity.ok(kpiDTOs);
+    }
 }

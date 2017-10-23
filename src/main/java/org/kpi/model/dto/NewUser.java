@@ -52,7 +52,6 @@ public class NewUser {
     @Setter
     private String lastName;
 
-    @NotEmpty
     @Getter
     @Setter
     @JsonInclude(JsonInclude.Include.NON_EMPTY)

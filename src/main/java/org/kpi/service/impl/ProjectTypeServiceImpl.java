@@ -51,8 +51,8 @@ public class ProjectTypeServiceImpl implements ProjectTypeService {
     }
 
     @Override
-    public void assign(String projectTypeName, List<String> kpiUUIDs) {
-        ProjectType projectType = typeRepository.findByName(projectTypeName);
+    public void assign(String projectTypeUUID, List<String> kpiUUIDs) {
+        ProjectType projectType = typeRepository.findByUuid(projectTypeUUID);
         for(String uuid : kpiUUIDs){
             Kpi kpi = kpiRepository.findByUuid(uuid);
             ProjectTypeKpi projectTypeKpi = new ProjectTypeKpi(projectType, kpi);
