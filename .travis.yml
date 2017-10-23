@@ -5,10 +5,6 @@ jdk:
 before_install:
  - chmod +x gradlew
 
-install: echo "skip 'gradle assemble' step"
-
-script: ./gradlew build
-
 after_success:
  - ./gradlew cobertura coveralls
  
