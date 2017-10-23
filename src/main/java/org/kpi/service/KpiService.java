@@ -16,4 +16,6 @@ public interface KpiService {
     List<Kpi> getAll();
     
     void update(List<KpiDTO> kpiDTOs);
+    
+    List<Kpi> getKpisNotAsociationWithProjectType();
 }

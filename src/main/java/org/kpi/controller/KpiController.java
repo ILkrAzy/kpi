@@ -1,14 +1,20 @@
 package org.kpi.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.kpi.model.Kpi;
 import org.kpi.model.dto.KpiDTO;
 import org.kpi.service.KpiService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.ArrayList;
-import java.util.List;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * Created by vquochuy on 7/21/2017.
@@ -18,7 +24,7 @@ import java.util.List;
 public class KpiController {
 
     private KpiService kpiService;
-
+    
     @Autowired
     public KpiController(KpiService kpiService) {
         this.kpiService = kpiService;
@@ -49,5 +55,15 @@ public class KpiController {
     @PutMapping
     public void update(@RequestBody List<KpiDTO> kpiDTOs){
         kpiService.update(kpiDTOs);
+    }
+    
+    @GetMapping("/not-association")
+    public List<KpiDTO> getKpisNotAsociationWithProjectType() {
+        List<Kpi> kpis = kpiService.getKpisNotAsociationWithProjectType();
+        List<KpiDTO> kpiDTOs = new ArrayList<>();
+        for (Kpi kpi : kpis) {
+            kpiDTOs.add(new KpiDTO().fromModel(kpi));
+        }
+        return kpiDTOs;
     }
 }
