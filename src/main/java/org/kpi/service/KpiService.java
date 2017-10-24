@@ -18,4 +18,6 @@ public interface KpiService {
     void update(List<KpiDTO> kpiDTOs);
     
     List<Kpi> getKpisNotAsociationWithProjectType();
+    
+    void remove(String uuid);
 }

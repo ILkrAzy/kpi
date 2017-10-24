@@ -78,4 +78,13 @@ public class KpiServiceImpl implements KpiService {
         kpi3s.removeAll(kpi2s);
         return kpi3s;
     }
+
+    @Override
+    public void remove(String uuid) {
+        Kpi kpi = kpiRepository.findByUuid(uuid);
+        if(kpi == null){
+            throw new IllegalArgumentException("Kpi with uuid " + uuid + " does not exist");
+        }
+        kpiRepository.delete(kpi);
+    }
 }
